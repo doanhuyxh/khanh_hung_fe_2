@@ -1,0 +1,90 @@
+html {
+  font-size: 10px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-style:normal;
+}
+
+body *:not(input):not(textarea) {
+  cursor: default; /* Con trỏ là mũi tên */
+  user-select: none; /* Không thể chọn văn bản */
+}
+
+p, span{
+  font-size: 1.4rem;
+}
+.main {
+  padding-top: 20px;
+  min-height: 68vh;
+}
+@media (max-width: 1580px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 1200px) {
+  body {
+    font-size: 1.6rem;
+  }
+}
+
+
+.study_container {
+  margin: 0 auto;
+  margin-top: 1rem;
+  max-width: calc(1694 / var(--h-page)* 100vh);
+  padding: 0 calc(15 / var(--h-page)* 100vh);
+  width: 90%;
+}
+
+.video_div {
+  max-height: 60vh;
+}
+
+.title_course {
+  font-size: var(--f-sz);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.lesson_name {
+  font-size: var(--f-sz);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.video_list {
+  overflow-y: auto;
+}
+
+.container_list {
+  overflow-y: auto;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  max-height: 75vh;
+}
+
+.border_top_nav_course {
+  border-top: 3px solid var(--color-primary);
+}
+
+.line {
+  width: 2px;
+  height: 20px;
+  background-color: gray;
+}
+
+@media (min-width: 1200px) {
+  .video_list {
+    height: auto;
+    max-height: calc(100vh - 10rem);
+    overflow-y: auto;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .study_container {
+    padding: 0 1rem;
+  }
+}

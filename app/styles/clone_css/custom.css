@@ -1,0 +1,115 @@
+@font-face {
+  font-family: "Inter";
+  src: url("/template/assets/font/Inter/Inter-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/template/assets/font/Inter/Inter-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/template/assets/font/Inter/Inter-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/template/assets/font/Inter/Inter-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/template/assets/font/Inter/Inter-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "UTM Bebas";
+  src: url("/template/assets/font/UTM_Bebas/UTMBebas.eot");
+  src: url("/template/assets/font/UTM_Bebas/UTMBebasd41d.eot?#iefix")
+      format("embedded-opentype"),
+    url("/template/assets/font/UTM_Bebas/UTMBebas.woff2") format("woff2"),
+    url("/template/assets/font/UTM_Bebas/UTMBebas.woff") format("woff"),
+    url("/template/assets/font/UTM_Bebas/UTMBebas.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.blog-dt-content blockquote {
+  background-color: #f6eefa;
+  padding: 1em 2em;
+  text-align: left;
+  border-left: 5px solid #7c0fd1;
+  border-radius: 0.5rem;
+  margin: 2rem 0;
+}
+
+.blog-row .blog-dt-content p a {
+  color: #ff6600;
+}
+
+.blog-dt-content .content-main ul li a {
+  color: #ff6600;
+}
+
+.blog-col-mid .blog-dt-content .content-main ul {
+  margin-left: 2rem;
+}
+.blog-detail .blog-dt-content .content-main p strong {
+  color: unset;
+  text-transform: unset;
+}
+
+.blog-col-mid .blog-dt-content .content-main strong {
+  display: inline;
+  margin: 0;
+}
+
+.blog-col-mid .blog-dt-content .content-main h2 {
+  font-size: 3.8rem;
+  line-height: 1.2;
+}
+.blog-col-mid .blog-dt-content .content-main h3 {
+  font-size: 2.5rem;
+}
+.blog-col-mid .blog-dt-content .content-main h4 {
+  font-size: 2rem;
+}
+
+.blog-col-mid .blog-dt-content .tt-div {
+  font-size: 4.5rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .blog-col-mid .blog-dt-content .tt-div {
+    font-size: 3.2rem;
+  }
+  .blog-col-mid .blog-dt-content .content-main h2 {
+    font-size: 2.8rem;
+  }
+  .blog-col-mid .blog-dt-content .content-main h3 {
+    font-size: 2.2rem;
+  }
+  .blog-col-mid .blog-dt-content .content-main h4 {
+    font-size: 1.6rem;
+  }
+}
+.blog-row .blog-dt-content em {
+  font-style: italic;
+}

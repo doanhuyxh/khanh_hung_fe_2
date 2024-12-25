@@ -1,0 +1,16 @@
+.title-notify {
+    background: linear-gradient(164deg, #fff 10%, #ffd38d 100%);
+    background-size: 200% 200%;
+    -webkit-text-stroke: .3rem transparent;
+    -webkit-filter: drop-shadow(.3rem .3rem #c05c00);
+    filter: drop-shadow(.3rem .3rem #c05c00);
+    background: transparent;
+    color: #fff;
+}
+
+.sub-title-notify {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-left: auto;
+    margin-right: auto;
+}
