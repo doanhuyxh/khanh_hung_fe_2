@@ -25,7 +25,7 @@ export default function CollapseCourse({
         onClick={() => setIsOpen(!isOpen)}
       />
       <div
-        className={`transition-all duration-300 ease-in-out overflow-hidden mt-5 mb-10 bg-gray-100 ${isOpen ? "h-auto" : "max-h-0"}`}
+        className={`transition-all duration-300 ease-in-out overflow-hidden mt-5 mb-10 bg-gray-100 rounded-2xl ${isOpen ? "h-auto" : "max-h-0"}`}
         style={{ transitionProperty: "max-height" }}
       >
         <div className="p-4">

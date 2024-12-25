@@ -17,18 +17,25 @@ p, span{
   padding-top: 20px;
   min-height: 68vh;
 }
+html {
+  font-size: 10px;
+  overflow-x: hidden;
+}
+@media (min-width: 2000px) {
+  html {
+    font-size: 70%;
+  }
+}
 @media (max-width: 1580px) {
   html {
     font-size: 8px;
   }
 }
-
 @media (max-width: 1200px) {
-  body {
-    font-size: 1.6rem;
+  html {
+    font-size: 10px;
   }
 }
-
 
 .study_container {
   margin: 0 auto;
@@ -69,10 +76,32 @@ p, span{
   border-top: 3px solid var(--color-primary);
 }
 
+.img_preview_md{
+  width: 13rem;
+}
+
 .line {
   width: 2px;
   height: 20px;
   background-color: gray;
+}
+
+@media (max-width:800px) {
+  .study_container{
+    width: 100%;
+  }
+  .title_course{
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+  }
+  .burger-icon{
+    margin-left: 8px;
+  }
+
+  .img_preview_md{
+    width: 13rem;
+  }
+  
 }
 
 @media (min-width: 1200px) {

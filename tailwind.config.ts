@@ -12,10 +12,7 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    screens: {
-      "2xsm": "375px",
-      xsm: "425px",
-      "3xl": "2000px",
+    screens: {     
       ...defaultTheme.screens,
     },
     extend: {
