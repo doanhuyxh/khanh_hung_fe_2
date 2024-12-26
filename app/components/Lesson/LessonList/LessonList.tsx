@@ -10,13 +10,15 @@ import { CourseData } from "@/app/libs/types";
 interface LessonListProps {
     isShowAllLesson: boolean;
     setIsShowAllLesson: (state: boolean) => void;
+    totalLesson:number;
     data: CourseData[];
 }
 
 const LessonList: React.FC<LessonListProps> = ({
     isShowAllLesson,
     setIsShowAllLesson,
-    data
+    data,
+    totalLesson
 }) => {
     const [isClient, setIsClient] = useState(false);
     const [activeTab, setActiveTab] = useState("course");
@@ -32,7 +34,7 @@ const LessonList: React.FC<LessonListProps> = ({
             {activeTab === "course" && (
                 <h2 className="font-semibold ml-0 mb-4 text-black gap-2 hidden lg:flex">
                     <ActiveSpin isActive={isShowAllLesson} onToggle={setIsShowAllLesson} />
-                    <span>Trải nghiệm toàn bộ 202 videos- Hơn 35 giờ</span>
+                    <span>Trải nghiệm toàn bộ {totalLesson} videos</span>
                 </h2>
             )}
             {activeTab === "course" && (

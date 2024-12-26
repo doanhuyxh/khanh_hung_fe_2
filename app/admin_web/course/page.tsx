@@ -50,6 +50,7 @@ export default function Course() {
         axiosInstance.get(`/course/delete?id=${id}`)
             .then(res => {
                 const response = res.data as ResponseData;
+                console.log(response)
                 if (response.code == 200) {
                     toast.success('Xóa khoá học thành công', {
                         duration: 3000,

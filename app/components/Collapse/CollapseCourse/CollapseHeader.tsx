@@ -22,16 +22,16 @@ const CollapseHeader = ({
   return (
     <button
       onClick={onClick}
-      className={`w-full text-left font-semibold rounded-t-md flex justify-between items-center  ${isOpen ? "sticky top-0 z-20 bg-white px-3 pt-3 pb-5 h-44" : "mt-5 px-3 h-29"}`}
+      className={`w-full text-left rounded-t-md flex justify-center items-center overflow-hidden ${isOpen ? "sticky top-0 z-20 bg-white px-3 pt-3 pb-5 h-44" : "mt-5 px-3 h-29"}`}
     >
-      <div className="w-full h-full min-h-32 relative">
-        <h2 className="title_course text-color-primary text-wrap max-w-screen-xl xl:pr-2 min-h-20">
+      <div className="w-full h-fit">
+        <h2 className="title_course w-11/12 text-color-primary text-wrap xl:pr-2 mx-1">
           {title}
         </h2>
 
-        <div className="flex justify-between bg-white pb-4">
+        <div className="flex justify-between bg-white mx-2 text_mobile">
           <p className="flex gap-2 text-nowrap">
-            <span>
+            <span className="w-[18px]">
               <Image
                 src="/assets/images/pro-box-note-1.svg"
                 width={20}
@@ -43,7 +43,7 @@ const CollapseHeader = ({
             <span className="text-black">{numberVideo} video</span>
           </p>
           <p className="flex gap-2 text-nowrap">
-            <span>
+            <span className="w-[18px]">
               <Image
                 src="/assets/images/pro-box-note-2.svg"
                 width={20}

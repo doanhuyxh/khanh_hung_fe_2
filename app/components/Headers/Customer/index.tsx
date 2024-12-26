@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import HeaderNews from "./HeaderNews";
 import HeaderContact from "./HeaderContact";
-import './index.scss';
+import './index.css';
 
 const HeaderBottom = dynamic(() => import("./HeaderBottom"), {
   ssr: true,

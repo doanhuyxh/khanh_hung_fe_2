@@ -24,6 +24,7 @@ export default {
       backgroundClip: {
         text: "text"
       },
+      scrollbar: ['rounded'],
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

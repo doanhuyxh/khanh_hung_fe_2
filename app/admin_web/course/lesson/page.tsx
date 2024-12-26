@@ -35,7 +35,7 @@ export default function CourseLesson() {
         LessonContent: "",
         ImageThumbnail: '',
         Video: '',
-        Duration: '',
+        Duration: '12:01',
         CourseId: courseId
     })
 
@@ -48,7 +48,7 @@ export default function CourseLesson() {
                 LessonContent: "",
                 ImageThumbnail: '',
                 Video: '',
-                Duration: '',
+                Duration: '12:01',
                 CourseId: courseId
             })
         } else {
@@ -117,9 +117,9 @@ export default function CourseLesson() {
 
                 <div className='w-full p-4 rounded-lg flex flex-col gap-4'>
                     <h2 className='text-center text-lg font-bold'>Danh sách bài học</h2>
-                    {courseLesson.length == 0 && <p className='text-center text-lg font-bold'>Không có bài học nào</p>}
+                    {courseLesson && courseLesson.length == 0 && <p className='text-center text-lg font-bold'>Không có bài học nào</p>}
 
-                    {courseLesson.length > 0 && courseLesson.map((item: any, index: number) => (
+                    {courseLesson &&courseLesson.length > 0 && courseLesson.map((item: any, index: number) => (
                         <LessonItemAdmin
                             key={index}
                             item={item}

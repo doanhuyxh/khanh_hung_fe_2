@@ -21,7 +21,7 @@ export default function StudyPage() {
 
   const [lesson, setLesson] = useState<LessonDataItem | null>(null);
   const [data, setData] = useState<CourseData[]>([]);
-
+  const [totalLesson, setTotalLesson] = useState<number>(0)
   const [isShowAllLesson, setIsShowAllLesson] = useState(false);
 
   const getAllCourse = async () => {
@@ -34,6 +34,7 @@ export default function StudyPage() {
         name: item.name,
         image: item.image,
         costPrice: item.costPrice,
+        courseType:item.courseType,
         totalTimeDuration: item.totalTimeDuration,
         numberOfLessons: item.numberOfLessons,
         lesson: []
@@ -46,13 +47,14 @@ export default function StudyPage() {
           imageThumbnail: lesson.imageThumbnail,
           video: lesson.video,
           duration: lesson.duration,
-          isFree: lesson?.isFree,
+          isFree: item.courseType == "free",
           isImportant: lesson?.isImportant,
           isHot: lesson?.isHot
         });
       });
       temp_arr.push(course);
     });
+
     setData(temp_arr);
 
   }
@@ -63,6 +65,12 @@ export default function StudyPage() {
         window.scrollTo(0, 0);
       }
       getAllCourse();
+
+      axiosCustomerConfig.get("/course/get-total-lesson")
+      .then(res=>{
+        setTotalLesson(res.data)
+      })
+
     }
 
   }, [])
@@ -74,16 +82,6 @@ export default function StudyPage() {
         .then((res:any) => {
 
           if(res.code == 209){
-
-            toast.error("Bạn chưa mua khóa học này, bản sẽ được chuyển về bài học trước đó hoặc trạng chủ",{
-              duration: 5000,
-              position: "top-right",
-              style: {
-                background: "#333",
-                color: "#fff",
-                fontSize: "1.5rem"
-              }
-            })
             return
           }
 
@@ -138,6 +136,7 @@ export default function StudyPage() {
       <div className="video_list lg:w-1/3 w-full rounded-md mt-10 lg:mt-0 flex flex-col">
         <LessonList
           data={data}
+          totalLesson={totalLesson}
           isShowAllLesson={isShowAllLesson}
           setIsShowAllLesson={setIsShowAllLesson}
         />

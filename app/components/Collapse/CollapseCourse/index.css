@@ -1,0 +1,25 @@
+.collapseContainer{
+    background-color: #fff;
+    cursor: pointer;
+    border-bottom: 2px solid #db9797;
+}
+
+.txt_title{
+    font-size: var(--f-sz-name);
+    font-weight: 600;
+    max-width: 80%;
+}
+
+
+
+@media screen and (width <= 800px) {
+    .d-none{
+        display: none !important;
+    }
+    .txt_title{
+        font-size: 1.4rem;
+    }
+    .text_mobile{
+        font-size: 1.1rem;
+    }
+}

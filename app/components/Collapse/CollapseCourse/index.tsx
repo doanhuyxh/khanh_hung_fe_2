@@ -3,7 +3,7 @@
 import { useState } from "react";
 import CollapseHeader from "./CollapseHeader";
 import CourseLessonItemComponent from "./CourseLessonItemComponent";
-import "./index.scss";
+import "./index.css";
 import { CollapseCourseProps } from "@/app/libs/types";
 
 
@@ -16,7 +16,7 @@ export default function CollapseCourse({
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className={`w-full mx-2 lg:w-11/12 lg:m-auto collapseContainer`}>
+    <div className={`w-full lg:w-11/12 lg:m-auto collapseContainer`}>
       <CollapseHeader
         title={title}
         numberVideo={numberOfLessons}
@@ -25,7 +25,7 @@ export default function CollapseCourse({
         onClick={() => setIsOpen(!isOpen)}
       />
       <div
-        className={`transition-all duration-300 ease-in-out overflow-hidden mt-5 mb-10 bg-gray-100 rounded-2xl ${isOpen ? "h-auto" : "max-h-0"}`}
+        className={`transition-all duration-300 ease-in-out overflow-hidden bg-gray-100 rounded-2xl ${isOpen ? "h-auto mt-2" : "mb-4 max-h-0"}`}
         style={{ transitionProperty: "max-height" }}
       >
         <div className="p-4">

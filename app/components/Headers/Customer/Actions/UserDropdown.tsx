@@ -19,7 +19,7 @@ export default function UserDropdown({ isDropdown, user }: { isDropdown: boolean
 
     return (
         <div
-            className={`dropdown_menu transition-all duration-300 absolute top-20 right-[-20px] ${isDropdown ? 'opacity-150' : 'opacity-0'}`}
+            className={`transition-all duration-300 absolute top-20 right-[-20px] ${isDropdown ? 'dropdown_menu' : 'hidden'}`}
         >
             <ul className="dropdown_menu_item bg-white shadow-lg rounded-lg py-2">
                 <li>

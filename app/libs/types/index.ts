@@ -54,6 +54,7 @@ export interface CourseData {
   image: string;
   numberOfLessons: number;
   costPrice: number;
+  courseType:string;
   totalTimeDuration: string;
   lesson: LessonData[];
 }

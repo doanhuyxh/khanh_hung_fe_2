@@ -56,3 +56,10 @@
         background-size: 200% auto;
     }
 }
+
+
+@media screen and (width <= 800px) {
+    .text_mobile{
+        font-size: 10px;
+    }
+}

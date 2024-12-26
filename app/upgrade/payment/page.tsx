@@ -102,50 +102,13 @@ export default function PaymentPage() {
     return (
         <div className="w-screen h-screen overflow-y-auto">
             {/* <canvas ref={confettiCanvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none" /> */}
-
             <div className='w-full prmk pb-80'>
-
+                
                 <div className="w-2/3 max-w-[1920px] m-auto flex flex-col items-center justify-center min-h-[30vh] gap-10 info-container px-4">
 
                     <div data-aos="" className='w-3/4 m-auto bg-transparent flex flex-col items-center justify-center mb-10'>
                         <div className="w-[143px] h-[120px] relative mt-40">
-                            <div className="w-40 absolute left-[50%] top-0 transform -translate-x-1/2 z-10">
-                                <Image
-                                    src="/assets/images/gif-box-3.png"
-                                    alt="Upgrade"
-                                    className="w-full object-cover rounded-2xl shadow-2xl"
-                                    width={1920}
-                                    height={1080}
-                                />
-                            </div>
-                            <div className="absolute w-14 h-auto top-[50%] left-[50%] transform translate-x-[-50%] -translate-y-1/2 z-20">
-                                <Image
-                                    src="/assets/images/padlock.png"
-                                    alt="Upgrade"
-                                    className="w-full object-cover rounded-2xl animate-jump animate-infinite animate-duration-[2000ms] animate-ease-linear"
-                                    width={1920}
-                                    height={1080}
-                                />
-                            </div>
-                            <div className='w-1/3 h-[80px] absolute top-15 left-[50%] transform -translate-x-1/2 bg-white bg-opacity-50 z-9'></div>
-                            <div className="w-50 absolute bottom-1 transform left-[50%] translate-x-[-50%] rotate-x-90 origin-bottom z-10">
-                                <Image
-                                    src="/assets/images/gif-box-1.png"
-                                    alt="Upgrade"
-                                    className="w-full object-cover rounded-2xl"
-                                    width={1920}
-                                    height={1080}
-                                />
-                            </div>
-                            <div className="w-50 absolute bottom-0 transform left-[50%] translate-x-[-50%] rotate-y-90 origin-bottom z-10">
-                                <Image
-                                    src="/assets/images/gif-box-2.png"
-                                    alt="Upgrade"
-                                    className="w-full object-cover rounded-2xl"
-                                    width={1920}
-                                    height={1080}
-                                />
-                            </div>
+                            
                         </div>
                     </div>
                     

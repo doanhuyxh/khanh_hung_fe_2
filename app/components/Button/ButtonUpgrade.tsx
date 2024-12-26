@@ -11,7 +11,7 @@ export default function ButtonUpgrade() {
                 <span>
                     <Image src="/assets/images/header/premium-1.svg" alt="star" width={18} height={18} />
                 </span>
-                <span className="text-nowrap uppercase text-white font-bold text-xl">Nâng cấp Pro</span>
+                <span className="text-nowrap uppercase text-white font-bold text-xl text_mobile">Nâng cấp Pro</span>
             </a>
         </div>
     )

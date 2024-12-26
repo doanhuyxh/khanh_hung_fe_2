@@ -15,15 +15,15 @@ const CourseLessonItemComponent = ({ item }: CourseItemComponentProps) => {
     const query = useSearchParams();
 
     const handleClick = () => {
-        router.push(`/learn/study?lesson=${item.id}`);
+        window.location.href=`/learn/study?lesson=${item.id}`
     };
     const isActive = query.get("lesson") == item.id;
 
     return (
         <div
-            className={`group flex items-center cursor-pointer rounded-md lg:hover:bg-hover-primary p-3 mb-4 ${isActive ? "bg-hover-primary" : ""}`}
+            className={`group flex items-start cursor-pointer rounded-md lg:hover:bg-hover-primary p-3 mb-4 ${isActive ? "bg-hover-primary" : ""}`}
             onClick={handleClick}>
-            <div className="w-auto border border-none rounded-md overflow-hidden">
+            <div className="max-w-[152px] w-full border border-none rounded-lg overflow-hidden">
                 {item.imageThumbnail && <Image
                     src={item.imageThumbnail}
                     alt={item.name}
@@ -33,7 +33,7 @@ const CourseLessonItemComponent = ({ item }: CourseItemComponentProps) => {
                 />}
                 {!item.imageThumbnail && <div className="w-[152px] h-[92px]"></div>}
             </div>
-            <div className="w-3/4 flex flex-col gap-3 px-2 text-[1rem] md:text-[12px] lg:text-xl">
+            <div className="flex-grow flex flex-col gap-3 px-2 text-[1rem] md:text-[12px] lg:text-xl">
                 <h3 className={`font-bold mb-2 text-black lg:group-hover:text-white group-hover:opacity-100 ${isActive ? "text-white" : ""}`}>
                     {item.name}
                 </h3>
@@ -42,8 +42,8 @@ const CourseLessonItemComponent = ({ item }: CourseItemComponentProps) => {
                     <p className="flex gap-2">
                         {item.isFree && (
                             <span
-                                className="font-bold text-white bg-color-secondary p-2 lg:p-3 rounded-lg flex lg:gap-2 text-nowrap">
-                                <span className="m-auto hidden lg:block">
+                                className="font-bold text-white bg-color-secondary px-2 py-1 lg:p-3 rounded-lg flex lg:gap-2 text-nowrap text_mobile">
+                                <span className="m-auto hidden lg:block d-none">
                                     <Image
                                         src="/assets/images/ic-tag-important.svg"
                                         width={10}
@@ -56,8 +56,8 @@ const CourseLessonItemComponent = ({ item }: CourseItemComponentProps) => {
                         )}
                         {!item.isImportant && (
                             <span
-                                className="font-bold text-[1rem] lg:text-xl text-white bg-orange-500 p-2 lg:p-3 rounded-lg flex lg:gap-2 text-nowrap">
-                                <span className="m-auto hidden lg:block">
+                                className="font-bold text-[1rem] lg:text-xl text-white bg-orange-500 px-2 py-1  rounded-lg flex lg:gap-2 text-nowrap">
+                                <span className="m-auto hidden lg:block d-none">
                                     <Image
                                         src="/assets/images/ic-tag-important.svg"
                                         width={10}
@@ -70,8 +70,8 @@ const CourseLessonItemComponent = ({ item }: CourseItemComponentProps) => {
                         )}
 
                         {item.isFree &&
-                            <span className="font-bold text-white bg-green-800 p-2 lg:p-3 rounded-lg flex lg:gap-2">
-                                <span className="m-auto hidden lg:block">
+                            <span className="font-bold text-white bg-green-800 px-2 py-1 lg:p-3 rounded-lg flex lg:gap-2 text_mobile">
+                                <span className="m-auto hidden lg:block d-none">
                                     <Image
                                         src="/assets/images/ic-tag-free.svg"
                                         width={10}
@@ -83,17 +83,17 @@ const CourseLessonItemComponent = ({ item }: CourseItemComponentProps) => {
                             </span>
                         }
                     </p>
-                    <p className="flex justify-items-center align-middle gap-1 lg:gap-0">
-                        <span className="m-auto">
+                    <p className="flex justify-center flex-row items-center align-middle gap-1 text_mobile">
+                        <span className="m-">
                             <Image
                                 src="/assets/images/ic-clock.svg"
-                                width={20}
-                                height={20}
+                                width={18}
+                                height={18}
                                 alt=""
                                 className="hover:text-white"
                             />
                         </span>
-                        <span className="font-bold m-auto text-[1rem] lg:text-xl">{item.duration}</span>
+                        <span className="font-bold m-auto text-nowrap text-[1.1rem] lg:text-xl">{item.duration}</span>
                     </p>
                 </div>
             </div>

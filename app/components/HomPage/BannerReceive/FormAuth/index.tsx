@@ -58,7 +58,7 @@ export default function AuthTabs() {
       .post("/Auth/Login", loginForm)
       .then((response: any) => {
         if (response.code === 200) {
-          router.push("/learn/study");
+          window.location.href="/learn/study"
         } else {
           toast.error("Tài khoản hoặc mật khẩu không đúng", {
             duration: 3000,
@@ -172,7 +172,7 @@ export default function AuthTabs() {
   }
 
   return (
-    <div className="w-full md:banner-right  lg:text-xl bg-transparent rounded-lg overflow-hidden flex flex-col items-start justify-start">
+    <div className="w-full max-w-[600px] md:banner-right  lg:text-xl bg-transparent rounded-lg overflow-hidden flex flex-col items-start justify-start">
       <div className="text-white m-auto mt-4 mb-10">
         <p className="font-bold mb-2 lg:text-3xl lg:scale-95 text-center">
           KHÓA HỌC KINH DOANH KHÓA HỌC hoàn toàn miễn phí

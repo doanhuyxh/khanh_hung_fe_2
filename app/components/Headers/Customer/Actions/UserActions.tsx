@@ -7,6 +7,7 @@ import { Customer } from '@/app/libs/types';
 import { usePathname } from 'next/navigation';
 import ButtonUpgrade from '@/app/components/Button/ButtonUpgrade';
 import ButtonLearnNow from '@/app/components/Button/ButtonLearnNow';
+import ButtonDownLoadAppMobile from '@/app/components/Button/ButtonDownLoadAppMobile';
 
 export default function UserActions({ user }: { user: Customer }) {
     const [isDropdown, setIsDropdown] = useState(false);
@@ -19,13 +20,7 @@ export default function UserActions({ user }: { user: Customer }) {
         <div className="flex gap-4">
             {isLearnPage ? <ButtonUpgrade />
                 : <ButtonLearnNow />}
-            <a className='lg:hidden bg-pink-500 flex flex-row justify-center items-center p-2 rounded-lg' href="https://play.google.com/store/apps/details?id=com.englishgo.app">
-                <span className="star"></span>
-                <span className='w-[20px]'>
-                    <Image src="/assets/images/header/icon-down-app.svg" alt="star" width={15} height={15} />
-                </span>
-                <span className="text-nowrap uppercase text-white font-bold text-xl">Tải App</span>
-            </a>
+                <ButtonDownLoadAppMobile />
             <div className="btn_profile">
                 <div className="btn_profile_content cursor-pointer" onClick={() => setIsDropdown(!isDropdown)}>
                     <a href="/learn/profile" className="btn_profile_avatar">

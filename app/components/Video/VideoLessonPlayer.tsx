@@ -16,7 +16,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   views,
   videoUrl,
 }) => {
-  
+
 
   return (
     <div className="flex-1">

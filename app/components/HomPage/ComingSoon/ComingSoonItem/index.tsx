@@ -2,17 +2,26 @@
 
 import Image from "next/image";
 
+const EXPERIENCE_ITEMS = [
+    "8 năm kinh nghiệm làm Data Science Expert, 2 năm làm Data Science Manager trong lĩnh vực Ngân hàng Tài chính, Fintech và Retail",
+    "8 năm kinh nghiệm làm Data Science Expert, 2 năm làm Data Science Manager trong lĩnh vực Ngân hàng Tài chính, Fintech và Retail",
+    "8 năm kinh nghiệm làm Data Science Expert, 2 năm làm Data Science Manager trong lĩnh vực Ngân hàng Tài chính, Fintech và Retail",
+    "8 năm kinh nghiệm làm Data Science Expert, 2 năm làm Data Science Manager trong lĩnh vực Ngân hàng Tài chính, Fintech và Retail",
+    "8 năm kinh nghiệm làm Data Science Expert, 2 năm làm Data Science Manager trong lĩnh vực Ngân hàng Tài chính, Fintech và Retail",
+];
+
 export default function ComingSoonItem() {
     return (
         <div className="max-w-[500px] min-w-[300px] min-h-[600px] bg-[url('/assets/images/home/coming-soon-bg-01.jpg')] bg-cover bg-center p-8 rounded-3xl border-2 border-[#2686ec] overflow-hidden scrollbar-hide">
+            
             <div className="flex flex-col items-center justify-center h-full text-white bg-transparent">
-                <div className="w-full h-auto max-h-[210px] mb-4 rounded-2xl overflow-hidden">
+                <div className="w-full h-auto max-h-[300px] mb-4 rounded-2xl overflow-hidden">
                     <Image
                         src={"/assets/images/home/fb_huynh_thanh_quan.jpg"}
                         alt=""
                         width={300}
-                        height={200}
-                        style={{ width: "100%", height: "auto", objectFit:"cover", objectPosition:"center" }}
+                        height={400}
+                        style={{ width: "100%", height: "auto", objectFit: "cover", objectPosition: "center" }}
                     />
                 </div>
                 <div className="content flex flex-col gap-4 items-center">
@@ -33,7 +42,6 @@ export default function ComingSoonItem() {
                                     className="m-auto"
                                 />
                             </span>
-
                             <span className="text-[12px]">Pro</span>
                         </div>
 
@@ -58,80 +66,22 @@ export default function ComingSoonItem() {
 
                     <div className="w-full min-h-[20rem] max-h-[22rem] overflow-y-auto scrollbar-hide">
                         <ul className="flex flex-col gap-3">
-                            <li>
-                                <div className="flex flex-row gap-2 items-start justify-start">
-                                    <span className="w-12 h-auto mt-2 flex items-center justify-center">
-                                        <Image
-                                            src={"/assets/images/home/coming-attr-item.svg"}
-                                            alt=""
-                                            width={20}
-                                            height={20}
-                                            style={{ width: "100%", height: "auto" }}
-                                        />
-                                    </span>
-                                    <span className="text-[12px] text-wrap underline px-2">8 năm kinh nghiệm làm Data Science Expert, 2 năm làm Data Science Manager trong lĩnh vực Ngân hàng Tài chính, Fintech và Retail</span>
-                                </div>
-                            </li>
-                            
-                            <li>
-                                <div className="flex flex-row gap-2 items-start justify-start">
-                                    <span className="w-12 h-auto mt-2 flex items-center justify-center">
-                                        <Image
-                                            src={"/assets/images/home/coming-attr-item.svg"}
-                                            alt=""
-                                            width={20}
-                                            height={20}
-                                            style={{ width: "100%", height: "auto" }}
-                                        />
-                                    </span>
-                                    <span className="text-[12px] text-wrap underline px-2">8 năm kinh nghiệm làm Data Science Expert, 2 năm làm Data Science Manager trong lĩnh vực Ngân hàng Tài chính, Fintech và Retail</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="flex flex-row gap-2 items-start justify-start">
-                                    <span className="w-12 h-auto mt-2 flex items-center justify-center">
-                                        <Image
-                                            src={"/assets/images/home/coming-attr-item.svg"}
-                                            alt=""
-                                            width={20}
-                                            height={20}
-                                            style={{ width: "100%", height: "auto" }}
-                                        />
-                                    </span>
-                                    <span className="text-[12px] text-wrap underline px-2">8 năm kinh nghiệm làm Data Science Expert, 2 năm làm Data Science Manager trong lĩnh vực Ngân hàng Tài chính, Fintech và Retail</span>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div className="flex flex-row gap-2 items-start justify-start">
-                                    <span className="w-12 h-auto mt-2 flex items-center justify-center">
-                                        <Image
-                                            src={"/assets/images/home/coming-attr-item.svg"}
-                                            alt=""
-                                            width={20}
-                                            height={20}
-                                            style={{ width: "100%", height: "auto" }}
-                                        />
-                                    </span>
-                                    <span className="text-[12px] text-wrap underline px-2">8 năm kinh nghiệm làm Data Science Expert, 2 năm làm Data Science Manager trong lĩnh vực Ngân hàng Tài chính, Fintech và Retail</span>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div className="flex flex-row gap-2 items-start justify-start">
-                                    <span className="w-12 h-auto mt-2 flex items-center justify-center">
-                                        <Image
-                                            src={"/assets/images/home/coming-attr-item.svg"}
-                                            alt=""
-                                            width={20}
-                                            height={20}
-                                            style={{ width: "100%", height: "auto" }}
-                                        />
-                                    </span>
-                                    <span className="text-[12px] text-wrap underline px-2">8 năm kinh nghiệm làm Data Science Expert, 2 năm làm Data Science Manager trong lĩnh vực Ngân hàng Tài chính, Fintech và Retail</span>
-                                </div>
-                            </li>
-
+                            {EXPERIENCE_ITEMS.map((item, index) => (
+                                <li key={index}>
+                                    <div className="flex flex-row gap-2 items-start justify-start">
+                                        <span className="w-12 h-auto mt-2 flex items-center justify-center">
+                                            <Image
+                                                src={"/assets/images/home/coming-attr-item.svg"}
+                                                alt=""
+                                                width={20}
+                                                height={20}
+                                                style={{ width: "100%", height: "auto" }}
+                                            />
+                                        </span>
+                                        <span className="text-[12px] text-wrap underline px-2">{item}</span>
+                                    </div>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>

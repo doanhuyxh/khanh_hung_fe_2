@@ -1,6 +1,5 @@
-import dynamic from "next/dynamic";
 
-const CollapseCourse = dynamic(() => import("./CollapseCourse"), { ssr: false });
+import CollapseCourse from "./CollapseCourse"
 
 export {
     CollapseCourse

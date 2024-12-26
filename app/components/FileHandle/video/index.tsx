@@ -54,13 +54,13 @@ const VideoUpload: React.FC<VideoUploadProps> = ({ initialLink, onChange }) => {
       }
       const formData = new FormData();
       formData.append("video", file);
-      fetch('https://media.vuacontent/api/video/upload', {
+      fetch('https://media.vuacontent.vn/api/video/upload', {
         method: 'POST',
         body: formData
       })
         .then((res) => res.json())
         .then((data) => {
-          data.url = "http://127.0.0.1:8080" + data.url;
+          data.url = "http://media.vuacontent.vn" + data.url;
           toast.success("Tải video lên thành công, đang xử lý video...",{
             duration: 10000,
             position: "top-right",
