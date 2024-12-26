@@ -1,6 +1,11 @@
+import { config } from 'dotenv';
+config();
 import type { NextConfig } from "next";
 import path from "path";
 const nextConfig: NextConfig = {
+  env:{
+    API_URL: process.env.API_URL
+  },
   experimental: {
     
   },
@@ -14,7 +19,7 @@ const nextConfig: NextConfig = {
   },
   reactStrictMode: false,
   images: {
-    domains: ['localhost', "res.cloudinary.com", "api.yody.lokid.xyz"],
+    domains: ['localhost', "res.cloudinary.com", "api.yody.lokid.xyz", "api.vuacontent.vn"],
     unoptimized: true,
   },
   logging: {

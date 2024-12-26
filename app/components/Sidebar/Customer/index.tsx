@@ -134,7 +134,7 @@ function Sidebar() {
             <div className="flex gap-3">
               <Image src={"/assets/images/hd-logged-1.svg"} width={20} height={20} alt="" />
               <div className="flex flex-col gap-2">
-                <p className="text-3xl text-gray-600">Ma khac hang</p>
+                <p className="text-3xl text-gray-600">Mã khách hàng</p>
                 <p className="text-3xl text-[#2686ec] flex items-center gap-2">
                   {user.code}
                   <span>
@@ -161,6 +161,7 @@ function Sidebar() {
         </div>}
 
         <div className="sidebar_content">
+          
           <div className="sidebar_top">
             <a href="/learn/study" className="sidebar_top_wrap">
               <span className="icon_thunder">

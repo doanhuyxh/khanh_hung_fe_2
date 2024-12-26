@@ -5,6 +5,8 @@ import Image from 'next/image';
 import UserDropdown from './UserDropdown';
 import { Customer } from '@/app/libs/types';
 import { usePathname } from 'next/navigation';
+import ButtonUpgrade from '@/app/components/Button/ButtonUpgrade';
+import ButtonLearnNow from '@/app/components/Button/ButtonLearnNow';
 
 export default function UserActions({ user }: { user: Customer }) {
     const [isDropdown, setIsDropdown] = useState(false);
@@ -15,31 +17,15 @@ export default function UserActions({ user }: { user: Customer }) {
 
     return (
         <div className="flex gap-4">
-            <div className="btn-upgrade">
-                {isLearnPage ? <a href="/upgrade/payment" className="btn-upgrade-link">
-                    <span className="star"></span>
-                    <span>
-                        <Image src="/assets/images/header/premium-1.svg" alt="star" width={18} height={18} />
-                    </span>
-                    <span className="text-nowrap uppercase text-white font-bold text-xl">Nâng cấp Pro</span>
-                </a>
-                    : <a href="/learn/study" className="btn-upgrade-link">
-                        <span className="star"></span>
-                        <span className='w-[20px]'>
-                            <Image src="/assets/images/flash.svg" alt="star" width={15} height={15} />
-                        </span>
-                        <span className="text-nowrap uppercase text-white font-bold text-xl">Học ngay</span>
-                    </a>
-                }
-                
-            </div>
+            {isLearnPage ? <ButtonUpgrade />
+                : <ButtonLearnNow />}
             <a className='lg:hidden bg-pink-500 flex flex-row justify-center items-center p-2 rounded-lg' href="https://play.google.com/store/apps/details?id=com.englishgo.app">
-                    <span className="star"></span>
-                    <span className='w-[20px]'>
-                        <Image src="/assets/images/header/icon-down-app.svg" alt="star" width={15} height={15} />
-                    </span>
-                    <span className="text-nowrap uppercase text-white font-bold text-xl">Tải App</span>
-                </a>
+                <span className="star"></span>
+                <span className='w-[20px]'>
+                    <Image src="/assets/images/header/icon-down-app.svg" alt="star" width={15} height={15} />
+                </span>
+                <span className="text-nowrap uppercase text-white font-bold text-xl">Tải App</span>
+            </a>
             <div className="btn_profile">
                 <div className="btn_profile_content cursor-pointer" onClick={() => setIsDropdown(!isDropdown)}>
                     <a href="/learn/profile" className="btn_profile_avatar">

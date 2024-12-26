@@ -23,6 +23,7 @@ html {
 .header_top_news {
     flex: 1;
     margin-left: calc(var(--w-logo) + 1rem);
+    margin-right: 10px;
     overflow: hidden;
     white-space: nowrap;
 }
@@ -273,38 +274,7 @@ html {
     display: none;
 }
 
-.btn-upgrade {
 
-    display: block;
-
-    .btn-upgrade-link {
-        align-items: center;
-        display: flex;
-        gap: 16px;
-        justify-content: center;
-        padding: 8px 24px;
-        position: relative;
-        z-index: 5;
-        background: linear-gradient(77deg, #7c0fd1 17.91%, #d61ef4 90.76%);
-        border-radius: .8rem;
-        overflow: hidden;
-        font-size: 1.6rem;
-        font-weight: 600;
-        color: #fff;
-        text-transform: uppercase;
-
-        .star {
-            background-image: url('/assets/images/btn-upgrade-star.png');
-            animation: buttonUpAni 10s linear infinite;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: 2;
-            width: 100%;
-        }
-    }
-}
 
 .btn_profile {
     margin: auto;

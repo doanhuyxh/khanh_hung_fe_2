@@ -113,6 +113,14 @@ export default function AuthTabs() {
     }));
   };
 
+
+  const handleLoginGoogle = () => {
+    axiosCustomerConfig.get("/Auth/google-login")
+      .then(res => {
+        window.location.href = res.data
+      })
+  }
+
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -164,8 +172,8 @@ export default function AuthTabs() {
   }
 
   return (
-    <div className="w-full lg:banner-right lg:w-1/3 lg:text-xl bg-transparent rounded-lg overflow-hidden flex flex-col items-start justify-start">
-      <div className="text-white mt-4 mb-10">
+    <div className="w-full md:banner-right  lg:text-xl bg-transparent rounded-lg overflow-hidden flex flex-col items-start justify-start">
+      <div className="text-white m-auto mt-4 mb-10">
         <p className="font-bold mb-2 lg:text-3xl lg:scale-95 text-center">
           KHÓA HỌC KINH DOANH KHÓA HỌC hoàn toàn miễn phí
         </p>
@@ -237,7 +245,8 @@ export default function AuthTabs() {
         </div>
 
 
-        <div className="flex flex-row items-center justify-center gap-4 w-full p-2 rounded-xl cursor-pointer border border-gray-200">
+        <div className="flex flex-row items-center justify-center gap-4 w-full p-2 rounded-xl cursor-pointer border border-gray-200"
+          onClick={() => handleLoginGoogle()}>
           <span className="w-12">
             <Image
               src={"/assets/images/home/icon-gg.png"}
@@ -252,7 +261,7 @@ export default function AuthTabs() {
 
       <div className="w-full bg-white rounded-b-xl shadow-xl p-8">
 
-        <div className="flex bg-[#f41e92] pt-2 px-2 rounded-t-xl transition-all">
+        <div className="flex bg-[#f41e92] pt-2 pb-2 px-2 rounded-t-xl transition-all overflow-hidden">
           <button
             className={`w-1/2 py-2 text-center font-semibold text-2xl transition-all duration-300 relative ${activeTab === "register"
               ? "text-[#f41e92] bg-white rounded-t-lg"
@@ -276,7 +285,8 @@ export default function AuthTabs() {
         </div>
 
 
-        <div className="w-full border-6 border-t-0 rounded-b-xl px-1 py-4 border-[#f41e92]">
+        <div className="w-full border-6 border-t-0 rounded-b-xl px-4 py-4 border-[#f41e92]">
+
           {activeTab === "login" && (
             <form onSubmit={handleLogin} className="space-y-4 animate-flip-down animate-duration-100 animate-once animate-ease-linear">
               <div className="relative">
@@ -409,6 +419,7 @@ export default function AuthTabs() {
 
             </form>
           )}
+
         </div>
         <hr className="my-2 w-8/12 m-auto" />
         <p className="text-lg">Khoá học kinh doanh thực tiễn nhất, khi mà mội kiến thức đều

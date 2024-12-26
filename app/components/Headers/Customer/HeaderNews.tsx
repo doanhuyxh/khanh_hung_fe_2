@@ -16,7 +16,7 @@ const HeaderNews = () => {
     
     return (
         <div className="header_top_news scrolling-text max-w-[1920px] m-auto">
-            <p>
+            <p className="">
                 {news}
             </p>
 

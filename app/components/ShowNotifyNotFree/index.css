@@ -1,0 +1,10 @@
+.text_fill_color{
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(6deg, #f59034 15.62%, #fecd1f 67.42%);
+    -webkit-background-clip: text;
+    paint-order: stroke fill;
+    font-size: 3.29557vh;
+    font-weight: 700;
+    letter-spacing: .12rem;
+    line-height: 1.5;
+}

@@ -1,0 +1,58 @@
+.btn-upgrade {
+    display: block;
+}
+
+.btn-upgrade .btn-upgrade-link {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: linear-gradient(77deg, #7c0fd1 17.91%, #d61ef4 90.76%);
+    border-radius: 1rem;
+    overflow: hidden;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.btn-upgrade .btn-upgrade-link:hover .star {
+    background: linear-gradient(80deg, #a32dff -.15%, #f41e92 87.57%);
+    animation: buttonUpAni 500ms linear ;
+}
+
+.btn-upgrade .btn-upgrade-link span{
+    z-index: 2;
+    letter-spacing:0.4pt;
+    cursor: pointer;
+}
+
+.btn-upgrade .btn-upgrade-link .star {
+    background-image: url('/assets/images/btn-upgrade-star.png');
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+
+}
+
+/* Keyframe cho animation */
+@keyframes buttonUpAni {
+    0% {
+        background-size: 50% auto;
+    }
+    50%{
+        background-size: 100% auto;
+    }
+    100% {
+        background-size: 200% auto;
+    }
+}

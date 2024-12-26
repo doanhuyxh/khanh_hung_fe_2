@@ -1,3 +1,4 @@
+import { ResponseData } from '@/app/libs/types';
 import { redirect } from 'next/navigation';
 
 async function handleGoogleCallback(code: string | null) {
@@ -6,38 +7,29 @@ async function handleGoogleCallback(code: string | null) {
   }
 
   try {
-    // Gọi API xử lý authentication
-    const response = await fetch(`${process.env.API_URL}/Auth/google-callback?code=${code}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      cache: 'no-store'
+    const response = await fetch(`${process.env.API_URL}/api/v1/Auth/google-callback?code=${code}`, {
+      method: 'GET',
+      credentials: "include"
     });
-
-    if (!response.ok) {
-      throw new Error('Authentication failed');
+    const data:ResponseData = await response.json()
+    if (data.code == 200) {
+      redirect("/learn/study")
     }
-
-    const data = await response.json();
-
-    if (data.success) {
-      // Có thể set cookie hoặc xử lý session ở đây nếu cần
-      redirect('/dashboard');
-    } else {
-      redirect('/login');
+    else {
+      redirect("/")
     }
   } catch (error) {
-    console.error('Authentication error:', error);
-    redirect('/login');
+    redirect("/")
   }
 }
 
-export default async function LoadingSocial({
-  searchParams,
-}: {
-  searchParams: { code?: string };
-}) {
-  await handleGoogleCallback(searchParams.code || null);
+interface Props {
+  searchParams: Promise<{ code?: string }>;
+}
+
+export default async function LoadingSocial({ searchParams }: Props) {
+  // Await searchParams trước khi sử dụng
+  const params = await searchParams;
+  await handleGoogleCallback(params.code || null);
   return null;
 }

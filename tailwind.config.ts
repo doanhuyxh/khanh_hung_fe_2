@@ -12,21 +12,28 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    screens: {     
+    screens: {
       ...defaultTheme.screens,
     },
     extend: {
+      variants: {
+        extend: {
+          backgroundClip: ['hover', 'focus'],
+        },
+      },
+      backgroundClip: {
+        text: "text"
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        "hover-primary":"var(--hover-color-primary)",
+        "hover-primary": "var(--hover-color-primary)",
         "color-primary": "var(--color-primary)",
         "color-secondary": "var(--primary-color)",
         current: "currentColor",
         transparent: "transparent",
         white: "#FFFFFF",
         black: {
-          // ...colors.black,
           DEFAULT: "#1C2434",
           2: "#010101",
         },

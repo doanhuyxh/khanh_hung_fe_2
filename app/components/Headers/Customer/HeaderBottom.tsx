@@ -50,16 +50,19 @@ const HeaderBottom = () => {
         setIsLoadSocial(true);
       });
 
-      
-    axiosCustomerConfig.get("/customer/get-info")
-      .then((res: any) => {
-        const code = res.code;
-        if (code === 200) {
-          setIsLogin(true);
-          setUser(res.data);
-          sessionStorage.setItem("user", JSON.stringify(res.data));
-        }
-      });
+    const sessionStrongUser = sessionStorage.getItem("user")
+
+    if (sessionStrongUser && sessionStrongUser != "{}") {
+      axiosCustomerConfig.get("/customer/get-info")
+        .then((res: any) => {
+          const code = res.code;
+          if (code === 200) {
+            setIsLogin(true);
+            setUser(res.data);
+            sessionStorage.setItem("user", JSON.stringify(res.data));
+          }
+        });
+    }
 
     setIsLoading(false);
 

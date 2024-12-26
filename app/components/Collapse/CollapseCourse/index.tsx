@@ -16,7 +16,7 @@ export default function CollapseCourse({
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className={`w-11/12 m-auto collapseContainer`}>
+    <div className={`w-full mx-2 lg:w-11/12 lg:m-auto collapseContainer`}>
       <CollapseHeader
         title={title}
         numberVideo={numberOfLessons}

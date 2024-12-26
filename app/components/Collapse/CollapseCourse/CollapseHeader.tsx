@@ -24,10 +24,11 @@ const CollapseHeader = ({
       onClick={onClick}
       className={`w-full text-left font-semibold rounded-t-md flex justify-between items-center  ${isOpen ? "sticky top-0 z-20 bg-white px-3 pt-3 pb-5 h-44" : "mt-5 px-3 h-29"}`}
     >
-      <div className="w-full h-full min-h-32">
+      <div className="w-full h-full min-h-32 relative">
         <h2 className="title_course text-color-primary text-wrap max-w-screen-xl xl:pr-2 min-h-20">
           {title}
         </h2>
+
         <div className="flex justify-between bg-white pb-4">
           <p className="flex gap-2 text-nowrap">
             <span>
@@ -54,8 +55,13 @@ const CollapseHeader = ({
             <span className="text-black">{timeDuration}</span>
           </p>
         </div>
+
+        <div className="absolute right-0 top-[30%]">
+          <PlushIcon isOpen={isOpen} />
+        </div>
+
       </div>
-      <PlushIcon isOpen={isOpen} />
+
     </button>
   );
 };

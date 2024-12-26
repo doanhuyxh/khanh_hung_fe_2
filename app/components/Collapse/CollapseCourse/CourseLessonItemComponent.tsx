@@ -33,7 +33,7 @@ const CourseLessonItemComponent = ({ item }: CourseItemComponentProps) => {
                 />}
                 {!item.imageThumbnail && <div className="w-[152px] h-[92px]"></div>}
             </div>
-            <div className="w-3/4 flex flex-col gap-3 px-2 text-[1rem] lg:text-xl">
+            <div className="w-3/4 flex flex-col gap-3 px-2 text-[1rem] md:text-[12px] lg:text-xl">
                 <h3 className={`font-bold mb-2 text-black lg:group-hover:text-white group-hover:opacity-100 ${isActive ? "text-white" : ""}`}>
                     {item.name}
                 </h3>
