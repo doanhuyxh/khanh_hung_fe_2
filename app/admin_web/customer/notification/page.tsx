@@ -245,6 +245,7 @@ export default function Notification() {
                                                 item.type === 'app' ? 'bg-orange-100 text-orange-800' :
                                                     'bg-green-100 text-green-800'
                                             }`}>
+                                            {item.type === '' && "Tất cả"}
                                             {item.type === 'all' && "Tất cả"}
                                             {item.type === 'mail' && "Email"}
                                             {item.type === 'app' && "App"}

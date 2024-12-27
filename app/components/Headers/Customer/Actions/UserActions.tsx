@@ -23,8 +23,8 @@ export default function UserActions({ user }: { user: Customer }) {
                 <ButtonDownLoadAppMobile />
             <div className="btn_profile">
                 <div className="btn_profile_content cursor-pointer" onClick={() => setIsDropdown(!isDropdown)}>
-                    <a href="/learn/profile" className="btn_profile_avatar">
-                        <Image src="/assets/images/avatar_defaut.jpg" alt="profile" width={150} height={150} />
+                    <a href="/learn/profile" className="btn_profile_avatar cursor-pointer">
+                        <Image src={user.avatar || '/assets/images/avatar_defaut.jpg'} alt="profile" width={150} height={150} />
                     </a>
                     <div className="flex flex-col gap-1">
                         <p className="text-nowrap text-black font-bold text-xl">{user?.firstName + " " + user?.lastName}</p>

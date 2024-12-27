@@ -1,35 +1,31 @@
-import { ResponseData } from '@/app/libs/types';
-import { redirect } from 'next/navigation';
+'use client'
 
-async function handleGoogleCallback(code: string | null) {
-  if (!code) {
-    redirect('/login');
-  }
+import { useEffect } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import axiosCustomerConfig from '@/app/libs/configs/axiosCustomerConfig';
 
-  try {
-    const response = await fetch(`${process.env.API_URL}/api/v1/Auth/google-callback?code=${code}`, {
-      method: 'GET',
-      credentials: "include"
-    });
-    const data:ResponseData = await response.json()
-    if (data.code == 200) {
-      redirect("/learn/study")
+export default function LoadingSocial() {
+  const query = useSearchParams();
+  const code = query.get("code");
+  const router = useRouter();
+
+  useEffect(() => {
+    if (code) {
+      axiosCustomerConfig.get(`/Auth/google-callback?code=${code}`)
+        .then((response: any) => {
+          if (response.code === 200) {
+            router.push('/learn/study');
+          } else {
+            router.push('/');
+          }
+        })
+        .catch(() => {
+          router.push('/');
+        });
+    } else {
+      router.push('/');
     }
-    else {
-      redirect("/")
-    }
-  } catch (error) {
-    redirect("/")
-  }
-}
+  }, [code, router]);
 
-interface Props {
-  searchParams: Promise<{ code?: string }>;
-}
-
-export default async function LoadingSocial({ searchParams }: Props) {
-  // Await searchParams trước khi sử dụng
-  const params = await searchParams;
-  await handleGoogleCallback(params.code || null);
   return null;
 }

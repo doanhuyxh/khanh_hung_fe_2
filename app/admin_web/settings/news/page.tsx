@@ -131,13 +131,13 @@ export default function News() {
                     <tbody className="divide-y divide-gray-200">
                         {news.map((item, index) => (
                             <tr key={item.id}>
-                                <td className="px-6 py-4 text-sm">{index + 1}</td>
-                                <td className="px-6 py-4 text-sm">{item.title}</td>
-                                <td className="px-6 py-4 text-sm">{item.slug}</td>
-                                <td className="px-6 py-4 text-sm">
+                                <td className="px-6 py-4 text-sm border-b">{index + 1}</td>
+                                <td className="px-6 py-4 text-sm border-b">{item.title}</td>
+                                <td className="px-6 py-4 text-sm border-b">{item.slug}</td>
+                                <td className="px-6 py-4 text-sm border-b">
                                     {unixToDatetime(item.createdAt)}
                                 </td>
-                                <td className="px-6 py-4 text-sm">
+                                <td className="px-6 py-4 text-sm border-b">
                                     <button
                                         onClick={() => handleEdit(item)}
                                         className="text-blue-500 hover:text-blue-700 mr-4"

@@ -7,12 +7,27 @@ import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig"
 
 export default function ChangePassword() {
 
-    const [oldPassword, setOldPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
 
     const handleChangePassword = () => {
-        axiosCustomerConfig.post("/Customer/change-password", {
-            oldPassword,
+
+        if (newPassword != confirmPassword){
+            toast.error("Mật khẩu không khớp", {
+                duration: 3000,
+                position: "top-right",
+                style: {
+                    background: "red",
+                    color: "white",
+                    fontSize: "1.5rem",
+                    fontWeight: "bold",
+                }
+            })
+
+            return;
+        }
+
+        axiosCustomerConfig.post("/Customer/set-password", {
             newPassword
         })
             .then((res:any) => {
@@ -74,9 +89,9 @@ export default function ChangePassword() {
                                 <input
                                     type="password"
                                     className="w-full p-5 border border-gray-300 rounded-lg text-3xl transition-all outline-none"
-                                    placeholder="Mật khẩu cũ"
-                                    value={oldPassword}
-                                    onChange={(e) => setOldPassword(e.target.value)}
+                                    placeholder="Mật khẩu mới"
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)}
                                 />
                             </div>
 
@@ -84,9 +99,9 @@ export default function ChangePassword() {
                                 <input
                                     type="password"
                                     className="w-full p-5 border border-gray-300 rounded-lg text-3xl transition-all outline-none"
-                                    placeholder="Mật khẩu mới"
-                                    value={newPassword}
-                                    onChange={(e) => setNewPassword(e.target.value)}
+                                    placeholder="Nhập lại khẩu mới"
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
                                 />
                             </div>
                         </div>

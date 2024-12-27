@@ -19,7 +19,6 @@ function dateToUnixTimestamp(dateString:string) {
 }
 
 
-
 export {
     unixToDatetime, 
     dateToUnixTimestamp

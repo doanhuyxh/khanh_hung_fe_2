@@ -42,7 +42,7 @@ export default function CourseForm() {
         if (res.code == 200) {
             toast.success('Lưu khoá học thành công');
         } else {
-            toast.error('Lưu khoá học thất bại');
+            toast.error('Lưu khoá học thất bại, Vui lòng điền đầy đủ thông tin');
         }
     }
 
@@ -133,7 +133,7 @@ export default function CourseForm() {
                                     value={course.CourseType}
                                     onChange={(e) => setCourse({ ...course, CourseType: e.target.value })}>
                                     <option value="free">Miễn phí</option>
-                                    <option value="paid">Trả phí</option>
+                                    <option value="pro">Pro</option>
                                 </select>
                             </div>
 

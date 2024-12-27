@@ -28,42 +28,56 @@ export default function CourseLesson() {
     const [course, setCourse] = useState<any>(null)
     const [courseLesson, setCourseLesson] = useState<LessonItem[]>([])
 
-    const [lesson, setLesson] = useState({
-        Id: "",
-        Name: "",
-        Description: "",
-        LessonContent: "",
-        ImageThumbnail: '',
-        Video: '',
-        Duration: '12:01',
-        CourseId: courseId
+    const [lesson, setLesson] = useState<LessonItem>({
+        id: "",
+        name: "",
+        description: "",
+        lessonContent: "",
+        imageThumbnail: '',
+        video: '',
+        duration: '12:01',
+        isFree: false,
+        isImportant: false,
+        isOutstanding: false,
+        courseId: courseId,
+        totalView: 0,
     })
 
     const HandleCreateOrUpdateLesson = (id: string) => {
         if (id == "") {
             setLesson({
-                Id: "",
-                Name: "",
-                Description: "",
-                LessonContent: "",
-                ImageThumbnail: '',
-                Video: '',
-                Duration: '12:01',
-                CourseId: courseId
+                id: "",
+                name: "",
+                description: "",
+                lessonContent: "",
+                imageThumbnail: '',
+                video: '',
+                duration: '12:01',
+                isFree: false,
+                isImportant: false,
+                isOutstanding: false,
+                courseId: courseId,
+                totalView: 0,
             })
         } else {
             const lesson = courseLesson.find((item: LessonItem) => item.id == id)
-            if (lesson) {
+            if (!lesson) {
                 setLesson({
-                    Id: lesson.id,
-                    Name: lesson.name,
-                    Description: lesson.description,
-                    LessonContent: lesson.lessonContent,
-                    ImageThumbnail: lesson.imageThumbnail,
-                    Video: lesson.video,
-                    Duration: lesson.duration,
-                    CourseId: courseId
+                    id: "",
+                    name: "",
+                    description: "",
+                    lessonContent: "",
+                    imageThumbnail: '',
+                    video: '',
+                    duration: '12:01',
+                    isFree: false,
+                    isImportant: false,
+                    isOutstanding: false,
+                    courseId: courseId,
+                    totalView: 0,
                 })
+            }else{
+                setLesson(lesson)
             }
         }
         setIsOpen(true)
@@ -119,7 +133,7 @@ export default function CourseLesson() {
                     <h2 className='text-center text-lg font-bold'>Danh sách bài học</h2>
                     {courseLesson && courseLesson.length == 0 && <p className='text-center text-lg font-bold'>Không có bài học nào</p>}
 
-                    {courseLesson &&courseLesson.length > 0 && courseLesson.map((item: any, index: number) => (
+                    {courseLesson && courseLesson.length > 0 && courseLesson.map((item: any, index: number) => (
                         <LessonItemAdmin
                             key={index}
                             item={item}
@@ -139,7 +153,7 @@ export default function CourseLesson() {
                 </div>
             </div>
 
-            <ModalScroll isOpen={isOpen} onClose={() => setIsOpen(false)} title={`${lesson.Id == "" ? "Tạo bài học mới" : "Chỉnh sửa bài học"} cho khoá học: ${course?.name || ""}`}>
+            <ModalScroll isOpen={isOpen} onClose={() => setIsOpen(false)} title={`${lesson.id == "" ? "Tạo bài học mới" : "Chỉnh sửa bài học"} cho khoá học: ${course?.name || ""}`}>
                 <FormLesson lesson={lesson} setLesson={setLesson} saveLesson={saveLesson} />
             </ModalScroll>
 

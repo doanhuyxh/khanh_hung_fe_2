@@ -29,12 +29,16 @@ export interface LessonData {
 export interface LessonItem {
   id: string;
   name: string;
-  description: string;
-  lessonContent: string;
   imageThumbnail: string;
+  lessonContent: string;
   video: string;
+  description: string;
   duration: string;
-  courseId: string;
+  totalView: number;
+  isFree:boolean;
+  isImportant:boolean;
+  isOutstanding: boolean
+  courseId: string | null;
 }
 
 export interface LessonDataItem {
@@ -140,4 +144,13 @@ export interface BannerHeaderTop {
   id: string,
   content: string,
   status: string
+}
+
+
+export interface GoogleAuthResRequest{
+  access_token:string,
+  expires_in:number,
+  scope:string,
+  token_type:string,
+  id_token:string
 }

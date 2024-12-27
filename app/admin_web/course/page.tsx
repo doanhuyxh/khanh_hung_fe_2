@@ -48,9 +48,7 @@ export default function Course() {
 
     const handleDeleteCourse = (id: string) => {
         axiosInstance.get(`/course/delete?id=${id}`)
-            .then(res => {
-                const response = res.data as ResponseData;
-                console.log(response)
+            .then((response: any) => {
                 if (response.code == 200) {
                     toast.success('Xóa khoá học thành công', {
                         duration: 3000,
@@ -97,19 +95,27 @@ export default function Course() {
     const handleUpdateStatus = async (status: string) => {
         try {
             for (const id of checkbox) {
-                await axiosInstance.get(`/course/updateStatus?id=${id}&status=${status}`);
+                if (status == "delete") {
+                    axiosInstance.get(`/course/delete?id=${id}`)
+                } else {
+                    await axiosInstance.get(`/course/updateStatus?id=${id}&status=${status}`);
+                }
+
             }
-            toast.success('Cập nhật trạng thái thành công', {
+            toast.success('Thành công', {
                 duration: 3000,
                 position: "top-right",
             });
-            GetData();
+
         } catch (error) {
             console.error('Có lỗi xảy ra khi cập nhật trạng thái:', error);
             toast.error('Cập nhật thất bại', {
                 duration: 3000,
                 position: "top-right",
             });
+        }
+        finally {
+            GetData();
         }
     };
 
@@ -178,7 +184,7 @@ export default function Course() {
                         },
                         {
                             icon: '',
-                            label: "Chuyển sang thùng rác",
+                            label: status == "delete" ? "Xoá" : "Chuyển sang thùng rác",
                             className: "text-red-500 hover:text-red-600",
                             onClick: () => handleUpdateStatus('delete')
                         },
@@ -219,9 +225,9 @@ export default function Course() {
                                 </td>
                                 <td className="py-4 px-4">{course.name}</td>
                                 <td className="text-center py-4 px-4">
-                                    <Image src={course.image} alt="thumbnail" width={100} height={100} />
+                                    {course.image && <Image src={course.image} alt="thumbnail" width={100} height={100} />}
                                 </td>
-                                <td className="py-4 px-4">{course.courseType === 'free' ? 'Miễn phí' : 'Trả phí'}</td>
+                                <td className="py-4 px-4">{course.courseType === 'free' ? 'Miễn phí' : 'Pro'}</td>
                                 <td className="py-4 px-4">{course.costPrice}</td>
                                 <td className="py-4 px-4">{course.numberOfLessons}</td>
                                 <td className="py-4 px-4">{course.totalTimeDuration}</td>
