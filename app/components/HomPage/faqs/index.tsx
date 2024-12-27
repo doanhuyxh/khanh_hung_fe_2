@@ -14,6 +14,11 @@ export default function Faqs() {
         {
             question: "Khóa học free thiệt không, bài free có thiệt chất lượng không?",
             answer: "Khoá học miễn phí thật, chất lượng thật. Hùng không nói xạo với bạn. Đăng ký là xem ngay 30 bài học miễn phí giúp bạn BÁN ĐƯỢC KHOÁ HỌC của mình.",
+            sub_anser:[
+                "Dạy tạo ra bán elearning theo cách khoa học nhất",
+                "Dạy tạo ra bán elearning theo cách khoa học nhất",
+                "Bán khóa học bằng bộ video"
+            ]
         },
         {
             question: "Có cần nhập thẻ tín dụng hay điền form hay để lại email nhận kiến thức gì đó không?",
