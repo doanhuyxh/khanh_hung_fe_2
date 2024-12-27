@@ -70,6 +70,10 @@ export default function PaymentPage() {
     }, [countDown]);
 
     useEffect(() => {
+        const paymentElement = document.getElementById("qr");
+        if (paymentElement) {
+            paymentElement.scrollIntoView({ behavior: "smooth" });
+        }
         GetUserInfo();
     }, []);
 
@@ -103,15 +107,15 @@ export default function PaymentPage() {
         <div className="w-screen h-screen overflow-y-auto">
             {/* <canvas ref={confettiCanvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none" /> */}
             <div className='w-full prmk pb-80'>
-                
+
                 <div className="w-2/3 max-w-[1920px] m-auto flex flex-col items-center justify-center min-h-[30vh] gap-10 info-container px-4">
 
                     <div data-aos="" className='w-3/4 m-auto bg-transparent flex flex-col items-center justify-center mb-10'>
-                        <div className="w-[143px] h-[120px] relative mt-40">
-                            
+                        <div className="w-[143px] h-[120px] relative mt-40 hidden lg:block">
+
                         </div>
                     </div>
-                    
+
                     <div className='w-full flex flex-col gap-0 items-center'>
                         <div className='flex justify-center items-center gap-4 bg-[#7c0fd1] p-10 rounded-lg shadow-2xl'>
                             <div className='w-32 h-32 rounded-ful flex items-center justify-center animate-shake animate-infinite animate-duration-1000 animate-ease-linear'>
@@ -154,7 +158,7 @@ export default function PaymentPage() {
                 </div>
             </div>
 
-            <div className='w-10/12 md:w-8/12 max-w-[1920px] m-auto bg-white p-6 md:p-8 rounded-3xl shadow-2xl transform translate-y-[-20%]'>
+            <div className='w-11/12 md:w-10/12 max-w-[1920px] m-auto bg-white p-6 lg:py-30 lg:px-30 md:p-8 rounded-3xl shadow-2xl transform translate-y-[-20%]'>
                 <div className='w-full grid gird-cols-1 lg:grid-cols-2 gap-3'>
                     <div className='w-full'>
                         <h2 className='text-4xl font-bold text-gray-800 mb-3 tracking-wide'>Hệ thống chuyển khoản tự báo có</h2>
@@ -256,7 +260,7 @@ export default function PaymentPage() {
                             </div>
 
                         </div>
-                        <div className="flex justify-center flex-col gap-10 lg:gap-20 items-center">
+                        <div className="flex justify-center flex-col gap-10 lg:gap-20 items-center" id='qr'>
                             <div className="relative group">
                                 <Image
                                     src="/assets/images/download.png"

@@ -28,11 +28,11 @@ export default function CollapseCourse({
         className={`transition-all duration-300 ease-in-out overflow-hidden bg-gray-100 rounded-2xl ${isOpen ? "h-auto mt-2" : "mb-4 max-h-0"}`}
         style={{ transitionProperty: "max-height" }}
       >
-        <div className="p-4">
+        {data.length > 0 && <div className="p-4">
           {data.map((item, index) => (
             <CourseLessonItemComponent key={index} item={item} />
           ))}
-        </div>
+        </div>}
       </div>
     </div>
   );

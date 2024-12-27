@@ -163,7 +163,7 @@ function Sidebar() {
         <div className="sidebar_content">
           
           <div className="sidebar_top">
-            <a href="/learn/study" className="sidebar_top_wrap">
+            <a href="/study" className="sidebar_top_wrap">
               <span className="icon_thunder">
                 <Image
                   width={20}

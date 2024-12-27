@@ -12,7 +12,7 @@ const CourseItem = ({ lesson }: { lesson: LessonData }) => {
                     backgroundPosition: 'center'
                 }}
             >
-                {lesson.isHot && (
+                {lesson.isOutstanding && (
                     <span className="absolute top-[8px] left-[8px] bg-[#ef4444] text-white text-[12px] px-[8px] py-[4px] rounded">
                         Nổi bật
                     </span>

@@ -6,7 +6,6 @@ import { Customer } from '@/app/libs/types';
 
 const Auth = ({isLogin, user}: {isLogin: boolean, user: Customer}) => {
 
-
   if (!isLogin) {
     return <GuestActions />;
   } else {

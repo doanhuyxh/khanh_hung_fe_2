@@ -52,8 +52,11 @@ const HeaderBottom = () => {
         });
         setIsLoadSocial(true);
       });
+    setIsLoading(false);
 
-    
+  }, [isLoadSocial, isLoading]);
+
+  useEffect(() => {
     axiosCustomerConfig.get("/customer/get-info")
       .then((res: any) => {
         const code = res.code;
@@ -61,15 +64,12 @@ const HeaderBottom = () => {
           setIsLogin(true);
           setUser(res.data);
           sessionStorage.setItem("user", JSON.stringify(res.data));
-        }else{
+        } else {
           sessionStorage.clear();
           localStorage.clear();
         }
       });
-
-    setIsLoading(false);
-
-  }, [isLoadSocial, isLoading, pathname]);
+  }, [pathname])
 
   if (isLoading) {
     return <></>;

@@ -58,7 +58,7 @@ export default function AuthTabs() {
       .post("/Auth/Login", loginForm)
       .then((response: any) => {
         if (response.code === 200) {
-          window.location.href="/learn/study"
+          window.location.href="/study"
         } else {
           toast.error("Tài khoản hoặc mật khẩu không đúng", {
             duration: 3000,
@@ -162,7 +162,7 @@ export default function AuthTabs() {
           Chào mừng đồng nghiệp quay trở lại!
         </h2>
         <a
-          href="/learn/study"
+          href="/study"
           className="text-nowrap px-6 py-4 pb-5 bg-purple-600 text-5xl text-white rounded-md hover:bg-purple-700"
         >
           Tiếp tục học

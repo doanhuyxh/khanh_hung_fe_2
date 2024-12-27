@@ -6,7 +6,7 @@ import './index.css'
 export default function ButtonLearnNow() {
     return (
         <div className="btn-upgrade">
-            <a href="/learn/study" className="btn-upgrade-link">
+            <a href="/study" className="btn-upgrade-link">
                 <span className="star"></span>
                 <span className='w-[20px]'>
                     <Image src="/assets/images/flash.svg" alt="star" width={15} height={15} />

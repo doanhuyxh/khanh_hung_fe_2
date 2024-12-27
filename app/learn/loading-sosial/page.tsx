@@ -14,7 +14,7 @@ export default function LoadingSocial() {
       axiosCustomerConfig.get(`/Auth/google-callback?code=${code}`)
         .then((response: any) => {
           if (response.code === 200) {
-            router.push('/learn/study');
+            router.push('/study');
           } else {
             router.push('/');
           }

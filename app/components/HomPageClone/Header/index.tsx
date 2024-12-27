@@ -247,7 +247,7 @@ export default function Header() {
                     </div>
                     <div className="header-mb-btn">
                         {" "}
-                        <a className="btn-second style-pri" href="learn/study/1/index.html">
+                        <a className="btn-second style-pri" href="study/1/index.html">
                             {" "}
                             <span className="txt-wrap">
                                 {" "}

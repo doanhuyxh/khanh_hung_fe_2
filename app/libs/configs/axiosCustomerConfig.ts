@@ -33,6 +33,9 @@ axiosCustomerConfig.interceptors.response.use(
       const code_res = res_refresh.code
       if (code_res == 200) {
         return axiosCustomerConfig
+      }else{
+        localStorage.clear()
+        sessionStorage.clear()
       }
     }
     const data = response.data;

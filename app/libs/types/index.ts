@@ -23,7 +23,7 @@ export interface LessonData {
   duration: string;
   isFree: boolean;
   isImportant: boolean;
-  isHot: boolean;
+  isOutstanding: boolean;
 }
 
 export interface LessonItem {

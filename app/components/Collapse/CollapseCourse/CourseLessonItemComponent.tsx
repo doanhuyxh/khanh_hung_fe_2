@@ -15,7 +15,7 @@ const CourseLessonItemComponent = ({ item }: CourseItemComponentProps) => {
     const query = useSearchParams();
 
     const handleClick = () => {
-        window.location.href=`/learn/study?lesson=${item.id}`
+        window.location.href=`/study?lesson=${item.id}`
     };
     const isActive = query.get("lesson") == item.id;
 
@@ -33,14 +33,14 @@ const CourseLessonItemComponent = ({ item }: CourseItemComponentProps) => {
                 />}
                 {!item.imageThumbnail && <div className="w-[152px] h-[92px]"></div>}
             </div>
-            <div className="flex-grow flex flex-col gap-3 px-2 text-[1rem] md:text-[12px] lg:text-xl">
+            <div className="flex-grow flex flex-col gap-3 px-2 text-[1rem] md:text-[12px] lg:text-xl 2xl:text-2xl">
                 <h3 className={`font-bold mb-2 text-black lg:group-hover:text-white group-hover:opacity-100 ${isActive ? "text-white" : ""}`}>
                     {item.name}
                 </h3>
                 <div
                     className={`flex justify-between text-[0.8rem] lg:text-xs text-gray-500 lg:group-hover:text-white ${isActive ? "text-white" : ""}`}>
                     <p className="flex gap-2">
-                        {item.isFree && (
+                        {item.isOutstanding && (
                             <span
                                 className="font-bold text-white bg-color-secondary px-2 py-1 lg:p-3 rounded-lg flex lg:gap-2 text-nowrap text_mobile">
                                 <span className="m-auto hidden lg:block d-none">
