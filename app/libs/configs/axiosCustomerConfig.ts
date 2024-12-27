@@ -43,6 +43,7 @@ axiosCustomerConfig.interceptors.response.use(
   },
   async (error) => {
     if (error.response) {
+
       if (error.response.status === 401) {
         await axiosCustomerConfig.post("/Auth/RefreshToken")
         return axiosCustomerConfig
@@ -59,6 +60,7 @@ axiosCustomerConfig.interceptors.response.use(
         return Promise.reject(error.response.data);
       }
     }
+
     if (error.response.status === 403) {
       window.location.href = "/"
     }

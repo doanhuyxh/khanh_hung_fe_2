@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function BurgerIcon({
   setIsOpenSidebar,
@@ -10,6 +10,10 @@ export default function BurgerIcon({
   isOpenSidebar: boolean;
 }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(isOpenSidebar)
+  }, [isOpenSidebar])
 
   return (
     <div

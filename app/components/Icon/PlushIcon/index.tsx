@@ -1,5 +1,5 @@
 'use client';
-import './index.scss'
+import './index.css'
 import clsx from 'clsx'
 
 function PlushIcon({ isOpen }: { isOpen: boolean }) {

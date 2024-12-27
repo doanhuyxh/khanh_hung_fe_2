@@ -3,7 +3,7 @@
 import { useRouter, usePathname  } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { AdminSideBar } from '../components/Sidebar';
-import AdminHeader from '../components/Headers/AdminWeb';
+import AdminHeader from '../components/Header/AdminWeb';
 import '../styles/admin_web.css';
 import Loading from '@/app/components/Loading';
 

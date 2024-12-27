@@ -7,7 +7,7 @@ import '../styles/clone_css/home.min47d5.css'
 import '../styles/clone_css/custom.css'
 
 
-import Header from '../components/Headers/Customer'
+import Header from '../components/Header/Customer'
 import Intro from '../components/HomPageClone/Intro'
 import AuthTabs from '../components/HomPage/BannerReceive/FormAuth'
 import HallOfWall from '../components/HomPageClone/HallOfWall'

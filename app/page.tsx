@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 }
 import Image from 'next/image';
 import './styles/home.css'
-import Header from './components/Headers/Customer';
+import Header from './components/Header/Customer';
 import BannerReceive from './components/HomPage/BannerReceive';
 import Faqs from './components/HomPage/faqs'
 import HallOfFrame from './components/HomPage/hall_of_frame';

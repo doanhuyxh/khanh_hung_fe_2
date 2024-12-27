@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { PlushIcon } from "../../Icon";
 
@@ -19,6 +20,8 @@ const CollapseHeader = ({
   isOpen,
   onClick
 }: CollapseHeaderProps) => {
+
+
   return (
     <button
       onClick={onClick}

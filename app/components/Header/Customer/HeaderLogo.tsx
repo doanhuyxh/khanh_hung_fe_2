@@ -7,13 +7,12 @@ import { BurgerIcon } from "../../Icon";
 
 const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
 
+  const [isClient, setIsClient] = useState(false)
   const [isOpenSidebar, setIsOpenSidebar] = useState(false)
 
-  const [isClient, setIsClient] = useState(false)
-
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    setIsClient(true);
+  }, []);
 
   if (!isClient) return <></>
 
@@ -33,8 +32,8 @@ const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
         </a>
       </div>
 
-      <div className={`absolute top-[102px] left-0 w-[100vw] h-[100vh] transition  bg-black z-99999 bg-opacity-60 ${isOpenSidebar ? 'block' : 'hidden'}`}>
-        <div className="w-fit h-screen bg-white overflow-auto">
+      <div className={`absolute top-[100px] left-0 w-[100vw] h-[100vh] transition  bg-black z-99999 bg-opacity-60 ${isOpenSidebar ? 'block' : 'hidden'}`}>
+        <div className={`w-fit h-full bg-white overflow-y-scroll`}>
           <Sidebar />
         </div>
       </div>

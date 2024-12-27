@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import BlockItem from "./BlockItem";
-import "./index.scss";
+import "./index.css";
 import { useEffect, useState } from "react";
 import { Customer } from "@/app/libs/types";
+import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig";
+import { title } from "process";
 
 
 function Sidebar() {
@@ -88,7 +90,7 @@ function Sidebar() {
         {
           name: "Thông tin về chúng tôi",
           imageSrc: "/assets/images/ic-chanel-3-side-menu.svg",
-          link: "#thong-tin-ve-chung-toi"
+          link: "/#thong-tin-ve-chung-toi"
         },
         {
           name: "Q&A",
@@ -100,68 +102,84 @@ function Sidebar() {
   ]
 
   const [user, setUser] = useState<Customer>()
+
+  const handleLogout = () => {
+    localStorage.clear()
+    sessionStorage.clear()
+
+    axiosCustomerConfig.get(`Auth/LogOut?id=${user?.id}`).then(() => {
+      window.location.href = "/"
+    })
+  }
+
   useEffect(() => {
     const width = window.innerWidth
     if (width < 800) {
       const userData = sessionStorage.getItem("user") ?? "{}"
       setUser(JSON.parse(userData))
+      menu.push({
+        title: "",
+        menuItems: [
+          {
+            name: "Đăng xuất",
+            imageSrc: "/assets/images/header/window.svg",
+            link: "#!"
+          }]
+      })
     }
   }, [])
 
   return (
     <>
       <div className="sidebar_container animate-fade-right animate-once animate-duration-300 animate-ease-linear">
-
-        {user && <div className="w-full mx-8 overflow-hidden">
-
-          <div className="my-2 mx-2 flex gap-4 mb-4">
-            <a href="/learn/profile" className="w-[40px rounded-full overflow-hidden">
-              <Image src="/assets/images/avatar_defaut.jpg" alt="profile" width={40} height={40} style={{ height: "auto" }} />
-            </a>
-            <div className="flex flex-col gap-1">
-              <p className="text-nowrap text-black font-bold text-2xl">{user?.firstName + " " + user?.lastName}</p>
-              <div className="text-nowrap flex items-center gap-1">
-                <Image src="/assets/images/price-icon.svg" alt="star" width={15} height={15} />
-                <span className="text-nowrap text-color-primary font-bold text-xl m-y-auto">{user?.totalMoney}đ</span>
-              </div>
-            </div>
-
-          </div>
-
-          <hr className="h-4 w-full" />
-
-          <div className="flex flex-col gap-8">
-            <div className="flex gap-3">
-              <Image src={"/assets/images/hd-logged-1.svg"} width={20} height={20} alt="" />
-              <div className="flex flex-col gap-2">
-                <p className="text-3xl text-gray-600">Mã khách hàng</p>
-                <p className="text-3xl text-[#2686ec] flex items-center gap-2">
-                  {user.code}
-                  <span>
-                    <Image src={"/assets/images/ic-cp-blue.svg"} width={10} height={10} alt=""/>
-                  </span>
-                  </p>
-              </div>
-            </div>
-
-            <div className="flex gap-3">
-              <Image src={"/assets/images/hd-logged-4.svg"} width={20} height={20} alt="" />
-              <div className="flex flex-col gap-2">
-                <p className="text-3xl text-gray-600">Affiliate Level: {user.level_affiliate}</p>
-                <p className="text-3xl text-[#2686ec] flex items-center gap-2">Link Affiliate
-                  <span>
-                    <Image src={"/assets/images/ic-cp-blue.svg"} width={10} height={10} alt=""/>
-                  </span>
-                  </p>
-              </div>
-            </div>
-
-          </div>
-
-        </div>}
-
         <div className="sidebar_content">
-          
+
+          {user && <div className="w-full mx-8 mb-10 overflow-hidden">
+
+            <div className="my-2 mx-2 flex gap-4 mb-4">
+              <a href="/learn/profile" className="w-[40px rounded-full overflow-hidden">
+                <Image src="/assets/images/avatar_defaut.jpg" alt="profile" width={40} height={40} style={{ height: "auto" }} />
+              </a>
+              <div className="flex flex-col gap-1">
+                <p className="text-nowrap text-black font-bold text-2xl">{user?.firstName + " " + user?.lastName}</p>
+                <div className="text-nowrap flex items-center gap-1">
+                  <Image src="/assets/images/price-icon.svg" alt="star" width={15} height={15} />
+                  <span className="text-nowrap text-color-primary font-bold text-xl m-y-auto">{user?.totalMoney}đ</span>
+                </div>
+              </div>
+
+            </div>
+
+            <hr className="h-4 w-full" />
+
+            <div className="flex flex-col gap-8">
+              <div className="flex gap-3">
+                <Image src={"/assets/images/hd-logged-1.svg"} width={20} height={20} alt="" />
+                <div className="flex flex-col gap-2">
+                  <p className="text-3xl text-gray-600">Mã khách hàng</p>
+                  <p className="text-3xl text-[#2686ec] flex items-center gap-2">
+                    {user.code}
+                    <span>
+                      <Image src={"/assets/images/ic-cp-blue.svg"} width={10} height={10} alt="" />
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-3">
+                <Image src={"/assets/images/hd-logged-4.svg"} width={20} height={20} alt="" />
+                <div className="flex flex-col gap-2">
+                  <p className="text-3xl text-gray-600">Affiliate Level: {user.level_affiliate}</p>
+                  <p className="text-3xl text-[#2686ec] flex items-center gap-2">Link Affiliate
+                    <span>
+                      <Image src={"/assets/images/ic-cp-blue.svg"} width={10} height={10} alt="" />
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>}
+
           <div className="sidebar_top">
             <a href="/study" className="sidebar_top_wrap">
               <span className="icon_thunder">
@@ -175,12 +193,11 @@ function Sidebar() {
               <span>Học ngay</span>
             </a>
           </div>
-
           <div className="sidebar_body">
             <div className="sidebar_body_wrap">
               <div
                 style={{
-                  height: "43.9941px",
+                  height: "16px",
                   width: "228.008px",
                   opacity: 0,
                   transform: "translateY(80.1855px)",
@@ -189,6 +206,7 @@ function Sidebar() {
               {menu.map((item, index) => {
                 return <BlockItem title={item.title} menuItems={item.menuItems} key={index} />
               })}
+
             </div>
           </div>
         </div>

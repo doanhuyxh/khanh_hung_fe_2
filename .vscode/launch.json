@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/user/Desktop/Code_Data/Node/khanh_hung_fe_2/app/components/HomPage/faqs",
+      "program": "/Users/user/Desktop/Code_Data/Node/khanh_hung_fe_2/app/components/HomPage/faqs/build/Debug/outDebug"
+    }
+  ]
+}

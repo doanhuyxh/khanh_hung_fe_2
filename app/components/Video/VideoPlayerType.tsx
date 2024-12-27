@@ -20,7 +20,7 @@ export default function VideoPlayerType({ videoSrc }: { videoSrc: string }) {
   }, [videoSrc]);
 
   if (!videoSrc) return (
-    <div className="w-full min-h-[220px] lg:min-h-[530px] 2xl:min-h-[1000px] flex flex-1 bg-[#380b42]">
+    <div className="w-full min-h-[30vh] lg:min-h-[45vh] flex flex-1 bg-[#380b42]">
         <ShowNotifyNotFree/>
     </div>);
 

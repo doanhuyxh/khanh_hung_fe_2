@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-const Header = dynamic(() => import("../components/Headers/Customer"), {
+const Header = dynamic(() => import("../components/Header/Customer"), {
   ssr: true
 });
 import "../styles/study.scss";
@@ -12,10 +12,10 @@ export default async function LearnLayout({ children }: { children: React.ReactN
     <>
       <Header />
       <div className="w-full flex flex-row">
-        <div className="hidden lg:block h-[100vh] overflow-scroll">
+        <div className="hidden lg:block h-[100vh]">
           <Sidebar />
         </div>
-        <div className="w-full min-h-[70vh] overflow-auto">
+        <div className="w-full min-h-[70vh]">
           {children}
         </div>
       </div>
