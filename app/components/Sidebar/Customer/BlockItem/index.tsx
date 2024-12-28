@@ -23,11 +23,11 @@ export default function BlockItem({ title, menuItems }: BlockItemProps) {
                     {menuItems.map((item, index) => {
                         return (
                             <li key={index} className="block_menu_item">
-                                <a className="block_menu_link" href={item.link}>
-                                    <span className="block_menu_link_img">
+                                <a className="block_menu_link cursor-pointer" href={item.link}>
+                                    <span className="block_menu_link_img cursor-pointer">
                                         <Image src={item.imageSrc} width={100} height={100} alt={item.name} />
                                     </span>
-                                    <span className="block_menu_link_text">{item.name}</span>
+                                    <span className="block_menu_link_text cursor-pointer">{item.name}</span>
                                 </a>
                             </li>
                         );

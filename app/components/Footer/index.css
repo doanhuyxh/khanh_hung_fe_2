@@ -24,7 +24,7 @@
 }
 
 .footer-row {
-  --width-card: 30.7rem;
+  --width-card: 22rem;
   --bg-card: #fff;
   --padding-body: 1.2rem;
   display: flex;

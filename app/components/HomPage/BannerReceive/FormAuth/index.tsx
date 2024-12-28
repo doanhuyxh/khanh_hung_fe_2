@@ -58,7 +58,7 @@ export default function AuthTabs() {
       .post("/Auth/Login", loginForm)
       .then((response: any) => {
         if (response.code === 200) {
-          window.location.href="/study"
+          window.location.href = "/study"
         } else {
           toast.error("Tài khoản hoặc mật khẩu không đúng", {
             duration: 3000,
@@ -130,7 +130,7 @@ export default function AuthTabs() {
     if (user) {
       setIsLogin(true)
     }
-  }, []);
+  }, [isClient]);
 
 
 
@@ -149,7 +149,7 @@ export default function AuthTabs() {
     return () => {
       window.removeEventListener("hashchange", handleHashChange);
     };
-  }, []);
+  }, [isClient]);
 
   if (!isClient) {
     return <></>;
@@ -253,29 +253,29 @@ export default function AuthTabs() {
               width={100}
               height={100}
               alt=""
+              className="cursor-pointer"
             />
           </span>
-          <span className="font-bold">Tiếp tục với google</span>
+          <span className="font-bold cursor-pointer">Tiếp tục với google</span>
         </div>
       </div>
 
-      <div className="w-full bg-white rounded-b-xl shadow-xl p-8">
+      <div className="w-full bg-white rounded-b-xl shadow-xl p-8 overflow-hidden">
 
-        <div className="flex bg-[#f41e92] pt-2 pb-2 px-2 rounded-t-xl transition-all overflow-hidden">
+        <div className="flex border-[#f41e92] border-t-[10px] border-l-[6px] border-r-[6px]  bg-white rounded-t-xl transition-all overflow-hidden">
           <button
-            className={`w-1/2 py-2 text-center font-semibold text-2xl transition-all duration-300 relative ${activeTab === "register"
-              ? "text-[#f41e92] bg-white rounded-t-lg"
-              : "text-white bg-transparent"
+            className={`w-1/2 py-4 text-center font-semibold text-2xl transition-all duration-300 relative ${activeTab === "register"
+              ? "text-[#f41e92]"
+              : "text-white bg-[#f41e92] rounded-br-[10rem]"
               }`}
             onClick={() => handleTabClick("register")}
           >
-
             Đăng ký ngay
           </button>
           <button
-            className={`w-1/2 py-2 text-center font-semibold text-2xl transition-all duration-300 relative ${activeTab === "login"
-              ? "text-[#f41e92] bg-white rounded-t-lg"
-              : "text-white bg-transparent "
+            className={`w-1/2 py-4 text-center font-semibold text-2xl transition-all duration-300 relative ${activeTab === "login"
+              ? "text-[#f41e92]"
+              : "text-white bg-[#f41e92] rounded-bl-[10rem]"
               }`}
             onClick={() => handleTabClick("login")}
           >
@@ -285,7 +285,16 @@ export default function AuthTabs() {
         </div>
 
 
-        <div className="w-full border-6 border-t-0 rounded-b-xl px-4 py-4 border-[#f41e92]">
+        <div className="w-full border-6 border-t-0 rounded-b-xl px-4 py-4 border-[#f41e92] relative">
+
+          {/* {activeTab === "login" &&(<div className="w-6/12 h-2 m-auto mb-4 bg-[#f41e92] absolute top-0 left-0"></div>)}
+        {activeTab === "register" && (<div className="w-1/2 h-2 m-auto mb-4 bg-[#f41e92] absolute top-0 right-0"></div>)} */}
+
+          <div className="w-full h-fit m-auto mb-8">
+            {activeTab === "login" ?
+              <p className="text-[12px]">Không có thêm bước nào cả <span className="text-[12px] text-[#7c0fd1]">Đăng ký là xem được ngay!</span></p>
+              : <p className="text-[12px]">Chào mừng bạn đã quay lại với Hùng. <span className="text-[12px] text-[#7c0fd1]">Đăng nhập để bắt đầu học ngay!</span></p>}
+          </div>
 
           {activeTab === "login" && (
             <form onSubmit={handleLogin} className="space-y-4 animate-flip-down animate-duration-100 animate-once animate-ease-linear">
@@ -336,7 +345,7 @@ export default function AuthTabs() {
                 <span className="flex gap-5">
                   <span className="text-yellow-300 font-bold animate-spin animate-infinite animate-duration-[2000ms] animate-ease-linear">FREE</span>
                 </span>
-                <p className="font-[700]">ĐĂNG NHẬP NGAY <br /> <span className="text-xs">Hoàn toàn MIỄN PHÍ | Hiệu quả cao</span></p>
+                <p className="font-[700]">ĐĂNG NHẬP NGAY <br /> <span className="text-[10px]">Hoàn toàn MIỄN PHÍ | Hiệu quả cao</span></p>
 
               </button>
 
@@ -413,7 +422,7 @@ export default function AuthTabs() {
                 <span className="flex gap-5">
                   <span className="text-yellow-300 font-bold animate-spin animate-infinite animate-duration-[2000ms] animate-ease-linear">FREE</span>
                 </span>
-                <p className="font-[700]">ĐĂNG KÝ NGAY <br /> <span className="text-xs">Hoàn toàn MIỄN PHÍ | Hiệu quả cao</span></p>
+                <p className="font-[700]">ĐĂNG KÝ NGAY <br /> <span className="text-[10px]">Hoàn toàn MIỄN PHÍ | Hiệu quả cao</span></p>
 
               </button>
 

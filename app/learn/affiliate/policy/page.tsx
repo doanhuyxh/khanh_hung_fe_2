@@ -15,13 +15,8 @@ export default function AffiliatePolicy() {
     }, [])
 
     return (
-        <div className="flex">
-            <div className="hidden lg:block">
-                <Sidebar />
-            </div>
-            <div className="container mt-10 lg:mt-20 max-w-[1600px] overflow-hidden px-10">
-                <div dangerouslySetInnerHTML={{ __html: value }} />
-            </div>
+        <div className="container mt-10 lg:mt-20 max-w-[1600px] overflow-hidden px-10">
+            <div dangerouslySetInnerHTML={{ __html: value }} />
         </div>
 
     )

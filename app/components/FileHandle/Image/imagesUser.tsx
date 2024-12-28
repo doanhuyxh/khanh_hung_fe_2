@@ -1,8 +1,9 @@
 'use client'
 
-import { postFormData } from '@/app/libs/configs/axiosConfig';
+import axiosCustomerConfig from '@/app/libs/configs/axiosCustomerConfig';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { set } from 'lodash';
 
 interface ImageUploadProps {
   initialLink: string;
@@ -18,12 +19,18 @@ const ImageUploadUser: React.FC<ImageUploadProps> = ({ initialLink = "", onChang
     setImageUrl(value);
   };
 
+  const [label, setLabel] = useState<string>(imageUrl ? "Thay đổi ảnh" : "Tải ảnh lên")
+
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
-      const res = await postFormData('/upload/img', { file: file });
-      setImageUrl(res.data.file_strong_url)
-      onChange(res.data.file_strong_url)
+      setLabel("Đang tải ảnh lên...")
+      const res = await axiosCustomerConfig.post('/upload/image', { file: file }, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      setImageUrl(res.data)
+      onChange(res.data)
+      setLabel("Thay đổi ảnh")
     }
   };
 
@@ -56,10 +63,8 @@ const ImageUploadUser: React.FC<ImageUploadProps> = ({ initialLink = "", onChang
       </label>
       <div className="space-y-4">
         <div className="text-lg text-gray-600">
-          <label className="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-            
-            {imageUrl ? "Thay đổi ảnh" : "Tải ảnh lên"}
-
+          <label className="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-900 ">
+            {label}
             <input id='file' type="file" className="sr-only" accept="image/*" onChange={handleFileChange} />
           </label>
         </div>
