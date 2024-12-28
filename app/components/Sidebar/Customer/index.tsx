@@ -11,7 +11,7 @@ import { title } from "process";
 
 function Sidebar() {
 
-  const menu = [
+  const [menu, setMenu] = useState([
     // {
     //   title: "Quyền lợi riêng cho bạn",
     //   menuItems: [
@@ -99,7 +99,7 @@ function Sidebar() {
         }
       ]
     }
-  ]
+  ])
 
   const [user, setUser] = useState<Customer>()
 
@@ -117,15 +117,7 @@ function Sidebar() {
     if (width < 800) {
       const userData = sessionStorage.getItem("user") ?? "{}"
       setUser(JSON.parse(userData))
-      menu.push({
-        title: "",
-        menuItems: [
-          {
-            name: "Đăng xuất",
-            imageSrc: "/assets/images/header/window.svg",
-            link: "#!"
-          }]
-      })
+
     }
   }, [])
 
@@ -206,7 +198,18 @@ function Sidebar() {
               {menu.map((item, index) => {
                 return <BlockItem title={item.title} menuItems={item.menuItems} key={index} />
               })}
-
+              {
+                user && <div className="block_item cursor-pointer">
+                  <div onClick={handleLogout} className="flex items-center gap-2 px-5 py-3 cursor-pointer">
+                    <div className="flex justify-center text-gray-500">
+                      <Image src="/assets/images/header/window.svg" alt="profile" width={15} height={15} />
+                    </div>
+                    <div className="text-nowra text-xl flex flex-col gap-2">
+                      <p className="text-gray-500 font-semibold">Đăng xuất</p>
+                    </div>
+                  </div>
+                </div>
+              }
             </div>
           </div>
         </div>

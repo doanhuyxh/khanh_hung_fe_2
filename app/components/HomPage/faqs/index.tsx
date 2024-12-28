@@ -81,7 +81,7 @@ export default function Faqs() {
                 </h3>
                 <div className="space-y-2 md:space-y-4">
                     {questions.map((item, index) => (
-                        <div key={index} className="rounded-lg border-b-2 border-[red]">
+                        <div key={index} className="border-b-2 border-[red]">
                             <div
                                 onClick={() => toggleAnswer(index)}
                                 className={`flex items-center justify-between cursor-pointer p-4 md:p-6 rounded-lg hover:text-[#f41e92] transition-colors ${openIndex === index ? `text-[#f41e92]` : "text-white"}`}

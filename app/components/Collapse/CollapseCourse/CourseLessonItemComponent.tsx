@@ -11,16 +11,15 @@ interface CourseItemComponentProps {
 }
 
 const CourseLessonItemComponent = ({ item }: CourseItemComponentProps) => {
-    const router = useRouter();
     const query = useSearchParams();
 
     const handleClick = () => {
         window.location.href=`/study?lesson=${item.id}`
     };
-    const isActive = query.get("lesson") == item.id;
-
+    const isActive = query.get("lesson")?.toString()?.toLowerCase() == item.id.toLowerCase();
     return (
         <div
+            id={item.id}
             className={`group flex items-start cursor-pointer rounded-md lg:hover:bg-hover-primary p-3 mb-4 ${isActive ? "bg-hover-primary" : ""}`}
             onClick={handleClick}>
             <div className="max-w-[152px] w-full border border-none rounded-lg overflow-hidden">

@@ -211,6 +211,7 @@
 .btn_register:hover,
 .btn_register_mobile:hover {
   background-color: var(--primary-color);
+  cursor: pointer;
 }
 .btn_register span,
 .btn_register_mobile span {
@@ -227,6 +228,7 @@
   background: var(--active-color);
   z-index: -1;
   transition: width 0.5s ease;
+  cursor: pointer;
 }
 .btn_register:hover::after,
 .btn_register_mobile:hover::after {

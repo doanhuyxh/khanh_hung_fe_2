@@ -32,8 +32,8 @@ const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
         </a>
       </div>
 
-      <div className={`absolute top-[100px] left-0 w-[100vw] h-[100vh] transition  bg-black z-99999 bg-opacity-60 ${isOpenSidebar ? 'block' : 'hidden'}`}>
-        <div className={`w-fit h-full bg-white overflow-y-scroll`}>
+      <div className={`fixed top-[102px] lg:top-[112px] left-0 w-[100vw] h-screen transition  bg-black z-99999 bg-opacity-60 ${isOpenSidebar ? 'block' : 'hidden'}`}>
+        <div className={`w-fit h-full bg-white overflow-hidden`}>
           <Sidebar />
         </div>
       </div>

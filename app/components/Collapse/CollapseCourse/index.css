@@ -23,3 +23,10 @@
         font-size: 1.1rem;
     }
 }
+
+
+@media screen and (width > 1200px) {
+    .title_course{
+        margin-bottom: 8px;
+    }
+}

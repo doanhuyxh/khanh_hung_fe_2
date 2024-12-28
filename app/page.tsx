@@ -13,6 +13,7 @@ import HallOfFrame from './components/HomPage/hall_of_frame';
 import ComingSoon from './components/HomPage/ComingSoon';
 import CourseList from './components/HomPage/CourseList';
 import ScrollComponent from './components/Scroll/ScrollComponent'
+import Footer from './components/Footer';
 
 
 export default async function Home() {
@@ -28,7 +29,7 @@ export default async function Home() {
         <CourseList />
         <Faqs />
       </main>
-
+      <Footer />
     </>
   );
 }

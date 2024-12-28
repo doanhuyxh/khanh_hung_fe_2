@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic"
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef  } from "react";
 const VideoPlayer = dynamic(() => import("@/app/components/Video/VideoLessonPlayer"), { ssr: false });
 import { LessonList } from "@/app/components/Lesson";
 import { LessonData, CourseData, LessonDataItem } from "@/app/libs/types";
@@ -22,6 +22,8 @@ export default function StudyPage() {
   const [data, setData] = useState<CourseData[]>([]);
   const [totalLesson, setTotalLesson] = useState<number>(0)
   const [isShowAllLesson, setIsShowAllLesson] = useState(false);
+
+  
 
   const getAllCourse = async () => {
     const response = await axiosCustomerConfig.get("/course/GetAllCourse");
@@ -64,7 +66,6 @@ export default function StudyPage() {
         window.scrollTo(0, 0);
       }
       getAllCourse();
-
       axiosCustomerConfig.get("/course/get-total-lesson")
         .then(res => {
           setTotalLesson(res.data)
@@ -75,15 +76,12 @@ export default function StudyPage() {
   }, [])
 
   useEffect(() => {
-
     if (lessonId) {
       axiosCustomerConfig.get(`/course/get-lesson?id=${lessonId}`)
         .then((res: any) => {
-
           if (res.code == 209) {
             return
           }
-
           setLesson(res.data)
         })
         .catch((err) => {
@@ -137,7 +135,7 @@ export default function StudyPage() {
       </div>
 
       <div className="video_list lg:w-1/3 w-full rounded-md mt-10 lg:mt-0 flex flex-col">
-        <LessonList
+        <LessonList        
           data={data}
           totalLesson={totalLesson}
           isShowAllLesson={isShowAllLesson}

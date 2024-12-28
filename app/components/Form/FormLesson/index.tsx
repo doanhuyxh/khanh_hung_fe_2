@@ -22,7 +22,7 @@ export default function FormLesson({ lesson, setLesson, saveLesson }: { lesson: 
                     className="border border-gray-300 rounded-md p-2"
                     placeholder="Nhập tên bài học"
                     value={lesson.name}
-                    onChange={(e) => setLesson({ ...lesson, Name: e.target.value })}
+                    onChange={(e) => setLesson({ ...lesson, name: e.target.value })}
                 />
             </div>
 
@@ -33,7 +33,7 @@ export default function FormLesson({ lesson, setLesson, saveLesson }: { lesson: 
                     className="border border-gray-300 rounded-md p-2"
                     placeholder="Nhập thời lượng bài học"
                     value={lesson.duration}
-                    onChange={(e) => setLesson({ ...lesson, Duration: e.target.value })}
+                    onChange={(e) => setLesson({ ...lesson, duration: e.target.value })}
                 />
             </div>
 
@@ -43,7 +43,7 @@ export default function FormLesson({ lesson, setLesson, saveLesson }: { lesson: 
                         id="isFree"
                         type="checkbox"
                         checked={lesson.isFree}
-                        onChange={(e) => handleCheckboxChange('IsFree', e.target.checked)}
+                        onChange={(e) => handleCheckboxChange('isFree', e.target.checked)}
                     />
                     <label htmlFor="isFree" className="cursor-pointer">Miễn phí</label>
                 </div>
@@ -53,7 +53,7 @@ export default function FormLesson({ lesson, setLesson, saveLesson }: { lesson: 
                         id="isOutstanding"
                         type="checkbox"
                         checked={lesson.isOutstanding}
-                        onChange={(e) => handleCheckboxChange('IsOutstanding', e.target.checked)}
+                        onChange={(e) => handleCheckboxChange('isOutstanding', e.target.checked)}
                     />
                     <label htmlFor="isOutstanding" className="cursor-pointer">Nổi bật</label>
                 </div>
@@ -63,7 +63,7 @@ export default function FormLesson({ lesson, setLesson, saveLesson }: { lesson: 
                         id="isImportant"
                         type="checkbox"
                         checked={lesson.isImportant}
-                        onChange={(e) => handleCheckboxChange('IsImportant', e.target.checked)}
+                        onChange={(e) => handleCheckboxChange('isImportant', e.target.checked)}
                     />
                     <label htmlFor="isImportant" className="cursor-pointer">Quan trọng</label>
                 </div>

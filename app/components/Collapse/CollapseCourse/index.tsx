@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import {useState } from "react";
 import CollapseHeader from "./CollapseHeader";
 import CourseLessonItemComponent from "./CourseLessonItemComponent";
 import "./index.css";

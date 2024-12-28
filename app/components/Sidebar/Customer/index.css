@@ -1,6 +1,6 @@
 .sidebar_container {
     flex-shrink: 0;
-    /* max-height: calc(100vh - var(--sz-hd-foot)); */
+    max-height: calc(100vh - var(--sz-hd-foot));
     overflow-y: scroll;
     width: var(--w-sidebar);
     background-color: #fff;
@@ -42,7 +42,7 @@
 .sidebar_body {
     width: 100%;
     margin: 0;
-    overflow-y: scroll;
+    height: auto;
 }
 
 .block_item:not(:last-child) {
@@ -118,4 +118,11 @@
     font-weight: 600;
     padding-right: 1rem;
     opacity: 0.8;
+}
+
+
+@media screen and (max-width:900px){
+    .sidebar_container{
+        --sz-hd-foot: 10rem;
+    }
 }

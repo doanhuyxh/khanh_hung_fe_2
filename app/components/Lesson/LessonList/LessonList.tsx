@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ActiveSpin from "@/app/components/ActiveSpin";
 import { CollapseCourse } from "@/app/components/Collapse";
 import TabButtons from "./TabButtons";
@@ -22,6 +22,7 @@ const LessonList: React.FC<LessonListProps> = ({
 }) => {
     const [isClient, setIsClient] = useState(false);
     const [activeTab, setActiveTab] = useState("course");
+    const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         setIsClient(true);
