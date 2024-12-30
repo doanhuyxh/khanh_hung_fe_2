@@ -1,6 +1,6 @@
 'use client'
 
-import ShowNotifyNotFree from "@/app/components/ShowNotifyNotFree";
+import LoadingVideo from "@/app/components/Loading/LoadingVideo";
 import Hls from "hls.js";
 import React, { useEffect, useRef } from "react";
 
@@ -21,9 +21,8 @@ export default function VideoPlayerType({ videoSrc }: { videoSrc: string }) {
 
   if (!videoSrc) return (
     <div className="w-full min-h-[35vh] lg:min-h-[60vh] flex flex-1 bg-[#380b42]">
-        <ShowNotifyNotFree/>
+        <LoadingVideo/>
     </div>);
-
   return (
     <>
       {isM3U8(videoSrc) ? (

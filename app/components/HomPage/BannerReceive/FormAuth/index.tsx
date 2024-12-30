@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AuthTabs() {
 
@@ -161,12 +162,12 @@ export default function AuthTabs() {
         <h2 className="text-3xl lg:text-5xl font-bold text-white mb-4 text-nowrap">
           Chào mừng đồng nghiệp quay trở lại!
         </h2>
-        <a
+        <Link
           href="/study"
           className="text-nowrap px-6 py-4 pb-5 bg-purple-600 text-5xl text-white rounded-md hover:bg-purple-700"
         >
           Tiếp tục học
-        </a>
+        </Link>
       </div>
     )
   }

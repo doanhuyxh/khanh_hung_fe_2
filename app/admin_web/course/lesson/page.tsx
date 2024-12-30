@@ -31,6 +31,7 @@ export default function CourseLesson() {
     const [lesson, setLesson] = useState<LessonItem>({
         id: "",
         name: "",
+        slug: "",
         description: "",
         lessonContent: "",
         imageThumbnail: '',
@@ -48,6 +49,7 @@ export default function CourseLesson() {
             setLesson({
                 id: "",
                 name: "",
+                slug: "",
                 description: "",
                 lessonContent: "",
                 imageThumbnail: '',
@@ -65,6 +67,7 @@ export default function CourseLesson() {
                 setLesson({
                     id: "",
                     name: "",
+                    slug: "",
                     description: "",
                     lessonContent: "",
                     imageThumbnail: '',
@@ -83,27 +86,26 @@ export default function CourseLesson() {
         setIsOpen(true)
     }
 
-    const HandleDeleteLesson = async (id: string) => {
-        await axiosInstance.get(`/lesson/delete?id=${id}`);
-        await GetDataLesson()
-    }
-
-    const saveLesson = async () => {
-        await postFormData('/lesson/CreateOrUpdate', lesson);
-        GetDataLesson()
-        setIsOpen(false)
-
-    }
-
     const GetDataCourse = useCallback(async () => {
         const res = await axiosInstance.get(`/course/GetCourseById?id=${courseId}`)
         setCourse(res.data)
-    }, [courseId])
+    }, [courseId])   
 
     const GetDataLesson = useCallback(async () => {
-        const res = await axiosInstance.get(`/lesson/GetByCourseId?courseId=${courseId}&page=1&pageSize=30`)
+        const res = await axiosInstance.get(`/course/lesson/GetByCourseId?courseId=${courseId}&page=1&pageSize=30`)
         setCourseLesson(res.data)
     }, [courseId])
+
+    const HandleDeleteLesson = async (id: string) => {
+        await axiosInstance.get(`/course/lesson/delete?id=${id}`);
+        await GetDataLesson()
+    }
+
+    const saveLesson = useCallback(async (new_lesson:LessonItem) => {
+        await postFormData('course/lesson/CreateOrUpdate', {...new_lesson});
+        GetDataLesson()
+        setIsOpen(false)
+    }, [GetDataLesson]);    
 
 
     useEffect(() => {
@@ -111,6 +113,7 @@ export default function CourseLesson() {
         GetDataLesson()
         setLoading(false)
     }, [courseId, GetDataCourse, GetDataLesson])
+
 
     if (loading) {
         return <Loading />

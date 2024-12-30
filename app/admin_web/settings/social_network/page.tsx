@@ -29,7 +29,7 @@ export default function SocialNetworkPage() {
                 formData.append(item.key, item.value);
             });
 
-            await axiosInstance.post('/settings/update-social', formData, {
+            await axiosInstance.post('/settings/update-web-config', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

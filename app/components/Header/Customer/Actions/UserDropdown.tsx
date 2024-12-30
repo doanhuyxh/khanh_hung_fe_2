@@ -9,8 +9,8 @@ import axiosCustomerConfig from '@/app/libs/configs/axiosCustomerConfig';
 export default function UserDropdown({ isDropdown, user }: { isDropdown: boolean, user: Customer }) {
 
     const handleLogout = () => {
-        localStorage.clear()
         sessionStorage.clear()
+        localStorage.clear()
 
         axiosCustomerConfig.get(`Auth/LogOut?id=${user.id}`).then(() => {
             window.location.href = "/"

@@ -18,8 +18,18 @@ function dateToUnixTimestamp(dateString:string) {
     return Math.floor(date.getTime() / 1000);
 }
 
+function generateSlug(title: string) {
+    const from = "áàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵđ";
+    const to = "aaaaaaaaaaaaaaaaaeeeeeeeeeeeiiiiiooooooooooooooooouuuuuuuuuuuyyyyyd";
+    const regex = new RegExp(from.split('').join('|'), 'g');
+
+    title = title.toLowerCase().replace(regex, c => to.charAt(from.indexOf(c)));
+    return title.replace(/ /g, '-');
+}
+
 
 export {
     unixToDatetime, 
-    dateToUnixTimestamp
+    dateToUnixTimestamp,
+    generateSlug
 }

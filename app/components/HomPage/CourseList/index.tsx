@@ -77,7 +77,7 @@ const CourseList = () => {
 
         <div className='w-full lg:w-10/12 m-auto'>
           <ScrollComponent direction='horizontal' className='flex'>
-            {coursesData.map((item, index) => (
+            {coursesData &&coursesData.map((item, index) => (
               <div className="lg:max-w-[600px] min-h-[600px] lg:min-w-[600px] bg-[#69398F] p-[20px] rounded-[25.6px] mx-[20px]" key={index}>
                 <div className="mb-[24px]">
                   <h2 className="text-4xl font-bold text-white mb-[12px] line-clamp-2 leading-relaxed">

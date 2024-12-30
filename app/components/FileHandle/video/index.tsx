@@ -52,16 +52,23 @@ const VideoUpload: React.FC<VideoUploadProps> = ({ initialLink, onChange }) => {
         });
         return;
       }
+      toast.success("Đang tải video lên",{
+        duration: 10000,
+        position: "top-right",
+        style: {
+          background: "#4CAF50",
+          color: "#fff",
+        },  
+      });
       const formData = new FormData();
       formData.append("video", file);
-      fetch('https://media.vuacontent.vn/api/video/upload', {
+      fetch(`${process.env.MEDIA_UPLOAD_URL}/api/video/upload`, {
         method: 'POST',
         body: formData
       })
         .then((res) => res.json())
         .then((data) => {
-          data.url = "http://media.vuacontent.vn" + data.url;
-          toast.success("Tải video lên thành công, đang xử lý video...",{
+          toast.success("Tải video lên thành công, đang xử lý video, Bạn có thể lưu và thoát...",{
             duration: 10000,
             position: "top-right",
             style: {
@@ -69,6 +76,7 @@ const VideoUpload: React.FC<VideoUploadProps> = ({ initialLink, onChange }) => {
               color: "#fff",
             },  
           });
+          data.url = process.env.MEDIA_UPLOAD_URL + data.url;
           setTimeout(() => {
             setVideoUrl(data.url);
             onChange(data.url);

@@ -6,6 +6,7 @@ import { ImageUpload, VideoUpload } from "@/app/components/FileHandle";
 import { EditorReactQuill } from "@/app/components/Editor";
 import axiosInstance, { postFormData } from "@/app/libs/configs/axiosConfig";
 import toast from "react-hot-toast";
+import { generateSlug } from "@/app/libs/utils";
 
 export default function CourseForm() {
 
@@ -19,11 +20,11 @@ export default function CourseForm() {
     const [course, setCourse] = useState({
         Id: "",
         Name: '',
+        Slug:"",
         Image: '',
         VideoIntro: '',
         CourseContent: '',
-        CourseType: '',
-        CostPrice: 0,
+        CourseType: 'free',
         NumberOfLessons: 0,
         TotalTimeDuration: '',
         Status: 'draft',
@@ -41,6 +42,7 @@ export default function CourseForm() {
         const res:any = await postFormData('/course/CreateOrUpdateCourse', course);
         if (res.code == 200) {
             toast.success('Lưu khoá học thành công');
+            router.push('/admin_web/course');
         } else {
             toast.error('Lưu khoá học thất bại, Vui lòng điền đầy đủ thông tin');
         }
@@ -56,11 +58,11 @@ export default function CourseForm() {
                 setCourse({
                     Id: data.id,
                     Name: data.name,
+                    Slug: data.slug,
                     Image: data.image,
                     VideoIntro: data.videoIntro,
                     CourseContent: data.courseContent,
                     CourseType: data.courseType,
-                    CostPrice: data.costPrice,
                     NumberOfLessons: data.numberOfLessons,
                     TotalTimeDuration: data.totalTimeDuration,
                     Status: data.status,
@@ -93,10 +95,25 @@ export default function CourseForm() {
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                                 placeholder="Nhập tên khoá học"
                                 value={course.Name}
-                                onChange={(e) => setCourse({ ...course, Name: e.target.value })}
+                                onChange={(e) => setCourse({ ...course, Name: e.target.value, Slug: generateSlug(e.target.value) })}
                             />
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
+
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Slug (phục vụ SEO)
+                            </label>
+                            <input
+                                type="text"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                placeholder="Slug tự động tạo từ tên bài học"
+                                value={course.Slug}
+                                onChange={(e) => setCourse({ ...course, Slug: e.target.value })}
+                            />
+                        </div>
+                        
+
+                        <div className="grid grid-cols-3 gap-4">
                             <div className="mb-4">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Tổng số bài học
@@ -122,9 +139,7 @@ export default function CourseForm() {
                                     onChange={(e) => setCourse({ ...course, TotalTimeDuration: e.target.value })}
                                 />
                             </div>
-                        </div>
 
-                        <div className="grid grid-cols-2 gap-4">
                             <div className="mb-4">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Loại khoá học
@@ -135,23 +150,9 @@ export default function CourseForm() {
                                     <option value="free">Miễn phí</option>
                                     <option value="pro">Pro</option>
                                 </select>
-                            </div>
-
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Giá tiền
-                                </label>
-                                <input
-                                    type="number"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-                                    placeholder="Giá tiền"
-                                    value={course.CostPrice}
-                                    onChange={(e) => setCourse({ ...course, CostPrice: Number(e.target.value) })}
-                                />
-                            </div>
+                            </div>   
 
                         </div>
-
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Nội dung khoá mục

@@ -4,7 +4,8 @@ import type { NextConfig } from "next";
 import path from "path";
 const nextConfig: NextConfig = {
   env:{
-    API_URL: process.env.API_URL
+    API_URL: process.env.API_URL,
+    MEDIA_UPLOAD_URL: process.env.MEDIA_UPLOAD_URL
   },
   experimental: {
     

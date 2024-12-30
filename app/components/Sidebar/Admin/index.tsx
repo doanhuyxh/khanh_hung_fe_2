@@ -77,6 +77,7 @@ const menuGroups = [
           { label: "Tin tức", route: "/admin_web/settings/news" },
           { label: "Mạng xã hội", route: "/admin_web/settings/social_network" },
           { label: "Banner Top", route: "/admin_web/settings/banner_top" },
+          { label: "Cấu hình seo", route: "/admin_web/settings/seo" },
         ],
       },
     ],

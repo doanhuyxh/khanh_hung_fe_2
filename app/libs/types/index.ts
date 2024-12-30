@@ -17,6 +17,7 @@ export interface DataPage<T = any> {
 export interface LessonData {
   id: string;
   name: string;
+  slug: string;
   lessonContent: string;
   imageThumbnail: string;
   video: boolean;
@@ -29,6 +30,7 @@ export interface LessonData {
 export interface LessonItem {
   id: string;
   name: string;
+  slug: string
   imageThumbnail: string;
   lessonContent: string;
   video: string;
@@ -55,6 +57,7 @@ export interface LessonDataItem {
 export interface CourseData {
   id: string;
   name: string;
+  slug: string;
   image: string;
   numberOfLessons: number;
   costPrice: number;
@@ -66,6 +69,7 @@ export interface CourseData {
 export interface CourseItem {
   id: string;
   name: string;
+  slug: string;
   description: boolean;
   lessonContent: string;
   imageThumbnail: string;
@@ -153,4 +157,19 @@ export interface GoogleAuthResRequest{
   scope:string,
   token_type:string,
   id_token:string
+}
+
+
+export interface Seo {
+  title: string,
+  description: string,
+  keywords: string,
+  favicon: string,
+  logo:string,
+  siteName:string,
+  locale:string,
+  domain:string,
+  OgImage:string,
+  twitterImage:string,
+  twitterSite:string
 }

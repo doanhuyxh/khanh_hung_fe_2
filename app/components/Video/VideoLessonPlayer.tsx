@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import VideoPlayerType from "./VideoPlayerType";
+import ShowNotifyNotFree from "../ShowNotifyNotFree";
 
 interface VideoPlayerProps {
   title: string;
   timeDuration: string;
   views: number;
   videoUrl: string;
+  isUpgrade: boolean;
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
@@ -15,13 +17,15 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   timeDuration,
   views,
   videoUrl,
+  isUpgrade
 }) => {
 
 
   return (
     <div className="flex-1">
       <div className="h-auto w-full flex justify-center text-white video_div">
-        <VideoPlayerType videoSrc={videoUrl} />
+        {isUpgrade && <div className="w-full min-h-[35vh] lg:min-h-[60vh] flex flex-1 bg-[#380b42]"><ShowNotifyNotFree /></div>}
+        {!isUpgrade && <VideoPlayerType videoSrc={videoUrl} />}
       </div>
       <div className="mt-10">
         <h1 className="lesson_name my-2">{title}</h1>

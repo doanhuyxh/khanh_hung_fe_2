@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Customer } from "@/app/libs/types";
 import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig";
 import { title } from "process";
+import Link from "next/link";
 
 
 function Sidebar() {
@@ -173,7 +174,7 @@ function Sidebar() {
           </div>}
 
           <div className="sidebar_top">
-            <a href="/study" className="sidebar_top_wrap">
+            <Link href="/study" className="sidebar_top_wrap">
               <span className="icon_thunder">
                 <Image
                   width={20}
@@ -183,7 +184,7 @@ function Sidebar() {
                 />
               </span>
               <span>Học ngay</span>
-            </a>
+            </Link>
           </div>
           <div className="sidebar_body">
             <div className="sidebar_body_wrap">

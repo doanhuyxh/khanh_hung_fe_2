@@ -35,7 +35,7 @@ const ImageUploadUser: React.FC<ImageUploadProps> = ({ initialLink = "", onChang
   };
 
   useEffect(() => {
-    setImageUrl(initialLink)
+    setImageUrl(initialLink.trim() === "" ? null : initialLink)
   }, [initialLink])
 
   return (

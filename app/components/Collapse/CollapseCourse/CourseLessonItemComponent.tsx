@@ -3,23 +3,24 @@
 import Image from "next/image";
 import { LessonData } from "@/app/libs/types";
 
-import { useRouter, useSearchParams } from "next/navigation";
-
-
 interface CourseItemComponentProps {
     item: LessonData;
 }
 
 const CourseLessonItemComponent = ({ item }: CourseItemComponentProps) => {
-    const query = useSearchParams();
 
     const handleClick = () => {
-        window.location.href=`/study?lesson=${item.id}`
+        window.location.href = `/study/${item.slug}`
     };
-    const isActive = query.get("lesson")?.toString()?.toLowerCase() == item.id.toLowerCase();
+
+    const currentUrl = new URL(window.location.href);
+    const lastSegment = currentUrl.pathname.split('/').filter(Boolean).pop();
+    const isActive = lastSegment?.toLowerCase() == item.slug.toLowerCase();
+
+
     return (
         <div
-            id={item.id}
+            id={item.slug}
             className={`group flex items-start cursor-pointer rounded-md lg:hover:bg-hover-primary p-3 mb-4 ${isActive ? "bg-hover-primary" : ""}`}
             onClick={handleClick}>
             <div className="max-w-[152px] w-full border border-none rounded-lg overflow-hidden">
