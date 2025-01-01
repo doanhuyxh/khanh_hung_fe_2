@@ -7,6 +7,7 @@ import React, { useEffect, useRef } from "react";
 export default function VideoPlayerType({ videoSrc }: { videoSrc: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const isM3U8 = (url: string) => url.endsWith('.m3u8');
+  
   useEffect(() => {
     if (videoSrc && isM3U8(videoSrc) && videoRef.current) {
       if (Hls.isSupported()) {

@@ -1,27 +1,23 @@
 "use client";
 
-import dynamic from "next/dynamic"
-import { useEffect, useState, useRef } from "react";
-const VideoPlayer = dynamic(() => import("@/app/components/Video/VideoLessonPlayer"), { ssr: false });
+import { useEffect, useState } from "react";
+import VideoPlayer from "@/app/components/Video/VideoLessonPlayer"
 import { LessonList } from "@/app/components/Lesson";
-import { LessonData, CourseData, LessonDataItem } from "@/app/libs/types";
+import { LessonData, CourseData, LessonItem } from "@/app/libs/types";
 
 import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig";
 import Loading from "@/app/components/Loading";
-import { useParams } from "next/navigation";
 
 
-export default function StudyPageComponent({ lessonId }: { lessonId: string }) {
+
+export default function StudyPageComponent({ lesson_sv, isLogin }: { lesson_sv: LessonItem, isLogin: boolean }) {
 
   const [loading, setLoading] = useState(true);
-
-  const [lesson, setLesson] = useState<LessonDataItem | null>(null);
+  const [lesson, setLesson] = useState<LessonItem | null>(null);
   const [data, setData] = useState<CourseData[]>([]);
   const [totalLesson, setTotalLesson] = useState<number>(0)
   const [isShowAllLesson, setIsShowAllLesson] = useState(false);
   const [showBannerUpgrade, setShowBannerUpgrade] = useState(false)
-
-
 
   const getAllCourse = async () => {
     const response = await axiosCustomerConfig.get("/course/GetAllCourse");
@@ -70,40 +66,39 @@ export default function StudyPageComponent({ lessonId }: { lessonId: string }) {
         .then(res => {
           setTotalLesson(res.data)
         })
-
     }
 
   }, [])
 
   useEffect(() => {
-    axiosCustomerConfig.get(`/course/get-lesson-by-id?id=${lessonId}`)
-      .then((res: any) => {
-        if (res.code == 209) {
-          setShowBannerUpgrade(true)
-          return
-        }
-        setLesson(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-  }, [lessonId])
-
-
-  useEffect(() => {
     const interval = setInterval(() => {
-      if (lesson?.id) {
-        axiosCustomerConfig.post(`/course/update-lesson?id=${lesson.id}&progress=100&lessonOrder=${lesson.order}`)
+      if (lesson?.video && isLogin) {
+        axiosCustomerConfig.get(`/course/update-lesson?id=${lesson.id}&progress=100&lessonOrder=${lesson.order}`)
           .catch((err) => {
             console.log(err)
           })
       }
     }, 30000)
     return () => clearInterval(interval)
-  }, [lesson])
+  }, [lesson, isLogin])
+
+  useEffect(() => {
+    setLesson({ ...lesson_sv })
+    if (isLogin) {
+      axiosCustomerConfig.get(`/course/get-video-lesson-by-id-lesson?id=${lesson_sv.id}`)
+        .then((res: any) => {
+          if (res.code == 209) {
+            setShowBannerUpgrade(true)
+            return
+          }
+          setLesson({ ...lesson_sv, video: res.data })
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+    setLoading(false)
+  }, [isLogin, lesson_sv])
 
   if (loading) {
     return <Loading />
@@ -118,6 +113,9 @@ export default function StudyPageComponent({ lessonId }: { lessonId: string }) {
           timeDuration={lesson?.duration || ""}
           views={lesson?.totalView || 0}
           isUpgrade={showBannerUpgrade}
+          imageThumbnail={lesson?.imageThumbnail || ""}
+          isLogin={isLogin}
+          isFree={lesson?.isFree || false}
         />
       </div>
 

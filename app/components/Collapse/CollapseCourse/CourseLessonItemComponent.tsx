@@ -23,7 +23,7 @@ const CourseLessonItemComponent = ({ item }: CourseItemComponentProps) => {
             id={item.slug}
             className={`group flex items-start cursor-pointer rounded-md lg:hover:bg-hover-primary p-3 mb-4 ${isActive ? "bg-hover-primary" : ""}`}
             onClick={handleClick}>
-            <div className="max-w-[152px] w-full border border-none rounded-lg overflow-hidden">
+            <div className="max-w-[152px] w-full border border-none rounded-lg overflow-hidden cursor-pointer">
                 {item.imageThumbnail && <Image
                     src={item.imageThumbnail}
                     alt={item.name}
