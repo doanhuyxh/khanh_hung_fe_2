@@ -1,9 +1,9 @@
-const API_URL = process.env.API_URL;
+const API_URL_SERVER = process.env.API_URL_SERVER;
 
 async function fetchData(url: string, cookies: string): Promise<any> {
     try {
         
-        const response = await fetch(`${API_URL}/api/v1${url}`, {
+        const response = await fetch(`${API_URL_SERVER}/api/v1${url}`, {
             method:"GET",
             credentials:"include",
             headers: {

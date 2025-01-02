@@ -15,12 +15,13 @@ export default async function StudyPage() {
   if (!AccessToken) {
     return redirect("/")
   }
-
+  
   const response = await fetchData("/course/get-last-lesson", (await cookies()).toString())
   if (response.code !== 200) {
+    console.log("response false:: ", response)
     return redirect("/")
   }
   const data = response.data
-
+  await new Promise((resolve) => setTimeout(resolve, 5000))
   return redirect(`/study/${data.slug}`)
 }
