@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ClickOutside from "../../ClickOutside";
-import axiosInstance from "@/app/libs/configs/axiosConfig";
+import axiosInstance from "@/app/libs/configs/axiosAdminConfig";
 import { Customer } from "@/app/libs/types";
 
 const DropdownUser = () => {

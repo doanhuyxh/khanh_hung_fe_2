@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import Image from "next/image";
 import {Customer} from "@/app/libs/types";
 import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig";
-import axiosConfig from "@/app/libs/configs/axiosConfig";
+import axiosConfig from "@/app/libs/configs/axiosAdminConfig";
 
 export default function ProfilePage() {
 

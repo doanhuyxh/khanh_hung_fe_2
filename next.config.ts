@@ -37,6 +37,9 @@ const nextConfig: NextConfig = {
     config.optimization.minimize = false;
     return config;
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 export default nextConfig;

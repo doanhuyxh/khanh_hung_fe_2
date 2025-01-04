@@ -9,7 +9,6 @@ import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig";
 import Loading from "@/app/components/Loading";
 
 
-
 export default function StudyPageComponent({ lesson_sv, isLogin }: { lesson_sv: LessonItem, isLogin: boolean }) {
 
   const [loading, setLoading] = useState(true);
@@ -73,18 +72,18 @@ export default function StudyPageComponent({ lesson_sv, isLogin }: { lesson_sv: 
   useEffect(() => {
     const interval = setInterval(() => {
       if (lesson?.video && isLogin) {
-        axiosCustomerConfig.get(`/course/update-lesson?id=${lesson.id}&progress=100&lessonOrder=${lesson.order}`)
+        axiosCustomerConfig.get(`/course/update-lesson?id=${lesson.id}&progress=100`)
           .catch((err) => {
             console.log(err)
           })
       }
     }, 30000)
     return () => clearInterval(interval)
-  }, [lesson, isLogin])
+  }, [lesson?.id, isLogin])
 
   useEffect(() => {
     setLesson({ ...lesson_sv })
-    if (isLogin) {
+    if (isLogin && lesson_sv?.id) {
       axiosCustomerConfig.get(`/course/get-video-lesson-by-id-lesson?id=${lesson_sv.id}`)
         .then((res: any) => {
           if (res.code == 209) {
@@ -92,6 +91,7 @@ export default function StudyPageComponent({ lesson_sv, isLogin }: { lesson_sv: 
             return
           }
           setLesson({ ...lesson_sv, video: res.data })
+          sessionStorage.setItem("noi_dung_bai_hoc", lesson_sv.description)
         })
         .catch((err) => {
           console.log(err)

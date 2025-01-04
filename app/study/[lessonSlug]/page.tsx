@@ -1,38 +1,41 @@
+import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
-import fetchData from '@/app/libs/configs/fetchDataServer'
-import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
+import fetchData from '@/app/libs/configs/fetchDataServer'
 import { LessonItem } from '@/app/libs/types'
-const StudyPageComponent = dynamic(() => import('./_component'), { ssr: true })
-
-let lesson:LessonItem
-let isLogin:boolean
+const StudyPageComponent = dynamic(() => import('./_component'),{ ssr: true })
 
 type Props = {
-  params: Promise<{ lessonSlug: string }>
+  params: { lessonSlug: string }
 }
-export async function generateMetadata(
-  { params }: Props,
-): Promise<Metadata> {
-  const cookieStore = cookies()
-  const AccessToken = (await cookieStore).get('AccessToken')
-  isLogin = AccessToken ? true : false
-  const lessonSlug = (await params).lessonSlug
+
+// Hàm lấy dữ liệu từ API mà không cần cache
+export async function getLessonData(lessonSlug: string) : Promise<LessonItem> {
   const response = await fetchData(`/public/get-lesson-share?slug=${lessonSlug}`, '')
-  const data = response.data
-  lesson = data
+  return response.data
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lessonSlug } = await params;
+  const lessonData:LessonItem = await getLessonData(lessonSlug)
+
   return {
-    title: response.data.name,
-    description: response.data?.lessonContent,
+    title: lessonData.name,
+    description: lessonData.lessonContent,
     openGraph: {
-      images: [data.imageThumbnail],
+      images: [lessonData.imageThumbnail],
     },
   }
 }
 
+export default async function StudyPage({ params }: Props) {
+  const { lessonSlug } = await params;
+  const lessonData:LessonItem = await getLessonData(lessonSlug)
 
-export default async function StudyPage() {
-  return (
-      <StudyPageComponent lesson_sv={lesson} isLogin={isLogin} />
-  )
+  const cookie = await cookies()
+  const accToken = cookie.get('AccessToken')
+  const isLogin = accToken ? true : false
+
+  return <StudyPageComponent lesson_sv={lessonData} isLogin={isLogin} />
 }
+ 

@@ -1,14 +1,14 @@
 "use client";
 
+import "./index.css";
 import Image from "next/image";
 import BlockItem from "./BlockItem";
-import "./index.css";
 import { useEffect, useState } from "react";
 import { Customer } from "@/app/libs/types";
 import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig";
-import { title } from "process";
 import Link from "next/link";
-
+import { getLastStudyLesion } from "@/app/libs/services/ApiCustomerServices";
+import { useRouter } from "next/navigation";  
 
 function Sidebar() {
 
@@ -103,7 +103,7 @@ function Sidebar() {
   ])
 
   const [user, setUser] = useState<Customer>()
-
+  const router = useRouter()
   const handleLogout = () => {
     localStorage.clear()
     sessionStorage.clear()
@@ -111,6 +111,13 @@ function Sidebar() {
     axiosCustomerConfig.get(`Auth/LogOut?id=${user?.id}`).then(() => {
       window.location.href = "/"
     })
+  }
+
+  const handleChangeStudyPage = async () => {
+    const response:any = await getLastStudyLesion()
+    if (response.code == 200) {
+      router.push(`/study/${response.data.slug}`)
+    }
   }
 
   useEffect(() => {
@@ -174,7 +181,7 @@ function Sidebar() {
           </div>}
 
           <div className="sidebar_top">
-            <Link href="/study" className="sidebar_top_wrap">
+            <button onClick={handleChangeStudyPage} className="sidebar_top_wrap">
               <span className="icon_thunder">
                 <Image
                   width={20}
@@ -184,7 +191,7 @@ function Sidebar() {
                 />
               </span>
               <span>Học ngay</span>
-            </Link>
+            </button>
           </div>
           <div className="sidebar_body">
             <div className="sidebar_body_wrap">

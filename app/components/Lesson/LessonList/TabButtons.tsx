@@ -11,7 +11,7 @@ const TabButtons: React.FC<TabButtonsProps> = ({ activeTab, setActiveTab }) => {
         <div className="my-4">
             <div className="flex justify-around border-t pt-5">
                 <button
-                    className="px-5 py-3 rounded-lg flex gap-2"
+                    className="px-5 py-3 rounded-lg flex gap-2 cursor-pointer"
                     onClick={() => setActiveTab("course")}
                 >
                     <span>
@@ -23,17 +23,17 @@ const TabButtons: React.FC<TabButtonsProps> = ({ activeTab, setActiveTab }) => {
                         />
                     </span>
                     <span
-                        className={activeTab === "course" ? "text-color-primary" : "text-black-200"}
+                        className={`$activeTab === "course" ? "text-color-primary" : "text-black-200"} cursor-pointer`}
                     >
                         Danh mục
                     </span>
                 </button>
                 <button
-                    className="px-5 py-3 rounded-lg"
+                    className="px-5 py-3 rounded-lg cursor-pointer"
                     onClick={() => setActiveTab("description")}
                 >
                     <span
-                        className={activeTab === "description" ? "text-color-primary" : "text-black-200"}
+                        className={`${activeTab === "description" ? "text-color-primary" : "text-black-200"} cursor-pointer`}
                     >
                         Mô tả
                     </span>

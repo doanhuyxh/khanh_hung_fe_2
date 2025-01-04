@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Customer } from '@/app/libs/types';
 import axiosCustomerConfig from '@/app/libs/configs/axiosCustomerConfig';
 
-export default function UserDropdown({ isDropdown, user }: { isDropdown: boolean, user: Customer }) {
+export default function UserDropdown({ isDropdown, user, setIsDropdown }: { isDropdown: boolean, user: Customer, setIsDropdown: React.Dispatch<React.SetStateAction<boolean>> }) {
 
     const handleLogout = () => {
         sessionStorage.clear()
@@ -19,7 +19,8 @@ export default function UserDropdown({ isDropdown, user }: { isDropdown: boolean
 
     return (
         <div
-            className={`transition-all duration-300 absolute top-20 right-[-20px] ${isDropdown ? 'dropdown_menu' : 'hidden'}`}
+            onMouseLeave={() => setIsDropdown(false)}
+            className={`transition-all duration-300 absolute top-20 right-[-20px] z-99999 ${isDropdown ? 'dropdown_menu' : 'hidden'}`}
         >
             <ul className="dropdown_menu_item bg-white shadow-lg rounded-lg py-2">
                 <li>
@@ -56,21 +57,21 @@ export default function UserDropdown({ isDropdown, user }: { isDropdown: boolean
                         <div className="flex justify-center transform w-[20px] cursor-pointer">
                             <Image src="/assets/images/header/key-icon.svg" alt="profile" width={15} height={15} />
                         </div>
-                        <div className="text-nowra text-xl flex flex-col gap-2">
+                        <div className="text-nowrap text-xl flex flex-col gap-2">
                             <p className="text-gray-500 font-semibold cursor-pointer">Đổi mật khẩu</p>
                         </div>
                     </Link>
                 </li>
                 <li>
-                    <div className="m-auto w-10/12 h-[1px] bg-gray-500"></div>
+                    
                 </li>
-                <li>
+                <li className='logout_btn'>
                     <div onClick={handleLogout} className="flex items-center gap-2 px-5 py-3 cursor-pointer">
                         <div className="flex justify-center text-gray-500">
                             <Image src="/assets/images/header/window.svg" alt="profile" width={15} height={15} />
                         </div>
-                        <div className="text-nowra text-xl flex flex-col gap-2">
-                            <p className="text-gray-500 font-semibold cursor-pointer">Đăng xuất</p>
+                        <div className="text-nowrap text-xl flex flex-col gap-2">
+                            <p className="text-[#f04438] font-semibold cursor-pointer">Đăng xuất</p>
                         </div>
                     </div>
                 </li>

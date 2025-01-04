@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import SidebarItem from "./SidebarItem";
 import ClickOutside from "../../ClickOutside";
 import useLocalStorage from "../../../libs/hooks/useLocalStorage";
+import { useEffect } from "react";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -44,8 +45,8 @@ const menuGroups = [
         label: "Tài khoản",
         route: "#",
         children: [
-          { label: "Khách hàng", route: "/admin_web/account/customer" },
-          { label: "Quản trị viên", route: "/admin_web/account/admin" },
+          { label: "Học viên", route: "/admin_web/account/customer" },
+          // { label: "Quản trị viên", route: "/admin_web/account/admin" },
         ],
       },
     ],
@@ -59,12 +60,12 @@ const menuGroups = [
         route: "#",
         children: [
           { label: "Thông báo", route: "/admin_web/customer/notification" },
-          { label: "Ticket", route: "/admin_web/customer/ticket" },
+          // { label: "Ticket", route: "/admin_web/customer/ticket" },
         ],
       },
     ],
   },
-  
+
   {
     name: "",
     menuItems: [
@@ -75,32 +76,43 @@ const menuGroups = [
         children: [
           { label: "Affiliate", route: "/admin_web/settings/affiliate" },
           { label: "Tin tức", route: "/admin_web/settings/news" },
-          { label: "Mạng xã hội", route: "/admin_web/settings/social_network" },
+          { label: "Liên kết MXH", route: "/admin_web/settings/social_network" },
           { label: "Banner Top", route: "/admin_web/settings/banner_top" },
-          { label: "Cấu hình seo", route: "/admin_web/settings/seo" },
+          { label: "Cấu hình Web", route: "/admin_web/settings/seo" },
         ],
       },
     ],
   }
 ];
 
-const AdminSideBar  = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
+const AdminSideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
+  const [logo, setLogo] = useState("/images/logo/logo.svg")
+
+  useEffect(() => {
+      fetch(process.env.API_URL+"/api/v1"+"/public/social-key?key=logo")
+      .then(res=>res.json())
+      .then(res=>{
+        setLogo(res.data)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+  }, [])
 
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
       <aside
-        className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 -translate-x-full ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 -translate-x-full ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         {/* <!-- SIDEBAR HEADER --> */}
         <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-          <Link href="/">
+          <Link href="/admin_web/dashboard">
             <Image
               width={176}
               height={32}
-              src={"/images/logo/logo.svg"}
+              src={logo}
               alt="Logo"
               priority
             />
@@ -126,9 +138,9 @@ const AdminSideBar  = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             </svg>
           </button>
         </div>
-        
+
         <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
-        
+
           <nav className="mt-5 px-4 py-4 lg:mt-9 lg:px-6">
             {menuGroups.map((group, groupIndex) => (
               <div key={groupIndex}>

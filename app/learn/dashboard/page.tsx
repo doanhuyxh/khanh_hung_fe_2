@@ -38,9 +38,9 @@ export default function Page() {
                 const course = courseName.find((course: any) => course.id == item.courseUser.courseId)
                 return {
                     ...item,
-                    courseName: course.name,
-                    image: course.image,
-                    description: course.description
+                    courseName: course?.name,
+                    image: course?.image,
+                    description: course?.description
                 }
             })
 

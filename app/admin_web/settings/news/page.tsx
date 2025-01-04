@@ -1,11 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import axiosInstance from '@/app/libs/configs/axiosConfig';
+import axiosInstance from '@/app/libs/configs/axiosAdminConfig';
 import toast from 'react-hot-toast';
 import { Page } from '@/app/libs/types';
 import EditorReactQuill from '@/app/components/Editor/ReactQuill';
 import { unixToDatetime } from '@/app/libs/utils';
+import { generateSlug } from '@/app/libs/utils';
 
 
 export default function News() {
@@ -119,47 +120,54 @@ export default function News() {
 
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white rounded-lg shadow-md">
-                    <thead className="bg-gray-100">
+                    <thead className="bg-gray-100 text-gray-700">
                         <tr>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">STT</th>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">Tiêu đề</th>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">Slug</th>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">Ngày tạo</th>
-                            <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">Thao tác</th>
+                            <th className="px-4 py-2 text-left">STT</th>
+                            <th className="px-4 py-2 text-left">Tiêu đề</th>
+                            <th className="px-4 py-2 text-left">Slug</th>
+                            <th className="px-4 py-2 text-left">Ngày tạo</th>
+                            <th className="px-4 py-2 text-left">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
-                        {news.map((item, index) => (
+                        {news && news.map((item, index) => (
                             <tr key={item.id}>
-                                <td className="px-6 py-4 text-sm border-b">{index + 1}</td>
-                                <td className="px-6 py-4 text-sm border-b">{item.title}</td>
-                                <td className="px-6 py-4 text-sm border-b">{item.slug}</td>
-                                <td className="px-6 py-4 text-sm border-b">
+                                <td className="px-4 py-2 border-b">{index + 1}</td>
+                                <td className="px-4 py-2 border-b">{item.title}</td>
+                                <td className="px-4 py-2 border-b">{item.slug}</td>
+                                <td className="px-4 py-2 border-b">
                                     {unixToDatetime(item.createdAt)}
                                 </td>
-                                <td className="px-6 py-4 text-sm border-b">
-                                    <button
+                                <td className="px-4 py-2 border-b">
+                                <button
                                         onClick={() => handleEdit(item)}
-                                        className="text-blue-500 hover:text-blue-700 mr-4"
+                                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mr-2"
                                     >
-                                        <i className="fa-solid fa-pen"></i>
+                                        <i className="fa-solid fa-pen-to-square"></i>
                                     </button>
                                     <button
                                         onClick={() => handleDelete(item.id)}
-                                        className="text-red-500 hover:text-red-700"
+                                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
                                     >
                                         <i className="fa-solid fa-trash"></i>
                                     </button>
                                 </td>
                             </tr>
                         ))}
+                        {
+                            news.length == 0  && <tr>
+                                <td colSpan={5}>
+                                    <p className='text-center my-10'>Không có trang nào</p>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
 
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-1000">
-                    <div className="bg-white p-6 rounded-lg w-1/2 mt-30">
+                    <div className="bg-white p-6 rounded-lg w-3/4 mt-30">
                         <h2 className="text-xl font-bold mb-4 text-center">
                             {page.id ? 'Cập nhật tin tức' : 'Thêm tin tức mới'}
                         </h2>
@@ -234,7 +242,7 @@ export default function News() {
                                 onClick={handleSave}
                                 className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
                             >
-                                {page.id ? 'Cập nhật' : 'Thêm mới'}
+                                {page.id ? 'Cập nhật' : 'Lưu'}
                             </button>
                         </div>
                     </div>

@@ -1,6 +1,4 @@
-
 'use client'
-
 
 export default function Pagination({ page, totalPage, onPageChange, totalResult, pageSize, length }: { page: number, totalPage: number, onPageChange: (page: number) => void, totalResult: number, pageSize: number, length: number }) {
     return (
@@ -14,7 +12,7 @@ export default function Pagination({ page, totalPage, onPageChange, totalResult,
             {length > 0 && (
                 <div className="flex justify-center items-center gap-4 mt-4">
                     <button
-                        className={`bg-blue-200 text-white px-4 py-2 rounded-md ${page === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-300'}`}
+                        className={`bg-blue-200 text-white px-3 py-1 rounded-md ${page === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-300'}`}
                         disabled={page === 1}
                         onClick={() => onPageChange(page - 1)}
                     >
@@ -41,7 +39,7 @@ export default function Pagination({ page, totalPage, onPageChange, totalResult,
                     </div>
 
                     <button
-                        className={`bg-blue-200 text-white px-4 py-2 rounded-md ${page === totalPage ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-300'}`}
+                        className={`bg-blue-200 text-white px-3 py-1 rounded-md ${page === totalPage ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-300'}`}
                         disabled={page === totalPage}
                         onClick={() => onPageChange(page + 1)}
                     >

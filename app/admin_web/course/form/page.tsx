@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ImageUpload, VideoUpload } from "@/app/components/FileHandle";
 import { EditorReactQuill } from "@/app/components/Editor";
-import axiosInstance, { postFormData } from "@/app/libs/configs/axiosConfig";
+import axiosInstance, { postFormData } from "@/app/libs/configs/axiosAdminConfig";
 import toast from "react-hot-toast";
 import { generateSlug } from "@/app/libs/utils";
 

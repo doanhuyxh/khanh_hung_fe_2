@@ -29,7 +29,7 @@ export default function ModalScroll({ isOpen, onClose, children, title }: ModalS
                         style={{ borderBottom: "1px solid #ddd" }}
                     >
                         <h2 className="text-center text-lg font-bold w-10/12">{title}</h2>
-                        <button className="absolute top-0 right-0 mx-2 my-0 px-3 py-2 rounded-xl hover:text-red-500" onClick={onClose}>
+                        <button className="absolute top-0 right-0 mx-2 my-0 px-3 py-2 rounded-xl hover:text-red-500 text-3xl" onClick={onClose}>
                             x
                         </button>
                     </div>

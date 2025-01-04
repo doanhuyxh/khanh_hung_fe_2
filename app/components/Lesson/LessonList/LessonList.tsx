@@ -22,8 +22,7 @@ const LessonList: React.FC<LessonListProps> = ({
 }) => {
     const [isClient, setIsClient] = useState(false);
     const [activeTab, setActiveTab] = useState("course");
-    const containerRef = useRef<HTMLDivElement>(null);
-
+    
     useEffect(() => {
         setIsClient(true);
     }, []);

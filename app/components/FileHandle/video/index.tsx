@@ -36,13 +36,15 @@ const VideoUpload: React.FC<VideoUploadProps> = ({ initialLink, onChange }) => {
     onChange(value);
   };
 
-  // Xử lý upload video
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChangeBase = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    apiEndpoint: string
+  ) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
       const fileType = file.type;
-      if (fileType != "video/mp4") {
-        toast.error("Định dạng video không đúng, vui lòng chọn định dạng MP4",{
+      if (fileType !== "video/mp4") {
+        toast.error("Định dạng video không đúng, vui lòng chọn định dạng MP4", {
           duration: 10000,
           position: "top-right",
           style: {
@@ -52,38 +54,51 @@ const VideoUpload: React.FC<VideoUploadProps> = ({ initialLink, onChange }) => {
         });
         return;
       }
-      toast.success("Đang tải video lên",{
+  
+      toast.success("Đang tải video lên", {
         duration: 10000,
         position: "top-right",
         style: {
           background: "#4CAF50",
           color: "#fff",
-        },  
+        },
       });
+  
       const formData = new FormData();
       formData.append("video", file);
-      fetch(`${process.env.MEDIA_UPLOAD_URL}/api/video/upload`, {
-        method: 'POST',
-        body: formData
+  
+      fetch(`${process.env.MEDIA_UPLOAD_URL}${apiEndpoint}`, {
+        method: "POST",
+        body: formData,
       })
         .then((res) => res.json())
         .then((data) => {
-          toast.success("Tải video lên thành công, đang xử lý video, Bạn có thể lưu và thoát...",{
-            duration: 10000,
-            position: "top-right",
-            style: {
-              background: "#4CAF50",
-              color: "#fff",
-            },  
-          });
-          data.url = process.env.MEDIA_UPLOAD_URL + data.url;
+          toast.success(
+            "Tải video lên thành công, đang xử lý video, Bạn có thể lưu và thoát...",
+            {
+              duration: 10000,
+              position: "top-right",
+              style: {
+                background: "#4CAF50",
+                color: "#fff",
+              },
+            }
+          );
+          const videoUrl = `${process.env.MEDIA_UPLOAD_URL}${data.url}`;
           setTimeout(() => {
-            setVideoUrl(data.url);
-            onChange(data.url);
-          }, 3000);
-        })
+            setVideoUrl(videoUrl);
+            onChange(videoUrl);
+          }, 2000);
+        });
     }
   };
+  
+  // Sử dụng các hàm xử lý cụ thể
+  const handleFileChangeRaw = (event: React.ChangeEvent<HTMLInputElement>) =>
+    handleFileChangeBase(event, "/api/video/upload_raw");
+  
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    handleFileChangeBase(event, "/api/video/upload");
 
   return (
     <div className="mb-4">
@@ -93,22 +108,19 @@ const VideoUpload: React.FC<VideoUploadProps> = ({ initialLink, onChange }) => {
           {videoUrl ? (
             <div>
               {isM3U8(videoUrl) ? (
-                // Video M3U8: Xử lý bằng HLS.js
                 <video
                   ref={videoRef}
-                  className="mx-auto w-4/5 max-h-48"
+                  className="mx-auto w-4/5"
                   controls
                 />
               ) : (
-                // Video MP4: Hiển thị trực tiếp
-                <video className="mx-auto w-4/5 max-h-48" controls>
+                <video className="mx-auto w-4/5" controls>
                   <source src={videoUrl} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               )}
             </div>
           ) : (
-            // SVG khi không có video
             <svg
               className="mx-auto h-12 w-12 text-gray-400"
               stroke="currentColor"
@@ -125,12 +137,17 @@ const VideoUpload: React.FC<VideoUploadProps> = ({ initialLink, onChange }) => {
           )}
         </div>
 
-        {/* Nút tải video lên */}
-        <div className="text-sm text-gray-600">
-          <label className="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-            <span>Tải video lên</span>
+
+        <div className="text-sm text-gray-600 flex gap-2 m-auto w-fit">
+          <label className="relative cursor-pointer rounded-md font-medium text-blue-600 hover:bg-green-500 hover:text-white px-2 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+            <span>Tải và giữ nguyên định dạng</span>
+            <input type="file" className="sr-only" accept="video/*" onChange={handleFileChangeRaw} />
+          </label>
+          <label className="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-white hover:bg-red-500 px-2 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+            <span>Tải chuyển đổi</span>
             <input type="file" className="sr-only" accept="video/*" onChange={handleFileChange} />
           </label>
+          <strong className="opacity-40">Video tải lên phải là định dạng mp4</strong>
         </div>
 
         {/* Input để dán link video */}

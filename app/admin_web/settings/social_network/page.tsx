@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import axiosInstance from "@/app/libs/configs/axiosConfig";
+import axiosInstance from "@/app/libs/configs/axiosAdminConfig";
 import { SocialLinks } from "@/app/libs/types";
 
 export default function SocialNetworkPage() {
@@ -120,7 +120,7 @@ export default function SocialNetworkPage() {
                         onClick={handleSave}
                         className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
                     >
-                        Lưu
+                        <i className="fa fa-save"/> Lưu
                     </button>
                 </div>
             )}

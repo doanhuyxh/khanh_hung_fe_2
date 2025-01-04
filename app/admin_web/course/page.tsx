@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { DataPage, ResponseData } from '@/app/libs/types';
 import Dropdown from '@/app/components/DropDown';
 
-import axiosInstance from '@/app/libs/configs/axiosConfig';
+import axiosInstance from '@/app/libs/configs/axiosAdminConfig';
 import toast from 'react-hot-toast';
 
 export default function Course() {
@@ -207,7 +207,6 @@ export default function Course() {
                             <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">Tên khoá học</th>
                             <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">Ảnh thumbnail</th>
                             <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">Loại khoá học</th>
-                            <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">Giá</th>
                             <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">Số bài học</th>
                             <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">Tổng thời lượng</th>
                             <th></th>
@@ -228,7 +227,6 @@ export default function Course() {
                                     {course.image && <Image src={course.image} alt="thumbnail" width={100} height={100} />}
                                 </td>
                                 <td className="py-4 px-4">{course.courseType === 'free' ? 'Miễn phí' : 'Pro'}</td>
-                                <td className="py-4 px-4">{course.costPrice}</td>
                                 <td className="py-4 px-4">{course.numberOfLessons}</td>
                                 <td className="py-4 px-4">{course.totalTimeDuration}</td>
 

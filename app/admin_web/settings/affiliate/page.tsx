@@ -1,7 +1,7 @@
 'use client'
 
 import { EditorReactQuill } from "@/app/components/Editor";
-import axiosInstance from "@/app/libs/configs/axiosConfig";
+import axiosInstance from "@/app/libs/configs/axiosAdminConfig";
 import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
@@ -100,7 +100,7 @@ export default function Affiliate() {
                         className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
                         onClick={handleSaveAffiliateInfo}
                     >
-                        Lưu
+                        <i className="fa fa-save" /> Lưu
                     </button>
                 </div>
             </div>
@@ -113,7 +113,9 @@ export default function Affiliate() {
                 <h3 className="text-center text-2xl font-bold">Chính sách Affiliate</h3>
                 <EditorReactQuill value={value} onChange={handleEditorChange} />
             </div>
-            <button className="bg-blue-500 w-25 text-white px-4 py-2 rounded-md float-end" onClick={handleSavePolicy}>Lưu</button>
+            <button className="bg-blue-500 w-25 text-white px-4 py-2 rounded-md float-end" onClick={handleSavePolicy}>
+                <i className="fa fa-save" /> Lưu
+            </button>
         </div>
     )
 

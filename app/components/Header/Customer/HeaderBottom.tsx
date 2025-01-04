@@ -7,7 +7,7 @@ import Auth from "./Auth";
 
 import { Customer } from "@/app/libs/types";
 import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 
 // Định nghĩa kiểu dữ liệu cho item trong menu
 interface MenuItem {
@@ -23,6 +23,8 @@ const HeaderBottom = () => {
   const [isLoadSocial, setIsLoadSocial] = React.useState<boolean>(false);
 
   const pathname = useSearchParams();
+  const path = usePathname();
+  const isStudy = path.includes('/study');
 
   const [menuItems, setMenuItems] = React.useState<MenuItem[]>([
     { href: "", icon: "/assets/images/add-friend.svg", text: "Kết bạn" },
@@ -77,7 +79,7 @@ const HeaderBottom = () => {
 
   return (
     <div className="header_bottom">
-      <div className="container">
+      <div className={`container container_header`}>
         <div className="header_bottom_wrapper">
           <HeaderLogo isLogin={isLogin} />
           <div className="header_bottom_wrapper_middle">

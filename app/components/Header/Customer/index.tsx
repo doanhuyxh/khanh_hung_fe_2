@@ -27,7 +27,7 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 w-full z-[100] text-[10px] bg-white shadow-md transition-all duration-300">
-        <div className="header_top ">
+        <div className="header_top">
           <HeaderNews />
           <HeaderContact />
         </div>

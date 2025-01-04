@@ -274,7 +274,7 @@ textarea {
   overscroll-behavior: none;
 }
 .layer-digital {
-  background: linear-gradient(180deg, #580b94 58.7%, #a75ee0 100%);
+  background: linear-gradient(180deg, #580b94 58.7%, #580b94 60%);
 }
 
 .banner-left {
@@ -589,14 +589,14 @@ textarea {
   }
 }
 
-@media (min-width: 3840px) {
+@media (min-width: 3600px) {
   html {
     font-size: 14px;
   }
   
   p,
   span {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 }
 

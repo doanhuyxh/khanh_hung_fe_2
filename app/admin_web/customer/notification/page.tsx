@@ -7,7 +7,7 @@ import { FormNotification } from "@/app/components/Form"
 import ModalScroll from "@/app/components/Modal/ModalScroll"
 import { unixToDatetime, dateToUnixTimestamp } from "@/app/libs/utils"
 
-import axiosInstance, { postFormData } from "@/app/libs/configs/axiosConfig"
+import axiosInstance, { postFormData } from "@/app/libs/configs/axiosAdminConfig"
 import Pagination from "@/app/components/Pagination"
 
 export default function Notification() {

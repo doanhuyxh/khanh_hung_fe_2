@@ -3,19 +3,20 @@ import EditorReactQuill from "../../Editor/ReactQuill";
 import { LessonItem } from "@/app/libs/types";
 import { generateSlug } from "@/app/libs/utils";
 import { useState } from "react";
+import FileUploadImage from "../../FileHandle/FileUploadImage";
 
 export default function FormLesson({ lesson, setLesson, saveLesson }: { lesson: LessonItem, setLesson: any, saveLesson: any }) {
 
-    const [lessonTemp, setLessonTemp] = useState<LessonItem>({...lesson})
+    const [lessonTemp, setLessonTemp] = useState<LessonItem>({ ...lesson })
 
     const SaveLesson = () => {
         if (JSON.stringify(lesson) !== JSON.stringify(lessonTemp)) {
-          saveLesson({ ...lessonTemp });
+            saveLesson({ ...lessonTemp });
         } else {
-          console.log("Nothing change");
+            console.log("Nothing change");
         }
-      };
-      
+    };
+
 
     const handleEditorChangeLessonContent = (content: string) => {
         setLessonTemp({ ...lessonTemp, lessonContent: content });
@@ -36,6 +37,19 @@ export default function FormLesson({ lesson, setLesson, saveLesson }: { lesson: 
 
     return (
         <div className="flex flex-col gap-4">
+
+            <div className="flex flex-col">
+                <div className="font-bold opacity-65 flex gap-2">
+                    Thumbnail (<strong className="text-red-900 font-[400]">1090 * 620</strong>)
+                    <label className="bg-green-400 px-2 rounded-lg cursor-pointer" htmlFor="fileUpload_2">
+                        <i className="fa fa-upload" />
+                    </label>
+                </div>
+                <FileUploadImage index={2} onChange={(newValue: any) => {
+                    setLessonTemp({ ...lessonTemp, imageThumbnail: newValue })
+                }} value={lessonTemp.imageThumbnail} />
+            </div>
+
             <div className="flex flex-col gap-2">
                 <label className="font-semibold">Tên bài học</label>
                 <input
@@ -56,51 +70,50 @@ export default function FormLesson({ lesson, setLesson, saveLesson }: { lesson: 
                     onChange={handleSlugChange}
                 />
             </div>
-            <div className="flex flex-col gap-2">
-                <label className="font-semibold">Thời lượng</label>
-                <input
-                    type="text"
-                    className="border border-gray-300 rounded-md p-2"
-                    placeholder="Nhập thời lượng bài học"
-                    value={lessonTemp.duration}
-                    onChange={(e) => setLessonTemp({ ...lessonTemp, duration: e.target.value })}
-                />
-            </div>
 
-            <div className="flex flex-row justify-evenly">
-                <div className="flex gap-2 items-center  cursor-pointer">
+            <div className="flex flex-row gap-5 items-center">
+                <div className="flex flex-col gap-2">
+                    <label className="font-semibold">Thời lượng</label>
                     <input
-                        id="isFree"
-                        type="checkbox"
-                        checked={lessonTemp.isFree}
-                        onChange={(e) => handleCheckboxChange('isFree', e.target.checked)}
+                        type="text"
+                        className="border border-gray-300 rounded-md p-2"
+                        placeholder="Nhập thời lượng bài học"
+                        value={lessonTemp.duration}
+                        onChange={(e) => setLessonTemp({ ...lessonTemp, duration: e.target.value })}
                     />
-                    <label htmlFor="isFree" className="cursor-pointer">Miễn phí</label>
                 </div>
 
-                <div className="flex gap-2 items-center  cursor-pointer">
-                    <input
-                        id="isOutstanding"
-                        type="checkbox"
-                        checked={lessonTemp.isOutstanding}
-                        onChange={(e) => handleCheckboxChange('isOutstanding', e.target.checked)}
-                    />
-                    <label htmlFor="isOutstanding" className="cursor-pointer">Nổi bật</label>
-                </div>
+                <div className="flex flex-row justify-evenly gap-4 items-center">
+                    <div className="flex gap-2 items-center  cursor-pointer">
+                        <input
+                            id="isFree"
+                            type="checkbox"
+                            checked={lessonTemp.isFree}
+                            onChange={(e) => handleCheckboxChange('isFree', e.target.checked)}
+                        />
+                        <label htmlFor="isFree" className="cursor-pointer">Miễn phí</label>
+                    </div>
 
-                <div className="flex gap-2 items-center cursor-pointer">
-                    <input
-                        id="isImportant"
-                        type="checkbox"
-                        checked={lessonTemp.isImportant}
-                        onChange={(e) => handleCheckboxChange('isImportant', e.target.checked)}
-                    />
-                    <label htmlFor="isImportant" className="cursor-pointer">Quan trọng</label>
-                </div>
-            </div>
+                    <div className="flex gap-2 items-center  cursor-pointer">
+                        <input
+                            id="isOutstanding"
+                            type="checkbox"
+                            checked={lessonTemp.isOutstanding}
+                            onChange={(e) => handleCheckboxChange('isOutstanding', e.target.checked)}
+                        />
+                        <label htmlFor="isOutstanding" className="cursor-pointer">Nổi bật</label>
+                    </div>
 
-            <div className="flex flex-col gap-2">
-                <ImageUpload initialLink={lessonTemp.imageThumbnail} onChange={(value) => setLessonTemp({ ...lessonTemp, imageThumbnail: value })} />
+                    <div className="flex gap-2 items-center cursor-pointer">
+                        <input
+                            id="isImportant"
+                            type="checkbox"
+                            checked={lessonTemp.isImportant}
+                            onChange={(e) => handleCheckboxChange('isImportant', e.target.checked)}
+                        />
+                        <label htmlFor="isImportant" className="cursor-pointer">Quan trọng</label>
+                    </div>
+                </div>
             </div>
 
             <div className="flex flex-col gap-2">

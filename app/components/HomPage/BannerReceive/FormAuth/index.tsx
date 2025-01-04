@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
-import Link from "next/link";
+import { getLastStudyLesion } from "@/app/libs/services/ApiCustomerServices";
 
 export default function AuthTabs() {
 
@@ -59,7 +59,7 @@ export default function AuthTabs() {
       .post("/Auth/Login", loginForm)
       .then((response: any) => {
         if (response.code === 200) {
-          window.location.href = "/study"
+          handleChangeStudyPage()
         } else {
           toast.error("Tài khoản hoặc mật khẩu không đúng", {
             duration: 3000,
@@ -122,6 +122,19 @@ export default function AuthTabs() {
       })
   }
 
+  const handleChangeStudyPage = async () => {
+    const response:any = await getLastStudyLesion()
+    if (response.code !== 200) {
+      toast.error("Có lỗi xảy ra, vui lòng thử lại", {
+        duration: 3000,
+        position: "top-right"
+      });
+      return;
+    } else {
+      router.push(`/study/${response.data.slug}`)
+    }
+  }
+
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -158,16 +171,16 @@ export default function AuthTabs() {
 
   if (isLogin) {
     return (
-      <div className="banner-right rounded-lg p-8 text-center flex flex-col gap-10 items-center">
+      <div className="banner-right rounded-lg p-8 text-center flex flex-col gap-10 items-center"
+        onClick={handleChangeStudyPage}>
         <h2 className="text-3xl lg:text-5xl font-bold text-white mb-4 text-nowrap">
           Chào mừng đồng nghiệp quay trở lại!
         </h2>
-        <Link
-          href="/study"
+        <button
           className="text-nowrap px-6 py-4 pb-5 bg-purple-600 text-5xl text-white rounded-md hover:bg-purple-700"
         >
           Tiếp tục học
-        </Link>
+        </button>
       </div>
     )
   }
@@ -263,7 +276,7 @@ export default function AuthTabs() {
 
       <div className="w-full bg-white rounded-b-xl shadow-xl p-8 overflow-hidden">
 
-        <div className="flex border-[#f41e92] border-t-[10px] border-l-[6px] border-r-[6px]  bg-white rounded-t-xl transition-all overflow-hidden">
+        <div className="flex border-[#f41e92] border-t-[12px] border-l-[8px] border-r-[8px]  bg-white rounded-t-xl transition-all overflow-hidden">
           <button
             className={`w-1/2 py-4 text-center font-semibold text-2xl transition-all duration-300 relative ${activeTab === "register"
               ? "text-[#f41e92]"
@@ -286,7 +299,7 @@ export default function AuthTabs() {
         </div>
 
 
-        <div className="w-full border-6 border-t-0 rounded-b-xl px-4 py-4 border-[#f41e92] relative">
+        <div className="w-full border-8 border-t-0 rounded-b-xl px-4 py-4 border-[#f41e92] relative">
 
           {/* {activeTab === "login" &&(<div className="w-6/12 h-2 m-auto mb-4 bg-[#f41e92] absolute top-0 left-0"></div>)}
         {activeTab === "register" && (<div className="w-1/2 h-2 m-auto mb-4 bg-[#f41e92] absolute top-0 right-0"></div>)} */}

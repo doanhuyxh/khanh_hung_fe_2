@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from "react";
-import axiosInstance from "@/app/libs/configs/axiosConfig";
+import axiosInstance from "@/app/libs/configs/axiosAdminConfig";
 
 export default function Dashboard() {
 

@@ -1,27 +1,31 @@
-import { Metadata } from 'next'
-import { cookies } from 'next/headers'
-import fetchData from '@/app/libs/configs/fetchDataServer'
-import { redirect } from 'next/navigation'
+'use client'
+import Loading from '../components/Loading'
+import { useEffect, useState } from 'react'
+import { getLastStudyLesion } from '../libs/services/ApiCustomerServices'
 
-export const metadata:Metadata ={
-  title:"Đang chuyển hướng sang bài học"
+export default function StudyPage() {
+  const [loading, setLoading] = useState(true)
+
+
+  useEffect(() => {
+    setLoading(false)
+  }, [])
+
+  useEffect(() => {
+    if (!loading) {
+      getLastStudyLesion().then((res) => {
+        setTimeout(() => {
+          window.location.href = `/study/${res.data.slug}`
+        }, 1000)
+      })
+    }
+  }, [loading])
+
+  return (
+    <div>
+      <Loading />
+    </div>
+  )
 }
 
-export default async function StudyPage() {
 
-  const cookieStore = cookies()
-  const AccessToken = (await cookieStore).get('AccessToken')
-
-  if (!AccessToken) {
-    return redirect("/")
-  }
-  
-  const response = await fetchData("/course/get-last-lesson", (await cookies()).toString())
-  if (response.code !== 200) {
-    console.log("response false:: ", response)
-    return redirect("/")
-  }
-  const data = response.data
-  await new Promise((resolve) => setTimeout(resolve, 5000))
-  return redirect(`/study/${data.slug}`)
-}

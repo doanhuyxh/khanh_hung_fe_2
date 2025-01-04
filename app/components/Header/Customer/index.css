@@ -302,6 +302,11 @@
     display: block;
   }
 }
+
+.logout_btn{
+  background-color: rgba(240, 68, 56, .1)
+}
+
 @media screen and (max-width: 1300px) {
   .header_bottom_wrapper_right .btn_profile {
     display: none;
@@ -328,8 +333,27 @@
   }
 }
 
-@media (screen > 1600px) {
+@media (min-width: 1600px) {
   .header{
     font-size: 30px;
   }
+  .container_header{
+    max-width: 98%;
+  }
+}
+
+@media (min-width: 1900px) {
+    .container_header{
+      max-width: 1800px;
+    }
+
+    :root {
+      --w-logo: 34.3rem;
+    }
+
+    p, span{
+      font-size: 1.3rem;
+    }
+
+  
 }

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { BannerHeaderTop } from "../../../libs/types"
-import axiosInstance from "@/app/libs/configs/axiosConfig";
+import axiosInstance from "@/app/libs/configs/axiosAdminConfig";
 import ModalScroll from "@/app/components/Modal/ModalScroll";
 import toast from "react-hot-toast";
 
@@ -111,13 +111,13 @@ export default function BannerTop() {
                                 <td className="border border-gray-300 px-4 py-2 text-center">
                                     <button
                                         onClick={() => handleAddOrUpdate(banner.id)}
-                                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mr-2"
+                                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mr-2"
                                     >
                                         <i className="fa-solid fa-pen-to-square"></i>
                                     </button>
                                     <button
                                         onClick={() => handleDelete(banner.id)}
-                                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
                                     >
                                         <i className="fa-solid fa-trash"></i>
                                     </button>

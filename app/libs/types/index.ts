@@ -116,6 +116,7 @@ export interface Customer {
   totalRef: number;
   totalCommission: number;
   totalDiscount: number;
+  type: string;
 }
 
 export interface NotificationItem {
