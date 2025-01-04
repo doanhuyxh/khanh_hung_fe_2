@@ -70,7 +70,7 @@ export default function FormNotification({formNotify, setFormNotify, save}: Form
                     onChange={(e) => setFormNotify({ ...formNotify, Type: e.target.value })}
                 >
                     <option value="all">Tất cả</option>
-                    <option value="mail">Thông qua email</option>
+                    <option value="email">Thông qua email</option>
                     <option value="web">Thông báo trên wed</option>
                     <option value="app">Thông báo app</option>
                 </select>

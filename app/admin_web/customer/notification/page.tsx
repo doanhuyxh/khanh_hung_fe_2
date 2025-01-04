@@ -1,14 +1,15 @@
 'use client'
 
-import Loading from "@/app/components/Loading"
-import { useCallback, useEffect, useState } from "react"
 import toast from "react-hot-toast"
+import { useCallback, useEffect, useState } from "react"
+
+import Loading from "@/app/components/Loading"
 import { FormNotification } from "@/app/components/Form"
 import ModalScroll from "@/app/components/Modal/ModalScroll"
 import { unixToDatetime, dateToUnixTimestamp } from "@/app/libs/utils"
-
 import axiosInstance, { postFormData } from "@/app/libs/configs/axiosAdminConfig"
 import Pagination from "@/app/components/Pagination"
+import { DataPage } from "@/app/libs/types"
 
 export default function Notification() {
 
@@ -21,7 +22,7 @@ export default function Notification() {
     const [page, setPage] = useState(1)
     const [searchKeyword, setSearchKeyword] = useState<string>('')
     const pageSize = 30;
-    const [data, setData] = useState<any[]>([])
+    const [data, setData] = useState<DataPage>()
 
     const [checkbox, setCheckbox] = useState<string[]>([])
 
@@ -52,6 +53,14 @@ export default function Notification() {
                 })
             }).finally(() => {
                 setIsShowModelForm(false)
+                setFormNotify({
+                    Id: "",
+                    PrivateName: "",
+                    Title: "",
+                    Content: "",
+                    Type: ""
+                })
+                getNotification();
             })
     }
 
@@ -67,22 +76,33 @@ export default function Notification() {
                     Content: data.content
                 })
                 setIsShowModelForm(true)
+                getNotification();
+            })
+    }
 
+    const HandleDelete = async (id: string) => {
+        axiosInstance.get(`/notification/delete?id=${id}`)
+            .then((res: any) => {
+                if (res.code == 200) {
+                    toast.success("Đã xoá thành công", {
+                        position: "top-right"
+                    })
+                    getNotification()
+                }
             })
     }
 
     const getNotification = useCallback(async () => {
         axiosInstance.get(`/notification/GetAll?page=${page}&pageSize=${pageSize}&startTime=${startDate}&endTime=${endDate}&status=${status}&search=${searchKeyword}`)
-            .then(res => {
-                const data = res.data
-                setData(data)
+            .then((res: any) => {
+                setData(res.data)
             })
     }, [page, startDate, endDate, status, searchKeyword])
 
 
     const handleChangeCheckbox = (id: string) => {
         if (id == 'all') {
-            setCheckbox(data.map((i: any) => i.id))
+            setCheckbox(data?.data.map((i: any) => i.id))
         } else {
             setCheckbox(prev => {
                 if (prev.includes(id)) {
@@ -98,11 +118,13 @@ export default function Notification() {
             for (const id of checkbox) {
                 await axiosInstance.get(`/notification/ChangeStatus?id=${id}&status=${status}`);
             }
-            toast.success('Cập nhật trạng thái thành công', {
-                duration: 3000,
-                position: "top-right",
-            });
-            getNotification();
+            if (checkbox.length != 0) {
+                toast.success('Cập nhật trạng thái thành công', {
+                    duration: 3000,
+                    position: "top-right",
+                });
+                getNotification();
+            }
         } catch (error) {
             console.error('Có lỗi xảy ra khi cập nhật trạng thái:', error);
             toast.error('Cập nhật thất bại', {
@@ -126,6 +148,7 @@ export default function Notification() {
 
     return (
         <div className="w-full">
+
             <div className="w-full flex items-center gap-5 mr-10 mb-10">
                 <p className="font-medium">Thông báo khách hàng</p>
 
@@ -145,7 +168,7 @@ export default function Notification() {
                 </div>
             </div>
             <hr />
-            <div className="mt-3 flex gap-8 mb-3 mx-3 p-4 bg-gray-50 rounded-lg shadow-sm">
+            <div className="mt-3 flex gap-8 mb-3  rounded-lg shadow-sm">
                 <button
                     className='bg-blue-100 text-black hover:bg-green-100 hover:text-green-500 px-4 py-2 rounded-md'
                     onClick={() => handleChangeCheckbox('all')}
@@ -219,7 +242,7 @@ export default function Notification() {
                     </thead>
                     <tbody>
                         {
-                            data && data.map((item: any, index: number) => {
+                            data?.data && data?.data.map((item: any, index: number) => {
                                 return <tr key={index} className="hover:bg-gray-50 border-b">
                                     <td className='p-4 flex items-center gap-1' onClick={() => handleChangeCheckbox(item.id)}>
                                         <input type='checkbox' value={item.id} checked={checkbox.includes(item.id)} onChange={() => { }} />
@@ -259,11 +282,12 @@ export default function Notification() {
                                     <td className="px-6 py-4 text-center">{item.totalRead}</td>
                                     <td className="px-6 py-4">
                                         <div className="flex gap-2">
-                                            <button className="p-2 text-blue-600 hover:text-blue-800"
+                                            <button className="px-3 py-1 rounded-md bg-blue-600 hover:bg-blue-800 text-white"
                                                 onClick={() => HandleUpdate(item.id)}>
                                                 <i className="fa-solid fa-pen-to-square"></i>
                                             </button>
-                                            <button className="p-2 text-red-600 hover:text-red-800">
+                                            <button className="px-3 py-1 rounded-md bg-red-600 hover:bg-red-800 text-white"
+                                                onClick={() => HandleDelete(item.id)}>
                                                 <i className="fa-solid fa-trash"></i>
                                             </button>
                                         </div>
@@ -273,7 +297,7 @@ export default function Notification() {
                         }
                     </tbody>
                 </table>
-                <Pagination pageSize={pageSize} page={page} length={data?.length} onPageChange={setPage} totalPage={10} totalResult={100} />
+                <Pagination pageSize={pageSize} page={page} length={data?.data.length} onPageChange={setPage} totalPage={data?.totalPage ?? 0} totalResult={data?.totalResult ?? 0} />
             </div>
 
             <ModalScroll isOpen={isShowModelForm} onClose={() => setIsShowModelForm(!isShowModelForm)} title="Thông báo khách hàng">
