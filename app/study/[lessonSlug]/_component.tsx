@@ -69,17 +69,17 @@ export default function StudyPageComponent({ lesson_sv, isLogin }: { lesson_sv: 
 
   }, [])
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (lesson?.video && isLogin) {
-        axiosCustomerConfig.get(`/course/update-lesson?id=${lesson.id}&progress=100`)
-          .catch((err) => {
-            console.log(err)
-          })
-      }
-    }, 30000)
-    return () => clearInterval(interval)
-  }, [lesson?.id, isLogin])
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (lesson?.video && isLogin) {
+  //       axiosCustomerConfig.get(`/course/update-lesson?id=${lesson.id}&progress=100`)
+  //         .catch((err) => {
+  //           console.log(err)
+  //         })
+  //     }
+  //   }, 30000)
+  //   return () => clearInterval(interval)
+  // }, [lesson?.id, isLogin])
 
   useEffect(() => {
     setLesson({ ...lesson_sv })

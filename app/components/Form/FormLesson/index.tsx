@@ -117,7 +117,7 @@ export default function FormLesson({ lesson, setLesson, saveLesson }: { lesson: 
             </div>
 
             <div className="flex flex-col gap-2">
-                <VideoUpload initialLink={lessonTemp.video} onChange={(value) => setLessonTemp({ ...lessonTemp, video: value })} />
+                <VideoUpload initialLink={lessonTemp.video} onChange={(value) => setLessonTemp({ ...lessonTemp, video: value })} setDuration={(value) => setLessonTemp({ ...lessonTemp, duration: value })} />
             </div>
 
             <div className="flex flex-col gap-2">

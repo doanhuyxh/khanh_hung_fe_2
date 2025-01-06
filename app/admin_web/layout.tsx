@@ -40,13 +40,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }
 
   return (
-    <div className="dark:bg-boxdark-2 dark:text-bodydark">
+    <div className="bg-gray-200">
       <div className='flex h-screen overflow-hidden'>
         <AdminSideBar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
           <AdminHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           <main className="">
-            <div className="mx-auto p-4 md:p-6 2xl:p-10">
+            <div className="mx-auto p-4 md:p-6 2xl:p-10 bg-white">
               {children}
             </div>
           </main>
