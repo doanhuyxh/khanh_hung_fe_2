@@ -128,7 +128,7 @@ const VideoUpload: React.FC<VideoUploadProps> = ({ initialLink, onChange, setDur
 
   return (
     <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-700 mb-2">Video giới thiệu</label>
+      <label className="block text-sm font-medium text-gray-700 mb-2">Video</label>
       <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
         <div className="mb-2">
           {videoUrl ? (

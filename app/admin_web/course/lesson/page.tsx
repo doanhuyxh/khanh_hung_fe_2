@@ -11,9 +11,10 @@ import { FormLesson } from '@/app/components/Form';
 import { LessonItemAdmin } from '@/app/components/Lesson';
 import ModalViewHtml from '@/app/components/Modal/ModalViewHtml';
 import { LessonItem } from '@/app/libs/types';
-import VideoPlayerType from '@/app/components/Video/VideoPlayerType';
+import VideoPlayerType from '@/app/components/LessonViewControl/VideoPlayerType';
 import toast from "react-hot-toast";
 import ModalViewVideo from "@/app/components/Modal/ModelVideo";
+import ModalViewPDF from "@/app/components/Modal/ModalPdf";
 
 export default function CourseLesson() {
     const [loading, setLoading] = useState(true)
@@ -25,6 +26,7 @@ export default function CourseLesson() {
     const [isOpen, setIsOpen] = useState(false)
     const [isOpenDescription, setIsOpenDescription] = useState(false)
     const [isOpenVideo, setIsOpenVideo] = useState(false)
+    const [isOpenPDF, setIsOpenPDF] = useState(false)
 
     const [lessonContent, setLessonContent] = useState('')
     const [lessonVideo, setLessonVideo] = useState('')
@@ -48,6 +50,7 @@ export default function CourseLesson() {
         isOutstanding: false,
         courseId: courseId,
         totalView: 0,
+        type : 'video'
     })
 
     const HandleCreateOrUpdateLesson = (id: string) => {
@@ -60,6 +63,7 @@ export default function CourseLesson() {
                 lessonContent: "",
                 imageThumbnail: '',
                 video: '',
+                type : 'video',
                 duration: '12:01',
                 isFree: false,
                 isImportant: false,
@@ -78,6 +82,7 @@ export default function CourseLesson() {
                     lessonContent: "",
                     imageThumbnail: '',
                     video: '',
+                    type : 'video',
                     duration: '12:01',
                     isFree: false,
                     isImportant: false,
@@ -109,6 +114,20 @@ export default function CourseLesson() {
     }
 
     const saveLesson = useCallback(async (new_lesson: LessonItem) => {
+
+        if (new_lesson.video == "") {
+            const mess = new_lesson.type == 'video' ? 'Vui lòng chọn video' : 'Vui lòng chọn file pdf và tải file lên'
+            toast.error(mess, {
+                duration: 3000,
+                position: "top-right",
+                style: {
+                    background: "red",
+                    color: "#fff"
+                }
+            })
+            return
+        }
+
         await postFormData('course/lesson/CreateOrUpdate', { ...new_lesson });
         GetDataLesson()
         setIsOpen(false)
@@ -186,7 +205,11 @@ export default function CourseLesson() {
                                 toggleLessonVideo={() => {
                                     setLessonVideo(item.video)
                                     setLessonTitle(item.name)
-                                    setIsOpenVideo(true)
+                                    if (item.type == 'video') {
+                                        setIsOpenVideo(true)
+                                    } else {
+                                        setIsOpenPDF(true)
+                                    }
                                 }}
                                 HandleCreateOrUpdateLesson={HandleCreateOrUpdateLesson}
                                 HandleDeleteLesson={HandleDeleteLesson}
@@ -207,6 +230,9 @@ export default function CourseLesson() {
             <ModalViewVideo isOpen={isOpenVideo} onClose={() => setIsOpenVideo(false)} title={lessonTitle}>
                 <VideoPlayerType videoSrc={lessonVideo} />
             </ModalViewVideo>
+
+            <ModalViewPDF isOpen={isOpenPDF} onClose={() => setIsOpenPDF(false)} title={lessonTitle} pdfLink={lessonVideo} />
+            
         </>
     )
 }

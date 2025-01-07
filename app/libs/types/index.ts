@@ -31,6 +31,7 @@ export interface LessonItem {
   id: string;
   name: string;
   slug: string
+  type: string;
   imageThumbnail: string;
   lessonContent: string;
   video: string;

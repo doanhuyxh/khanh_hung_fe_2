@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import VideoPlayer from "@/app/components/Video/VideoLessonPlayer"
+import VideoPlayer from "@/app/components/LessonViewControl/VideoLessonPlayer"
 import { LessonList } from "@/app/components/Lesson";
 import { LessonData, CourseData, LessonItem } from "@/app/libs/types";
 
 import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig";
 import Loading from "@/app/components/Loading";
+import PdfLessonView from "@/app/components/LessonViewControl/PdfLessonView";
 
 
 export default function StudyPageComponent({ lesson_sv, isLogin }: { lesson_sv: LessonItem, isLogin: boolean }) {
@@ -107,16 +108,29 @@ export default function StudyPageComponent({ lesson_sv, isLogin }: { lesson_sv: 
   return (
     <div className="study_container flex flex-col lg:flex-row lg:gap-10 lg:px-10">
       <div className="lg:w-2/3 w-ful">
-        <VideoPlayer
-          title={lesson?.name || ""}
-          videoUrl={lesson?.video || ""}
-          timeDuration={lesson?.duration || ""}
-          views={lesson?.totalView || 0}
-          isUpgrade={showBannerUpgrade}
-          imageThumbnail={lesson?.imageThumbnail || ""}
-          isLogin={isLogin}
-          isFree={lesson?.isFree || false}
-        />
+        {lesson?.type == "video" &&
+          <VideoPlayer
+            title={lesson?.name || ""}
+            videoUrl={lesson?.video || ""}
+            timeDuration={lesson?.duration || ""}
+            views={lesson?.totalView || 0}
+            isUpgrade={showBannerUpgrade}
+            imageThumbnail={lesson?.imageThumbnail || ""}
+            isLogin={isLogin}
+            isFree={lesson?.isFree || false}
+          />}
+        {lesson?.type == "pdf" &&
+          <PdfLessonView
+            title={lesson?.name || ""}
+            videoUrl={lesson?.video || ""}
+            timeDuration={lesson?.duration || ""}
+            views={lesson?.totalView || 0}
+            isUpgrade={showBannerUpgrade}
+            imageThumbnail={lesson?.imageThumbnail || ""}
+            isLogin={isLogin}
+            isFree={lesson?.isFree || false}
+          />}
+
       </div>
 
       <div className="video_list lg:w-1/3 w-full rounded-md mt-10 lg:mt-0 flex flex-col">

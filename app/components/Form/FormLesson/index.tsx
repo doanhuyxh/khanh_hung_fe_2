@@ -1,4 +1,4 @@
-import { ImageUpload, VideoUpload } from "@/app/components/FileHandle";
+import { ImageUpload, VideoUpload, FileUploadPDF } from "@/app/components/FileHandle";
 import EditorReactQuill from "../../Editor/ReactQuill";
 import { LessonItem } from "@/app/libs/types";
 import { generateSlug } from "@/app/libs/utils";
@@ -71,7 +71,16 @@ export default function FormLesson({ lesson, setLesson, saveLesson }: { lesson: 
                 />
             </div>
 
-            <div className="flex flex-row gap-5 items-center">
+            <div className="flex flex-row justify-evenly gap-5 items-center">
+
+                <div className="flex flex-col gap-2">
+                    <label className="font-semibold">Loại bài học</label>
+                    <div className="flex flex-row gap-3">
+                        <label className="cursor-pointer">Video <input type="radio" value={"video"} checked={lessonTemp.type === "video"} onChange={(e) => setLessonTemp({ ...lessonTemp, type: e.target.value })} /></label>
+                        <label className="cursor-pointer">PDF <input type="radio" value={"pdf"}  checked={lessonTemp.type === "pdf"} onChange={(e) => setLessonTemp({ ...lessonTemp, type: e.target.value })}/></label>
+                    </div>
+                </div>
+
                 <div className="flex flex-col gap-2">
                     <label className="font-semibold">Thời lượng</label>
                     <input
@@ -83,7 +92,7 @@ export default function FormLesson({ lesson, setLesson, saveLesson }: { lesson: 
                     />
                 </div>
 
-                <div className="flex flex-row justify-evenly gap-4 items-center">
+                <div className="flex flex-row justify-between gap-4 items-center">
                     <div className="flex gap-2 items-center  cursor-pointer">
                         <input
                             id="isFree"
@@ -114,11 +123,19 @@ export default function FormLesson({ lesson, setLesson, saveLesson }: { lesson: 
                         <label htmlFor="isImportant" className="cursor-pointer">Quan trọng</label>
                     </div>
                 </div>
+
             </div>
 
-            <div className="flex flex-col gap-2">
+            {lessonTemp.type === "video" && (<div className="flex flex-col gap-2">
                 <VideoUpload initialLink={lessonTemp.video} onChange={(value) => setLessonTemp({ ...lessonTemp, video: value })} setDuration={(value) => setLessonTemp({ ...lessonTemp, duration: value })} />
             </div>
+            )}
+
+            {lessonTemp.type === "pdf" && (
+                <div className="flex flex-col gap-2">
+                    <FileUploadPDF initialLink={lessonTemp.video} onChange={(value) => setLessonTemp({ ...lessonTemp, video: value })} />
+                </div>
+            )}
 
             <div className="flex flex-col gap-2">
                 <label className="font-semibold">Nội dung bài học</label>

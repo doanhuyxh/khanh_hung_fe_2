@@ -36,7 +36,7 @@ const LessonItemAdmin: React.FC<LessonItemProps> = ({
                         <span
                         onClick={() => toggleLessonVideo(item.id)}
                         className='text-sm text-blue-500 hover:text-red-500'>
-                            <i className="fa-solid fa-video"></i> Xem video
+                            <i className="fa-solid fa-video"></i> Xem video/pdf
                         </span>
                     )}
                     {item?.video == null && item?.video == "" && (
