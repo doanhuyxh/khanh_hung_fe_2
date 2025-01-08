@@ -23,7 +23,6 @@ export default function UserActions({ user }: { user: Customer }) {
                 (isFreeUser ? <ButtonUpgrade /> : null)
                 : <ButtonLearnNow />
             }
-            <ButtonDownLoadAppMobile />
             <div className="btn_profile">
                 <div className="btn_profile_content cursor-pointer"
                     onMouseEnter={() => setIsDropdown(true)}
@@ -34,7 +33,7 @@ export default function UserActions({ user }: { user: Customer }) {
                     <div className="flex flex-col gap-1">
                         {user.type == 'free' &&
                             <div className="flex gap-2 text-nowrap text-black font-bold text-xl">
-                                <p className='cursor-pointer'>{user?.firstName + " " + user?.lastName}</p>
+                                <p className='cursor-pointer text-white'>{user?.firstName + " " + user?.lastName}</p>
                                 <span className='flex items-center justify-center gap-1 px-2 text-nowrap bg-green-600 text-white rounded'>
                                     <Image src={'/assets/images/ic-tag-free.svg'} width={10} height={10} alt='' />
                                     Free

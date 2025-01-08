@@ -71,11 +71,11 @@ export default function ChangePassword() {
     }
 
     return (
-        <div className="container mt-10 lg:mt-20">
+        <div className="container mt-10 lg:mt-20 ">
             <div className="w-full flex justify-center items-center">
                 <h1 className="text-3xl lg:text-5xl font-bold transform scale-150  text-color-secondary">Bổ sung mật khẩu</h1>
             </div>
-            <div className="w-11/12 lg:w-10/12 m-auto p-10 lg:p-30 shadow-[0_0_20px_rgba(0,0,0,0.2)] rounded-xl mt-10">
+            <div className="w-11/12 lg:w-10/12 m-auto p-10 lg:p-30 shadow-[0_0_20px_rgba(0,0,0,0.2)] rounded-xl mt-10 bg-white">
                 <div className="w-full flex flex-col lg:flex-row lg:gap-50 lg:p-8">
                     <div className="text-center mb-8 hidden lg:block">
                         <h2 className="text-nowrap font-bold text-xl lg:text-3xl text-gray-800">Bổ sung mật khẩu</h2>

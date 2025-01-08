@@ -15,7 +15,7 @@ export default function AffiliatePolicy() {
     }, [])
 
     return (
-        <div className="container mt-10 lg:mt-20 max-w-[1600px] overflow-hidden px-10">
+        <div className="container mt-10 lg:mt-20 max-w-[1600px] overflow-hidden px-10 bg-white">
             <div dangerouslySetInnerHTML={{ __html: value }} />
         </div>
 

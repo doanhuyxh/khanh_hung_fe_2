@@ -1,8 +1,185 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Bebas+Neue&display=swap');
+
+html{
+    font-family: "Alegreya", Sans-serif;
+    font-size: 10px;
+}
+
+@media (min-width: 2000px) {
+    html {
+      font-size: 70%;
+    }
+  }
+  
+  @media (max-width: 1580px) {
+    html {
+      font-size: 8px;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    html {
+      font-size:12px;
+    }
+  }
+
+.layer-digital {
+    background-image: url("/assets/images/home/5.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+}
+
+.banner-right {
+    width: calc(4* 100% / 12);
+    transition: all .45s ease-in-out;
+    position: relative;
+}
+
+.banner-loader {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: block;
+    margin: 15px auto;
+    position: relative;
+    background: #7c0fd1;
+    box-sizing: border-box;
+    animation: shadowExpandX 1s linear infinite alternate;
+}
+@media screen and (max-width: 576px) {
+    .banner-loader {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+}
+
+.banner-form-list {
+    display: flex;
+}
+
+.banner-form-item {
+    width: 33.33%;
+}
+@media screen and (max-width: 576px) {
+    .banner-form-item {
+        width: calc(100% / 3);
+        padding: 0.8rem;
+    }
+}
+.banner-form-item:nth-child(2) {
+    position: relative;
+}
+.banner-form-item:nth-child(2)::after,
+.banner-form-item:nth-child(2)::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0.1rem;
+    height: 35%;
+    background: #c2c2c2;
+    top: 50%;
+    transform: translateY(-50%);
+}
+@media screen and (max-width: 576px) {
+    .banner-form-item:nth-child(2)::after,
+    .banner-form-item:nth-child(2)::before {
+        display: none;
+    }
+}
+.banner-form-item:nth-child(2)::before {
+    left: 0;
+}
+.banner-form-item:nth-child(2)::after {
+    right: 0;
+}
+.banner-form-item-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.2rem;
+}
+@media screen and (max-width: 1727px) {
+    .banner-form-item-inner {
+        padding: 0.8rem;
+    }
+}
+@media screen and (max-width: 768px) {
+    .banner-form-item-inner {
+        padding: 0.8rem 3.8rem;
+    }
+}
+@media screen and (max-width: 576px) {
+    .banner-form-item-inner {
+        padding: 0;
+    }
+}
+.banner-form-item-inner .icon {
+    width: 2.4rem;
+    height: auto;
+}
+@media screen and (max-width: 576px) {
+    .banner-form-item-inner .icon {
+        width: 2rem;
+    }
+}
+.banner-form-item-inner .txt {
+    text-align: center;
+}
+@media screen and (max-width: 576px) {
+   
+    .banner-form-item-inner .txt br {
+        display: none;
+    }
+}
+@media screen and (max-width: 450px) {
+   
+}
+.banner-form-wrap {
+    background: #fbac3d;
+    border-radius: 1.2rem;
+    padding: 0.4rem;
+    width: calc(100% - 3.2rem);
+    margin-left: auto;
+    margin-right: auto;
+}
+.banner-form-bot {
+    padding: 0 2.4rem 2.4rem 2.4rem;
+}
+@media screen and (max-width: 1200px) {
+    .banner-form-bot {
+        padding: 0 1.6rem 1.6rem 1.6rem;
+    }
+}
 
 .elementor-icon {
-    background-color: #99FFCD;
+    background-color: #fbac3d;
     fill: #1B2021;
     color: #1B2021;
     padding: 1em;
+}
+
+.elementor-element-populated {
+    box-shadow: 0px 0px 50px 0px rgba(220, 220, 220, 0.5);
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+    margin: 0px 30px 0px 0px;
+    --e-column-margin-right: 30px;
+    --e-column-margin-left: 0px;
+}
+
+.bannerThird{
+    background-image: url("/assets/images/home/5.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+}
+
+.bannerThird img{
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 20px 20px 0px 0px #fbac3d;
 }

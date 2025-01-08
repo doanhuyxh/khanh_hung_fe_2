@@ -133,7 +133,7 @@ export default function StudyPageComponent({ lesson_sv, isLogin }: { lesson_sv: 
 
       </div>
 
-      <div className="video_list lg:w-1/3 w-full rounded-md mt-10 lg:mt-0 flex flex-col">
+      <div className="video_list lg:w-1/3 w-full mt-10 lg:mt-0 flex flex-col bg-white p-4 rounded-md">
         <LessonList
           data={data}
           totalLesson={totalLesson}

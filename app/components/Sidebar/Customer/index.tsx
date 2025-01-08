@@ -96,7 +96,7 @@ function Sidebar() {
         {
           name: "Q&A",
           imageSrc: "/assets/images/ic-chanel-6-side-menu.svg",
-          link: "/#faqs"
+          link: "/faq"
         }
       ]
     }

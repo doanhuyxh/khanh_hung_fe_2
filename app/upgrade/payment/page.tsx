@@ -13,16 +13,18 @@ import Image_7_day_return from '@/app/components/HomePageSection/KhanhHung/Image
 
 export default function PaymentPage() {
 
-
+    const [qrCode, setQrCode] = useState<string>('https://img.vietqr.io/image/ICB-101873915294-qr_only.png');
+    const amount = 199000;
     const [user, setUser] = useState<Customer>({} as Customer);
-    // const confettiCanvasRef = useRef<HTMLCanvasElement | null>(null);
+
     const GetUserInfo = async () => {
         const res = await axiosCustomerConfig.get('/customer/get-info');
         setUser(res.data);
+        setQrCode(`https://img.vietqr.io/image/ICB-101873915294-qr_only.png?${amount}=790000&addInfo=${user?.code}`);
     }
 
-    const [countDown, setCountDown] = useState<number>(300);
-    const [minute, setMinute] = useState(6)
+    const [countDown, setCountDown] = useState<number>(600);
+    const [minute, setMinute] = useState(10)
     const [second, setSecond] = useState(60)
 
     useEffect(() => {
@@ -44,7 +46,7 @@ export default function PaymentPage() {
         setSecond(countDown % 60)
 
         if (countDown === 0) {
-            window.location.href = '/upgrade';
+            window.location.href = '/';
         }
         else {
             if (countDown % 10 === 0) {
@@ -128,7 +130,7 @@ export default function PaymentPage() {
                             <p className='w-full text-3xl text-white font-[700] mb-4 text-center leading-tight tracking-wide'>
                                 Giao dịch của bạn đã được khoá lại với mức giá ưu đãi chỉ từ
                             </p>
-                            <p className="text-yellow-300 font-bold text-[5rem]">199.000đ</p>
+                            <p className="text-yellow-300 font-bold text-[5rem]">{amount}đ</p>
                         </div>
                     </div>
 
@@ -177,21 +179,21 @@ export default function PaymentPage() {
                                             Ngân hàng
                                         </th>
                                         <td className="px-4 py-2 text-2xl font-bold text-white tracking-wide">
-                                            <span className="bg-blue-600 px-2 py-2 rounded-lg">Cake</span>
+                                            <span className="bg-blue-600 px-2 py-2 rounded-lg">Vietinbank</span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th className="px-0 py-2 text-2xl text-gray-600 font-bold tracking-wide">
                                             Số tài khoản
                                         </th>
-                                        <td className="px-4 py-2 text-2xl font-bold tracking-wide">648</td>
+                                        <td className="px-4 py-2 text-2xl font-bold tracking-wide">101873915294</td>
                                     </tr>
                                     <tr>
                                         <th className="px-0 py-2 text-2xl text-gray-600 font-bold tracking-wide">
                                             Tên tài khoản
                                         </th>
-                                        <td className="px-4 py-2 text-2xl font-bold tracking-wide">
-                                            NGUYEN KHANH HUNG
+                                        <td className="px-4 py-2 text-2xl font-bold tracking-wide uppercase">
+                                            Hoang thi nga
                                         </td>
                                     </tr>
                                     <tr>
@@ -263,7 +265,7 @@ export default function PaymentPage() {
                         <div className="flex justify-center flex-col gap-10 lg:gap-20 items-center" id='qr'>
                             <div className="relative group">
                                 <Image
-                                    src="/assets/images/download.png"
+                                    src={qrCode}
                                     alt="QR Payment"
                                     className="w-full max-w-md object-contain rounded-lg shadow-lg border "
                                     width={100}

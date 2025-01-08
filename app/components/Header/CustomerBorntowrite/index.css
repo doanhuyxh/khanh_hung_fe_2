@@ -1,12 +1,13 @@
 .header_container_borntowrite{
     width: 100vw;
-    height: 100px;
+    height: 60px;
     background: var(--header-borntorin);
+    font-size: 12px !important;
 }
 
 .logo{
     width: fit-content;
-    height: 90px;
+    height: 60px;
 }
 
 .menu{
@@ -22,6 +23,7 @@
     color: white;
     text-decoration: none;
     gap: 10px;
+    cursor: pointer;
 }
 
 .btn_login {
@@ -199,4 +201,10 @@
         font-size: 1.3rem;
     }
 
+}
+
+@media (max-width: 800px) {
+    .menu{
+        display: none!important;
+    }
 }

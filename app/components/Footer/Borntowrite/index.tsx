@@ -19,7 +19,7 @@ export default function Footer(){
     return (
         <footer className="relative">
             <div className="absolute w-full h-full bg-black opacity-60 z-[-1]"></div>
-            <div className="container py-20 m-auto flex flex-col lg:flex-row lg:justify-evenly gap-10 z-10">
+            <div className="container py-20 px-4 m-auto flex flex-col lg:flex-row lg:justify-evenly gap-10 z-10">
 
                 <div className="flex flex-col gap-2">
                     {logo && <Image src={logo} alt={"logo"} width={100} height={100}/>}

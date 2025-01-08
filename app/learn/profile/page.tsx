@@ -90,7 +90,7 @@ function ProfilePage() {
 
             <div className="w-full flex flex-col items-center">
 
-                <div className="lg:w-11/12 w-full flex flex-col lg:flex-row gap-10 shadow-[0_0_10px_rgba(0,0,0,0.2)] shadow-gray-500/50 p-6 rounded-xl">
+                <div className="lg:w-11/12 w-full flex flex-col lg:flex-row gap-10 shadow-[0_0_10px_rgba(0,0,0,0.2)] shadow-gray-500/50 bg-white p-6 rounded-xl">
                     <ImageUploadUser initialLink={info.Avatar} onChange={setAvatar} className="w-full lg:w-auto min-w-[20rem]" />
                     <div className="flex flex-col gap-4 flex-1 px-10">
                         <div className="flex flex-col lg:flex-row gap-3 mb-5">
