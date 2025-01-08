@@ -7,8 +7,8 @@ import { toast } from 'react-hot-toast';
 
 import axiosCustomerConfig from '@/app/libs/configs/axiosCustomerConfig';
 import { Customer } from '@/app/libs/types';
-import '../../styles/home.css'
-import Image_7_day_return from '@/app/components/HomPage/Image_7_day_return';
+import '../../styles/home_khanh_hung.css'
+import Image_7_day_return from '@/app/components/HomePageSection/KhanhHung/Image_7_day_return';
 
 
 export default function PaymentPage() {

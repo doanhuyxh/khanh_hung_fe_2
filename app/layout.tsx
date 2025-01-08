@@ -5,8 +5,6 @@ import { Toaster } from 'react-hot-toast';
 import { Seo } from './libs/types';
 
 
-
-
 export async function generateMetadata(): Promise<Metadata> {
   const metadata: Metadata = {}
   const response = await fetchData(`/public/seo`, '')
@@ -77,8 +75,6 @@ export default function RootLayout({
 
   return (
     <html lang="vi">
-      <head>
-      </head>
       <body className='sidebar-expanded'>
         {children}
         <Toaster />

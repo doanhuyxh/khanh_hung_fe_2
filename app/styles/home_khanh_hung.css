@@ -273,6 +273,7 @@ textarea {
   overflow: hidden;
   overscroll-behavior: none;
 }
+
 .layer-digital {
   background: linear-gradient(180deg, #580b94 58.7%, #580b94 60%);
 }

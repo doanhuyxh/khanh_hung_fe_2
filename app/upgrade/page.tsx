@@ -2,7 +2,7 @@
 
 import { LinearGradient } from 'react-text-gradients'
 import Image from "next/image";
-import UpgradeForm from '../components/HomPage/UpgradeForm';
+import UpgradeForm from '@/app/components/HomePageSection/KhanhHung/UpgradeForm';
 
 export default function UpgradePage() {
 

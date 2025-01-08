@@ -1,7 +1,6 @@
 import Image from "next/image";
 import AuthTabs from "./FormAuth";  
 import InTro from "./InTro";
-import Ceo from "./InTro/ceo";
 
 
 export default function BannerReceive(){
@@ -15,9 +14,7 @@ export default function BannerReceive(){
           <div className="container flex flex-col md:flex-row justify-between items-center m-auto z-100">
             <InTro />
             <AuthTabs />
-            <div className='block w-full mt-5 md:hidden'>
-              <Ceo />
-            </div>
+
           </div>
         </div>
     )

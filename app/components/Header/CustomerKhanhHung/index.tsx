@@ -7,7 +7,7 @@ import HeaderContact from "./HeaderContact";
 import './index.css';
 import HeaderBottom from "./HeaderBottom"
 
-export default function Header() {
+export default function HeaderKhanHung() {
 
   const [headerHeight, setHeaderHeight] = useState(0);
 

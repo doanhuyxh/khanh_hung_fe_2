@@ -1,7 +1,7 @@
 'use client'
 
 import ComingSoonItem from "./ComingSoonItem"
-import SwiperContainer from "../../SwiperContainer"
+import SwiperContainer from "../../../SwiperContainer"
 import Image from "next/image";
 
 export default function ComingSoon() {

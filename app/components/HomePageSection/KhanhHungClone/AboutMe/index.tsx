@@ -1,5 +1,5 @@
 
-import ScrollComponent from '../../../components/Scroll/ScrollComponent'
+import ScrollComponent from '../../../Scroll/ScrollComponent'
 
 
 interface ColleagueData {

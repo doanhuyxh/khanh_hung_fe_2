@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { PlushIcon } from "../../Icon"
+import { PlushIcon } from "../../../Icon"
 
 export default function Faqs() {
     const [client, setClient] = useState(false)

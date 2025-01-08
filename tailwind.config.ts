@@ -3,6 +3,7 @@ import defaultTheme from "tailwindcss/defaultTheme";
 import colors from "tailwindcss/colors";
 import tailwindScrollbar from 'tailwind-scrollbar';
 import tailwindAnimated from 'tailwindcss-animated';
+import flowbitePlugin from 'flowbite/plugin';
 
 
 export default {
@@ -357,5 +358,6 @@ export default {
   plugins: [
     tailwindAnimated,
     tailwindScrollbar({ nocompatible: true }),
+    flowbitePlugin,
   ],
 } satisfies Config;

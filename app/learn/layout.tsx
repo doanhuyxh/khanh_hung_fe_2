@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-const Header = dynamic(() => import("../components/Header/Customer"), {
+const Header = dynamic(() => import("../components/Header/CustomerKhanhHung"), {
   ssr: true
 });
 import "../styles/study.scss";

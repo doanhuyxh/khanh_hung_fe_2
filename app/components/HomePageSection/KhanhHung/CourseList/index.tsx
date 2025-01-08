@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image";
-import ScrollComponent from "../../Scroll/ScrollComponent";
+import ScrollComponent from "../../../Scroll/ScrollComponent";
 import CourseItem from "./CourseListItem";
 import { useEffect, useState } from "react";
 import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig";
