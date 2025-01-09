@@ -1,6 +1,9 @@
-import Header from "../components/Header/CustomerBorntowrite"
+import '../styles/home_khanh_hung.css'
+
 import dynamic from "next/dynamic";
-import Footer from "@/app/components/Footer/Borntowrite";
+const Header = dynamic(() => import('@/app/components/Header/CustomerKhanhHung'));
+import Footer from "@/app/components/Footer/KhanhHung";
+import Image from "next/image";
 
 const Component = dynamic(() => import('./_component_feature'));
 
@@ -88,20 +91,24 @@ export default function FaqBorntowrite() {
     ]
 
     return (
-        <>
-            <Header pathname={'faq'} />
-            <div className="w-full h-full bg-[#1B2021] pb-10">
+        <div className="bg-[#710EBE]">
+            <Header />
+            <div className="w-full h-full py-20">
                 <div className="w-full h-10"></div>
                 <div className="container m-auto flex flex-col items-center justify-center">
                     <h2 className="text-center text-[#53E72C] text-[25px] font-[600] my-10">Về Copywriting</h2>
-                    <Component data={data1} />
+                    <Component data={data1}/>
 
                     <h2 className="text-center text-[#53E72C] text-[25px] font-[600] my-10">Thông Tin Chung</h2>
-                    <Component data={data2} />
+                    <Component data={data2}/>
 
                 </div>
+                <div className="w-full h-fit">
+                    <Image src={"/assets/images/home/lmsfaq-gdcor.png"} width={1000} height={200} alt=""
+                           style={{width: "100%", height: "auto"}}/>
+                </div>
             </div>
-            <Footer />
-        </>
+            <Footer/>
+        </div>
     )
 }

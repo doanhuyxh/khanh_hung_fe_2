@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Sidebar } from "../../Sidebar";
 import { BurgerIcon } from "../../Icon";
+import Link from "next/link";
 
 const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
 
@@ -44,7 +45,7 @@ const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
     <>
       <div className="header_bottom_wrapper_left">
         {isLogin && <BurgerIcon isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />}
-        <a href="#!">
+        <Link href="/">
           <span>
             <Image
               src={logo}
@@ -54,7 +55,7 @@ const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
               className="cursor-pointer"
             />
           </span>
-        </a>
+        </Link>
       </div>
 
       <div className={`fixed top-[102px] lg:top-[112px] left-0 w-[100vw] h-screen transition bg-black z-99999 bg-opacity-60 ${isOpenSidebar ? 'block' : 'hidden'}`}
