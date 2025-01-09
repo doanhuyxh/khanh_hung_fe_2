@@ -5,8 +5,9 @@ import Image from 'next/image'
 export default function BannerThird() {
     return (
         <div className="mx-auto px-4 pt-20 lg:pb-[15rem] bg-[#440873] relative">
+            <div className="colleague-club-mask"></div>
             <div className="container flex justify-center m-auto">
-                <div className="lg:min-w-[600px] max-w-[1200px] md:overflow-y-auto pb-20">
+                <div className="lg:min-w-[600px] max-w-[1500px] md:overflow-y-auto pb-20">
                     <div className="w-full flex flex-col gap-20 lg:gap-0 lg:flex-row lg:justify-between">
 
                         <div className="w-fit flex flex-col lg:ml-20 justify-center gap-4 text-wrap max-w-[600px] animate-fade-left animate-once animate-duration-1000 animate-delay-100 animate-ease-in-out">
@@ -33,13 +34,15 @@ export default function BannerThird() {
                             </div>
                         </div>
 
-                        <div className="h-auto w-10/12 lg:w-[45%] md:w-[50%] animate-fade-right animate-once animate-duration-1000 animate-delay-100 animate-ease-in-out">
+                        <div className="h-auto w-10/12 lg:w-[45%] md:w-[50%] animate-fade-right animate-once animate-duration-1000 animate-delay-100 animate-ease-in-out rounded-[10px]">
                             <Image
                                 src="/wp-content/uploads/2024/08/6cfeeb91-930e-4021-888e-ab5d2a150183.png"
                                 alt=""
                                 width={1000}
                                 height={631}
                                 sizes="(max-width: 1000px) 100vw, 1000px"
+                                className='rounded-lg'
+                                style={{ boxShadow: "20px 20px 0px 0px #99FFCD", width:"90%" }}
                             />
                         </div>
                     </div>

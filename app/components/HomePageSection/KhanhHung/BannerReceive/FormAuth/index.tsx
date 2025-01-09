@@ -13,24 +13,20 @@ export default function AuthTabs() {
 
   const [isLogin, setIsLogin] = useState(false)
 
+  const [logo, setLogo] = useState("/assets/images/home/banner-form-image.png")
+
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("login");
 
   const [loginForm, setLoginForm] = useState({
-    email: "user1",
-    password: "123456"
+    email: "",
+    password: ""
   });
 
   const [registerForm, setRegisterForm] = useState({
     email: "",
     password: "",
     confirmPassword: ""
-  });
-
-  const [showPassword, setShowPassword] = useState({
-    login: false,
-    register: false,
-    confirmPassword: false
   });
 
   const handleTabClick = (tab: string) => {
@@ -107,14 +103,6 @@ export default function AuthTabs() {
       });
   };
 
-  const togglePasswordVisibility = (field: 'login' | 'register' | 'confirmPassword') => {
-    setShowPassword(prev => ({
-      ...prev,
-      [field]: !prev[field]
-    }));
-  };
-
-
   const handleLoginGoogle = () => {
     axiosCustomerConfig.get("/Auth/google-login")
       .then(res => {
@@ -123,7 +111,7 @@ export default function AuthTabs() {
   }
 
   const handleChangeStudyPage = async () => {
-    const response:any = await getLastStudyLesion()
+    const response: any = await getLastStudyLesion()
     if (response.code !== 200) {
       toast.error("Có lỗi xảy ra, vui lòng thử lại", {
         duration: 3000,
@@ -143,6 +131,15 @@ export default function AuthTabs() {
     const user = sessionStorage.getItem("user")
     if (user) {
       setIsLogin(true)
+    } else {
+      fetch(process.env.API_URL + "/api/v1" + "/public/social-key?key=logo")
+        .then(res => res.json())
+        .then(res => {
+          setLogo(res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   }, [isClient]);
 
@@ -187,26 +184,18 @@ export default function AuthTabs() {
 
   return (
     <div className="w-full max-w-[600px] md:banner-right  lg:text-xl bg-transparent rounded-lg overflow-hidden flex flex-col items-start justify-start">
-      <div className="text-white m-auto mt-4 mb-10">
-        <p className="font-bold mb-2 lg:text-3xl lg:scale-95 text-center">
-          KHÓA HỌC KINH DOANH KHÓA HỌC hoàn toàn miễn phí
-        </p>
-        <p className="lg:text-lg font-bold underline lg:scale-105 text-center">
-          Bán hàng tự động - dạy học tự động - thu nhập thụ động
-        </p>
-      </div>
 
       <div className="w-full bg-green-500 flex flex-row justify-start p-4 rounded-t-2xl">
         <div className="flex-shrink-0 w-26 animate-shake animate-infinite animate-duration-[2000ms] animate-ease-in">
           <Image
-            src={"/assets/images/home/banner-form-image.png"}
+            src={logo}
             width={100}
             height={100}
             alt="banner-form-image"
             className="w-full h-auto max-w-xs"
           />
         </div>
-        <div className="text-white mt-4 md:mt-0 md:ml-4">
+        <div className="text-white mt-4 md:mt-0 md:ml-4 text-center">
           <p className="mb-2">Không nhập form rườm rà, không nhập thẻ,</p>
           <p className="">không giới hạn thời gian - Đăng nhập là học ngay!</p>
         </div>
@@ -298,11 +287,7 @@ export default function AuthTabs() {
           </button>
         </div>
 
-
         <div className="w-full border-8 border-t-0 rounded-b-xl px-4 py-4 border-[#f41e92] relative">
-
-          {/* {activeTab === "login" &&(<div className="w-6/12 h-2 m-auto mb-4 bg-[#f41e92] absolute top-0 left-0"></div>)}
-        {activeTab === "register" && (<div className="w-1/2 h-2 m-auto mb-4 bg-[#f41e92] absolute top-0 right-0"></div>)} */}
 
           <div className="w-full h-fit m-auto mb-8">
             {activeTab === "login" ?
@@ -357,7 +342,10 @@ export default function AuthTabs() {
                 className="w-full flex items-center flex-row gap-5 justify-center py-5 text-xl font-medium text-white bg-[#8A2BE2] hover:bg-[#7B27CC] rounded-lg"
               >
                 <span className="flex gap-5">
-                  <span className="text-yellow-300 font-bold animate-spin animate-infinite animate-duration-[2000ms] animate-ease-linear">FREE</span>
+                  <span
+                    className="text-yellow-300 font-bold animate-spin animate-infinite animate-duration-[4000ms] animate-ease-linear">
+                    <Image src={"/template/assets/images/home/icon-btn.png"} alt="" width={50} height={50} />
+                  </span>
                 </span>
                 <p className="font-[700]">ĐĂNG NHẬP NGAY <br /> <span className="text-[10px]">Hoàn toàn MIỄN PHÍ | Hiệu quả cao</span></p>
 
@@ -434,7 +422,10 @@ export default function AuthTabs() {
                 className="w-full flex items-center flex-row gap-5 justify-center py-5 text-xl font-medium text-white bg-[#8A2BE2] hover:bg-[#7B27CC] rounded-lg"
               >
                 <span className="flex gap-5">
-                  <span className="text-yellow-300 font-bold animate-spin animate-infinite animate-duration-[2000ms] animate-ease-linear">FREE</span>
+                  <span
+                    className="text-yellow-300 font-bold animate-spin animate-infinite animate-duration-[4000ms] animate-ease-linear">
+                    <Image src={"/template/assets/images/home/icon-btn.png"} alt="" width={50} height={50} />
+                  </span>
                 </span>
                 <p className="font-[700]">ĐĂNG KÝ NGAY <br /> <span className="text-[10px]">Hoàn toàn MIỄN PHÍ | Hiệu quả cao</span></p>
 
@@ -445,7 +436,7 @@ export default function AuthTabs() {
 
         </div>
         <hr className="my-2 w-8/12 m-auto" />
-        <p className="text-lg">Khoá học kinh doanh thực tiễn nhất, khi mà mội kiến thức đều
+        <p className="text-lg">Khoá học Copywriting thực tiễn nhất, khi mà mội kiến thức đều
           được áp dụng trên chính khoá học - và bạn sẽ được nhìn thấy DATA đầy đủ!</p>
       </div>
     </div>

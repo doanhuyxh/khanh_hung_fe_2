@@ -11,15 +11,15 @@ const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
   const [isClient, setIsClient] = useState(false)
   const [isOpenSidebar, setIsOpenSidebar] = useState(false)
 
-  const [logo, setLogo] = useState("/images/logo/logo.svg")
+  const [logo, setLogo] = useState('')
 
   const handleOverlayClick = (e: React.MouseEvent) => {
-    e.stopPropagation();  // Ngừng lan tỏa sự kiện
-    setIsOpenSidebar(false);  // Đóng sidebar
+    e.stopPropagation();
+    setIsOpenSidebar(false);
   }
 
   const handleSidebarClick = (e: React.MouseEvent) => {
-    e.stopPropagation();  // Ngừng lan tỏa sự kiện click
+    e.stopPropagation();
   }
 
   useEffect(() => {
@@ -32,6 +32,7 @@ const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
         .then(res => res.json())
         .then(res => {
           setLogo(res.data)
+          localStorage.setItem("logo", res.data)
         })
         .catch(err => {
           console.log(err)
@@ -47,13 +48,7 @@ const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
         {isLogin && <BurgerIcon isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />}
         <Link href="/">
           <span>
-            <Image
-              src={logo}
-              width={100}
-              height={100}
-              alt="logo"
-              className="cursor-pointer"
-            />
+            {logo && <Image src={logo} alt="logo" width={100} height={100} />}
           </span>
         </Link>
       </div>

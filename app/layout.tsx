@@ -13,7 +13,6 @@ export async function generateMetadata(): Promise<Metadata> {
   }
   const res_data = response.data
   const data:Seo = JSON.parse(res_data)
-  console.log("data seo:: ", data.favicon)
  
   return {
     viewport: 'initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width',
