@@ -50,21 +50,15 @@ axiosCustomerConfig.interceptors.response.use(
 
       } else {
         localStorage.clear();
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i];
-            const eqPos = cookie.indexOf('=');
-            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
-        }
         return Promise.reject(error.response.data);
       }
     }
 
-    if (error.response.status === 403) {
-      window.location.href = "/"
+    // lỗi kết nối mạng
+    if(error.code == "ERR_NETWORK"){
+      return Promise.resolve({code: 500, data: [], message: "Lỗi kết nối mạng"})
     }
-    return Promise.reject(error.response.data);
+
   }
 
 );

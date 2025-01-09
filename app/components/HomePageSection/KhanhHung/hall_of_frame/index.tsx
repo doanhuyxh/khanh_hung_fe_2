@@ -71,12 +71,8 @@ export default function HallOfFrame() {
             <div className="w-full h-fit relative">
                 <div className='w-1/2 h-auto m-auto mb-10 max-w-[1920px]'>
 
-                    <div className='w-full mt-4 mb-10 animate-jump-in'>
-                        <Image src={"/assets/images/home/hall-of-fame-tt-up.png"} width={100} height={100} alt='' layout='responsive' className='w-full' />
-                    </div>
-
                     <div className='w-full relative py-5'>
-                        <p className='desc'>Tổng hợp khoá học hàng đầu thị trường</p>
+                        <p className='desc'>Chìa khoá Copywriting </p>
                     </div>
 
                 </div>

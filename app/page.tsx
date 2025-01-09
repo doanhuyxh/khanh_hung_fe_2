@@ -17,7 +17,7 @@ export default async function Home() {
 
                 <BannerReceive />
                 <HallOfFrame />
-                <ComingSoon />
+                {/* <ComingSoon /> */}
                 <CourseList />
                 <Faqs />
             </main>
