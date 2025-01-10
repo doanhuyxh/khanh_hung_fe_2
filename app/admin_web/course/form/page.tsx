@@ -24,7 +24,6 @@ export default function CourseForm() {
         Image: '',
         VideoIntro: '',
         CourseContent: '',
-        CourseType: 'free',
         NumberOfLessons: 0,
         TotalTimeDuration: '',
         Status: 'draft',
@@ -50,7 +49,6 @@ export default function CourseForm() {
 
 
     useEffect(() => {
-
         if (id) {
             setTitle('Cập nhật khoá học');
             axiosInstance.get(`/course/GetCourseById?id=${id}`).then((res) => {
@@ -62,7 +60,6 @@ export default function CourseForm() {
                     Image: data.image,
                     VideoIntro: data.videoIntro,
                     CourseContent: data.courseContent,
-                    CourseType: data.courseType,
                     NumberOfLessons: data.numberOfLessons,
                     TotalTimeDuration: data.totalTimeDuration,
                     Status: data.status,
@@ -140,18 +137,6 @@ export default function CourseForm() {
                                 />
                             </div>
 
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Loại khoá học
-                                </label>
-                                <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-                                    value={course.CourseType}
-                                    onChange={(e) => setCourse({ ...course, CourseType: e.target.value })}>
-                                    <option value="free">Miễn phí</option>
-                                    <option value="pro">Pro</option>
-                                </select>
-                            </div>   
-
                         </div>
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -180,7 +165,7 @@ export default function CourseForm() {
 
                         <ImageUpload initialLink={course.Image} onChange={(value) => setCourse({ ...course, Image: value })} />
 
-                        <VideoUpload initialLink={course.VideoIntro} onChange={(value) => setCourse({ ...course, VideoIntro: value })} />
+                        <VideoUpload setDuration={()=>{}} initialLink={course.VideoIntro} onChange={(value) => setCourse({ ...course, VideoIntro: value })} />
 
                         <div className="flex justify-end">
                             <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" onClick={HandleSaveCourse}>

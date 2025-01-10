@@ -68,7 +68,6 @@ const CourseLessonItemComponent = ({ item }: CourseItemComponentProps) => {
                                 Quan trọng
                             </span>
                         )}
-
                         {item.isFree &&
                             <span className="font-bold text-white bg-green-800 px-2 py-1 lg:p-3 rounded-lg flex lg:gap-2 text_mobile cursor-pointer">
                                 <span className="m-auto hidden lg:block d-none">
@@ -80,6 +79,19 @@ const CourseLessonItemComponent = ({ item }: CourseItemComponentProps) => {
                                     />
                                 </span>
                                 Free
+                            </span>
+                        }
+                        {!item.isFree &&
+                            <span className="font-bold text-white bg-green-800 px-2 py-1 lg:p-3 rounded-lg flex lg:gap-2 text_mobile tag-pro cursor-pointer">
+                                <span className="m-auto hidden lg:block d-none">
+                                    <Image
+                                        src="/template/assets/images/tag/tag-pro.svg"
+                                        width={14}
+                                        height={14}
+                                        alt=""
+                                    />
+                                </span>
+                                Pro
                             </span>
                         }
                     </p>

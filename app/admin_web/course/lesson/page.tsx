@@ -129,7 +129,7 @@ export default function CourseLesson() {
         }
 
         await postFormData('course/lesson/CreateOrUpdate', { ...new_lesson });
-        GetDataLesson()
+        await GetDataLesson()
         setIsOpen(false)
     }, [GetDataLesson]);
 
@@ -164,16 +164,15 @@ export default function CourseLesson() {
 
     return (
         <>
-
-            <div className='w-full'>
-                <div className='w-full p-4 rounded-lg mb-10 border-b-2 border-gray-300'>
+            <div className='w-full flex flex-col gap-10'>
+                <div className='w-full p-4 rounded-lg  border-b-2 bg-white border-gray-300'>
                     <button className='float-left hover:bg-blue-400 px-4 py-2 rounded-md' onClick={() => router.push('/admin_web/course')}>
                         <i className="fa-solid fa-arrow-left" style={{ color: "#1c6bf2" }}></i>
                     </button>
                     <h1 className='text-2xl font-bold text-center'>Khoá học: {course?.name || ""}</h1>
                 </div>
 
-                <div className="w-full flex justify-between items-center gap-4">
+                <div className="w-full flex justify-between items-center gap-4  bg-white p-2 rounded">
                     <h2 className='text-center text-lg font-bold'>Danh sách bài học</h2>
                     <div className="flex gap-2">
                         <div className="flex gap-2">
@@ -188,7 +187,7 @@ export default function CourseLesson() {
                     </div>
                 </div>
 
-                <div className='w-8/12 m-auto p-4 rounded-lg flex flex-col gap-4'>
+                <div className='w-8/12 m-auto p-4 rounded-lg flex flex-col gap-4 bg-white bg-opacity-20'>
                     {courseLessonBackUp && courseLessonBackUp.length == 0 && <p className='text-center text-lg font-bold'>Không có bài học nào</p>}
                     <ReactSortable list={courseLessonBackUp}
                         setList={setCourseLessonBackUp}

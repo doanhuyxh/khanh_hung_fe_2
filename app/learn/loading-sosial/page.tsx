@@ -10,9 +10,9 @@ export default function LoadingSocial() {
   const code = query.get("code");
   const router = useRouter();
   const ChangeStudyPage = async () => {
-      const response = await getLastStudyLesion();
+      const response = await axiosCustomerConfig.get("/course/get-last-lesson");
       const data = response.data;
-      window.location.href = `/study/${data.slug}`;
+      window.location.href = `/study/${data}`;
   }
 
   useEffect(() => {

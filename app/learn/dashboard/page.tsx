@@ -15,11 +15,18 @@ export default function Page() {
     useEffect(() => {
         axiosCustomerConfig.get("/course/get-course-name")
             .then((res) => {
+                res.data.forEach((item: any) => {
+                    item.id = item.id.toLowerCase()
+                })
                 setCourseName(res.data)
             })
 
         axiosCustomerConfig.get("/course/get-lesson-name")
             .then((res) => {
+                res.data.forEach((item: any) => {
+                    item.id = item.id.toLowerCase()
+                })
+
                 setLessonName(res.data)
             })
 
@@ -50,11 +57,10 @@ export default function Page() {
     }, [courseName, lessonName, courseProgress]);
 
     return (
-        <div className="container mt-10 lg:mt-20">
+        <div className="container m-auto mt-10 lg:mt-20">
             <div className="w-full flex justify-center items-center mb-10">
                 <h1 className="text-3xl lg:text-6xl font-bold transform scale-150 text-color-secondary animate-jump-in   animate-once animate-ease-out" >Dashboard</h1>
             </div>
-
 
             <div className="w-full min-h-[40vh] px-10 flex flex-col gap-10 bg-gray-100 rounded-2xl p-10">
                 <h2 className="text-3xl">Tiến độ học tập</h2>
@@ -64,7 +70,7 @@ export default function Page() {
                             <div className="bg-white shadow-md rounded-md p-4" key={index}>
                                 <div className="flex flex-row justify-start gap-10 items-start">
                                     <div className="w-[200px] h-fit">
-                                        <img src={item.image} alt="" className="w-full h-auto object-cover rounded-md" loading="lazy" />
+                                        {item.image &&<img src={item.image} alt="" className="w-full h-auto object-cover rounded-md" loading="lazy" />}
                                     </div>
                                     <div>
                                         <h4 className="text-xl font-bold mt-4">{item.courseName}</h4>

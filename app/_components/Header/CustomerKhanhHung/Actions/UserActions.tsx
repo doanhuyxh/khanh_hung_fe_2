@@ -23,7 +23,6 @@ export default function UserActions({ user }: { user: Customer }) {
                 (isFreeUser ? <ButtonUpgrade /> : null)
                 : <ButtonLearnNow />
             }
-            <ButtonDownLoadAppMobile />
             <div className="btn_profile">
                 <div className="btn_profile_content cursor-pointer"
                     onMouseEnter={() => setIsDropdown(true)}

@@ -722,3 +722,41 @@ textarea {
   background-position: 0 0, 100% 100%, 0 100%, 100% 0;
   animation: dashRun 8s linear infinite;
 }
+
+.arrow-item {
+  animation: ani-moveDown 1s linear .1s infinite;
+}
+
+.arrow-item {
+  height: 3rem;
+  width: auto;
+  display: flex
+;
+  align-items: center;
+  justify-content: center;
+}
+
+.tag-pro {
+  background: radial-gradient(50% 50% at 50% 50%, #2072c9 0, #103863 100%);
+  border: .1rem solid #c09148;
+}
+.tag-item {
+  overflow: hidden;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+@keyframes ani-moveDown {
+  0% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 1;
+  }
+  66% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}

@@ -73,15 +73,15 @@ export default function FormLesson({ lesson, setLesson, saveLesson }: { lesson: 
 
             <div className="flex flex-row justify-evenly gap-5 items-center">
 
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-row items-center gap-3">
                     <label className="font-semibold">Loại bài học</label>
-                    <div className="flex flex-row gap-3">
+                    <div className="flex flex-row gap-2">
                         <label className="cursor-pointer">Video <input type="radio" value={"video"} checked={lessonTemp.type === "video"} onChange={(e) => setLessonTemp({ ...lessonTemp, type: e.target.value })} /></label>
                         <label className="cursor-pointer">PDF <input type="radio" value={"pdf"}  checked={lessonTemp.type === "pdf"} onChange={(e) => setLessonTemp({ ...lessonTemp, type: e.target.value })}/></label>
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-row items-center gap-2">
                     <label className="font-semibold">Thời lượng</label>
                     <input
                         type="text"

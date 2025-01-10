@@ -2,22 +2,48 @@
 
 import LoadingVideo from "@/app/_components/Loading/LoadingVideo";
 import Hls from "hls.js";
-import React, { useEffect, useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 
 export default function VideoPlayerType({ videoSrc }: { videoSrc: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const isM3U8 = (url: string) => url.endsWith('.m3u8');
-  
+
   useEffect(() => {
-    if (videoSrc && isM3U8(videoSrc) && videoRef.current) {
+    const videoElement = videoRef.current;
+
+    if (videoSrc && isM3U8(videoSrc) && videoElement) {
       if (Hls.isSupported()) {
         const hls = new Hls();
         hls.loadSource(videoSrc);
-        hls.attachMedia(videoRef.current);
-      } else if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
-        videoRef.current.src = videoSrc;
+        hls.attachMedia(videoElement);
+      } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+        videoElement.src = videoSrc;
       }
     }
+
+    const handleTimeUpdate = () => {
+      if (videoElement) {
+        sessionStorage.setItem("currentTime", videoElement.currentTime.toString());
+      }
+    };
+
+    const handleLoadedMetadata = () => {
+      if (videoElement) {
+        sessionStorage.setItem("totalDuration", videoElement.duration.toString());
+      }
+    };
+
+    if (videoElement) {
+      videoElement.addEventListener("timeupdate", handleTimeUpdate);
+      videoElement.addEventListener("loadedmetadata", handleLoadedMetadata);
+    }
+
+    return () => {
+      if (videoElement) {
+        videoElement.removeEventListener("timeupdate", handleTimeUpdate);
+        videoElement.removeEventListener("loadedmetadata", handleLoadedMetadata);
+      }
+    };
   }, [videoSrc]);
 
   if (!videoSrc) return (
@@ -25,12 +51,12 @@ export default function VideoPlayerType({ videoSrc }: { videoSrc: string }) {
         <LoadingVideo/>
     </div>);
   return (
-    <>
-      {isM3U8(videoSrc) ? (
-        <video ref={videoRef} className="w-full h-auto object-contain" controls />
-      ) : (
-        <video src={videoSrc || ""} className="w-full h-auto object-contain" controls />
-      )}
-    </>
+      <>
+        {isM3U8(videoSrc) ? (
+            <video ref={videoRef} className="w-full h-auto object-contain" controls/>
+        ) : (
+            <video src={videoSrc || ""} ref={videoRef} className="w-full h-auto object-contain" controls/>
+        )}
+      </>
   )
 }

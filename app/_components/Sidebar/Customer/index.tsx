@@ -114,9 +114,9 @@ function Sidebar() {
   }
 
   const handleChangeStudyPage = async () => {
-    const response:any = await getLastStudyLesion()
+    const response:any = await axiosCustomerConfig.get("/course/get-last-lesson")
     if (response.code == 200) {
-      router.push(`/study/${response.data.slug}`)
+      router.push(`/study/${response.data}`)
     }
   }
 

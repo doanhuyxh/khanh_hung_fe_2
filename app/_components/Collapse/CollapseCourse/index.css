@@ -10,6 +10,11 @@
     max-width: 80%;
 }
 
+.tag-pro {
+    background: radial-gradient(50% 50% at 50% 50%, #2072c9 0, #103863 100%);
+    border: .1rem solid #c09148;
+    color: #f5d31e;
+}
 
 
 @media screen and (width <= 800px) {

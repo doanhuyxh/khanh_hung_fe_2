@@ -31,7 +31,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     <div className="flex-1">
       <div className="h-auto w-full flex justify-center text-white video_div">
         {!isLogin && <div className={`w-full min-h-[25vh] lg:min-h-[60vh] overflow-hidden`}><ShowNotifyNotLogin imageThumbnail={imageThumbnail} /></div>}
-        {isLogin && isUpgrade && <div className="w-full min-h-[25vh] lg:min-h-[60vh] flex flex-1 bg-[#380b42]"><ShowNotifyNotFree /></div>}
+        {isLogin && isUpgrade && <div className="w-full min-h-[33vh] lg:min-h-[60vh] flex flex-1 bg-[#380b42]"><ShowNotifyNotFree /></div>}
         {isLogin && !isUpgrade && <VideoPlayerType videoSrc={videoUrl} />}
       </div>
       <div className="mt-10">

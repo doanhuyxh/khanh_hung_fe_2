@@ -1,14 +1,12 @@
+import Image from "next/image";
 
-import Image from "next/image"
-export default function HallOfFrame() {
-
+export default function CourseOutstanding(){
 
     return (
-        <div id="hall_of_wall" className='w-full pb-50 relative bg-[#7c0fd1]'>
-
-            <div className="w-full h-full absolute top-[-1%] left-0 z-[0] bg-inherit">
+        <div className="w-full pb-70 relative bg-[#7c0fd1]">
+            <div className="w-full h-full absolute top-[-1%] left-0 z-[0] bg-inherit ">
                 <Image src={"/template/assets/images/home/colleague-success-decor.png"} width={1000} height={10} alt=""
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                       style={{width: "100%", height: "100%", objectFit: "cover"}}/>
             </div>
 
             <div className="w-full h-fit relative">
@@ -23,7 +21,7 @@ export default function HallOfFrame() {
                             data-nimg={1}
                             className="w-full"
                             src="/assets/images/home/chia_khoa_copy.svg"
-                            style={{ color: "transparent", width: "100%", height: "auto" }}
+                            style={{color: "transparent", width: "100%", height: "auto"}}
                         />
                     </div>
 
@@ -34,15 +32,18 @@ export default function HallOfFrame() {
 
                 </div>
 
-                <div className="flex flex-col lg:flex-row justify-center gap-10 w-11/12 lg:w-8/12 m-auto max-w-[1920px]">
+                <div
+                    className="flex flex-col lg:flex-row justify-center gap-10 w-11/12 lg:w-8/12 m-auto max-w-[1920px]">
 
                     <div className="flex flex-col justify-start gap-5 bg-white px-12 rounded-xl max-w-[450px]">
                         <div className="w-full bg-transparent h-10"></div>
                         <div className="car_item_title">
-                            <p className="font-bold text-4xl text-pink-600 hover:scale-105 cursor-pointer">Conversion Copywriting</p>
+                            <p className="font-bold text-4xl text-pink-600 hover:scale-105 cursor-pointer">Conversion
+                                Copywriting</p>
                         </div>
                         <div className="car_item_des lg:min-h-[100px] lg:element mt-10">
-                            <p className="hover:text-pink-500 cursor-pointer">Nó bao gồm các kỹ thuật “viết quảng cáo chuyển đổi” dành cho những ai muốn bắt đầu tạo ra
+                            <p className="hover:text-pink-500 cursor-pointer">Nó bao gồm các kỹ thuật “viết quảng cáo
+                                chuyển đổi” dành cho những ai muốn bắt đầu tạo ra
                                 tiền mặt từ văn bản.</p>
                         </div>
                         <div className="car_item_image hover:scale-105 transition-all duration-300">
@@ -64,12 +65,15 @@ export default function HallOfFrame() {
                     <div className="flex flex-col justify-start gap-5 bg-white px-12 rounded-xl max-w-[450px] relative">
                         <div className="w-full bg-transparent h-10"></div>
                         <div className="car_item_title">
-                            <p className="font-bold text-4xl text-pink-600  hover:scale-105 cursor-pointer">Master Copywriting</p>
+                            <p className="font-bold text-4xl text-pink-600  hover:scale-105 cursor-pointer">Master
+                                Copywriting</p>
                         </div>
                         <div className="car_item_des min-h-[100px] mt-10 element">
                             <p className="hover:text-pink-500 cursor-pointer">
-                                Trong khóa học này bạn sẽ được khám phá các thủ thuật thao túng cực kỳ tàn nhẫn để tác động vào “bản ngã” của con người, nhằm phục vụ cho mục đích bán hàng. <br />
-                                Mà đã là con người, thì chưa một ai chối bỏ được bản ngã! (Tôi vẫn luôn run rẩy mỗi khi nhắc đến điều này).
+                                Trong khóa học này bạn sẽ được khám phá các thủ thuật thao túng cực kỳ tàn nhẫn để tác
+                                động vào “bản ngã” của con người, nhằm phục vụ cho mục đích bán hàng. <br/>
+                                Mà đã là con người, thì chưa một ai chối bỏ được bản ngã! (Tôi vẫn luôn run rẩy mỗi khi
+                                nhắc đến điều này).
                             </p>
                         </div>
                         <div className="car_item_image hover:scale-105 transition-all duration-300">

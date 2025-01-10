@@ -65,7 +65,7 @@ export default function ShowNotifyNotFree() {
                 }
             </style>
             <p className="text_fill_color uppercase text-center">
-                Video này chỉ dành cho <br /> thành viên trả phí
+                Video này chỉ dành cho <br /> thành viên pro
             </p>
             <p className="text-white text-center">
                 Hùng có nhiều video Free khác rất chất lượng,<br />
@@ -75,7 +75,7 @@ export default function ShowNotifyNotFree() {
                 <ButtonUpgrade />
                 <div onClick={GetFreeLesson} className="flex gap-3 relative items-end lg:items-center cursor-pointer group">
                     <span className="cursor-pointer group-hover:text-blue-500">Video</span>
-                    <span className="flex gap-1 bg-green-700 px-1 rounded-xl text-nowrap cursor-pointer py-0">
+                    <span className="flex gap-1 bg-green-700 px-1 rounded text-nowrap cursor-pointer py-0">
                         <Image src={"/assets/images/ic-tag-free.svg"} width={13} height={13} alt="" />
                         Free
                     </span>

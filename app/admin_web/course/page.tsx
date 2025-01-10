@@ -14,7 +14,7 @@ export default function Course() {
 
     const router = useRouter();
 
-    const pageSize = 30
+    const pageSize = 10
     const [isLoading, setIsLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [searchKeyword, setSearchKeyword] = useState('');
@@ -96,7 +96,7 @@ export default function Course() {
         try {
             for (const id of checkbox) {
                 if (status == "delete") {
-                    axiosInstance.get(`/course/delete?id=${id}`)
+                    await axiosInstance.get(`/course/delete?id=${id}`)
                 } else {
                     await axiosInstance.get(`/course/updateStatus?id=${id}&status=${status}`);
                 }
@@ -132,10 +132,9 @@ export default function Course() {
 
     return (
         <>
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex justify-between items-center bg-white p-2 rounded">
                 <div className="flex gap-2">
-                    <h1 className="text-2xl font-bold">Khoá học</h1>
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded-md" onClick={() => handleAddOrUpdateCourse('')}>+</button>
+                    <h1 className="text-2xl font-bold">Danh sách khoá học</h1>
                 </div>
                 <div className="flex gap-2">
                     <button className={`${status == 'published' ? 'bg-green-500' : 'bg-gray-500'} text-white px-4 py-2 rounded-md`} onClick={() => setStatus('published')} >Công khai</button>
@@ -148,8 +147,11 @@ export default function Course() {
 
             <hr className="border-gray-200 mt-2 mb-10" />
 
-            <div className="flex justify-between gap-4 mb-3">
+            <div className="flex justify-between gap-4 mb-3 bg-white py-2 px-4 rounded">
                 <div className='flex gap-3'>
+                    <button className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                            onClick={() => handleAddOrUpdateCourse('')}>+
+                    </button>
 
                     <button
                         className='bg-blue-100 text-black hover:bg-green-100 hover:text-green-500 px-4 py-2 rounded-md'
@@ -157,7 +159,9 @@ export default function Course() {
                     >
                         <i className="fa-solid fa-check"></i>
                     </button>
-                    <Dropdown icon={<span className='text-sm'>Thao tác <i className='fa-solid fa-caret-down'></i></span>} className='border rounded-md' items={[
+                    <Dropdown
+                        icon={<span className='text-sm'>Thao tác <i className='fa-solid fa-caret-down mx-1'></i></span>}
+                        className='border rounded-md' items={[
                         {
                             icon: '',
                             label: "Chuyển sang công khai",
@@ -188,7 +192,7 @@ export default function Course() {
                             className: "text-red-500 hover:text-red-600",
                             onClick: () => handleUpdateStatus('delete')
                         },
-                    ]} />
+                    ]}/>
 
                 </div>
 
@@ -199,14 +203,13 @@ export default function Course() {
 
             <hr className='border-gray-2' />
 
-            <div className="overflow-x-auto p-5 shadow-lg rounded-lg">
+            <div className="overflow-x-auto p-5 shadow-lg rounded-lg bg-white">
                 <table className="w-full table-auto table">
                     <thead>
                         <tr className="bg-gray-200 text-left dark:bg-meta-4">
                             <th className='py-4 px-4 font-medium text-black dark:text-white'>STT</th>
                             <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">Tên khoá học</th>
                             <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">Ảnh thumbnail</th>
-                            <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">Loại khoá học</th>
                             <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">Số bài học</th>
                             <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">Tổng thời lượng</th>
                             <th></th>
@@ -226,7 +229,6 @@ export default function Course() {
                                 <td className="text-center py-4 px-4">
                                     {course.image && <Image src={course.image} alt="thumbnail" width={100} height={100} />}
                                 </td>
-                                <td className="py-4 px-4">{course.courseType === 'free' ? 'Miễn phí' : 'Pro'}</td>
                                 <td className="py-4 px-4">{course.numberOfLessons}</td>
                                 <td className="py-4 px-4">{course.totalTimeDuration}</td>
 
@@ -246,14 +248,6 @@ export default function Course() {
                                         >
                                             <i className="fa-solid fa-person-chalkboard" style={{ color: "#e67519" }}></i>
                                         </button>
-                                        {status == 'delete' && <button
-                                            className='p-3 hover:bg-red-300 rounded-lg'
-                                            onClick={() => handleDetailCourse(course.id)}
-                                            style={{ border: "none", cursor: "pointer" }}
-                                        >
-                                            <i className="fa-solid fa-person-chalkboard" style={{ color: "#e67519" }}></i>
-                                        </button>
-                                        }
                                         <button
                                             className='p-3 hover:bg-red-300 rounded-lg'
                                             onClick={() => handleDeleteCourse(course.id)}

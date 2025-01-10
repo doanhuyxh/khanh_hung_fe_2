@@ -59,8 +59,8 @@ export default function Ceo() {
                     />
                 </div>
                 <div className="relative z-10 text-center text-gray-800">
-                    <p className="text-4xl font-bold">Quality course by world-class tutors</p>
-                    <p className="my-1 text-xl text-left">Lưu lượng truy cập (traffic) rất quan trọng, nhưng nó không có ý nghĩa gì nhiều nếu không có chuyển đổi</p>
+                    <p className="text-4xl font-bold text-white">Quality course by world-class tutors</p>
+                    <p className="my-2 text-xl text-left text-white">Lưu lượng truy cập (traffic) rất quan trọng, nhưng nó không có ý nghĩa gì nhiều nếu không có chuyển đổi</p>
                     <p className="text-xl text-left font-bold text-pink-500">Chìa khóa để tăng vọt tỷ lệ chuyển đổi là Copywriting.</p>
                 </div>
             </div>
