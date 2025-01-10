@@ -1,7 +1,7 @@
 'use client'
-import Loading from '../components/Loading'
+import Loading from '../_components/Loading'
 import { useEffect, useState } from 'react'
-import { getLastStudyLesion } from '../libs/services/ApiCustomerServices'
+import { getLastStudyLesion } from '../_libs/services/ApiCustomerServices'
 
 export default function StudyPage() {
   const [loading, setLoading] = useState(true)

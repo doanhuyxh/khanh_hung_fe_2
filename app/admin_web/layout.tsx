@@ -2,10 +2,10 @@
 
 import { useRouter, usePathname  } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { AdminSideBar } from '../components/Sidebar';
-import AdminHeader from '../components/Header/AdminWeb';
-import '../styles/admin_web.css';
-import Loading from '@/app/components/Loading';
+import { AdminSideBar } from '../_components/Sidebar';
+import AdminHeader from '../_components/Header/AdminWeb';
+import '../_styles/admin_web.css';
+import Loading from '@/app/_components/Loading';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   

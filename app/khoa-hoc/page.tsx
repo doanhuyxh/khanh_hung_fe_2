@@ -1,7 +1,7 @@
-import '../styles/borntowrite.css'
+import '../_styles/borntowrite.css'
 import dynamic from 'next/dynamic';
-import HeaderBorntowrite from "../components/Header/CustomerBorntowrite";
-import Footer from '../components/Footer/Borntowrite';
+import HeaderBorntowrite from "../_components/Header/CustomerBorntowrite";
+import Footer from '../_components/Footer/Borntowrite';
 import Image from "next/image";
 const Component = dynamic(() => import('./_component_feature'));
 

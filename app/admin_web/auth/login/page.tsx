@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';    
 
-import axiosInstance from '@/app/libs/configs/axiosAdminConfig';
-import { ResponseData } from '@/app/libs/types';
+import axiosInstance from '@/app/_libs/configs/axiosAdminConfig';
+import { ResponseData } from '@/app/_libs/types';
 
 export default function Login() {
     const [email, setEmail] = useState<string>('admin');

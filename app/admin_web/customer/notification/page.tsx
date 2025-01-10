@@ -3,13 +3,13 @@
 import toast from "react-hot-toast"
 import { useCallback, useEffect, useState } from "react"
 
-import Loading from "@/app/components/Loading"
-import { FormNotification } from "@/app/components/Form"
-import ModalScroll from "@/app/components/Modal/ModalScroll"
-import { unixToDatetime, dateToUnixTimestamp } from "@/app/libs/utils"
-import axiosInstance, { postFormData } from "@/app/libs/configs/axiosAdminConfig"
-import Pagination from "@/app/components/Pagination"
-import { DataPage } from "@/app/libs/types"
+import Loading from "@/app/_components/Loading"
+import { FormNotification } from "@/app/_components/Form"
+import ModalScroll from "@/app/_components/Modal/ModalScroll"
+import { unixToDatetime, dateToUnixTimestamp } from "@/app/_libs/utils"
+import axiosInstance, { postFormData } from "@/app/_libs/configs/axiosAdminConfig"
+import Pagination from "@/app/_components/Pagination"
+import { DataPage } from "@/app/_libs/types"
 
 export default function Notification() {
 

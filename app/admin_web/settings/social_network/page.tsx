@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import axiosInstance from "@/app/libs/configs/axiosAdminConfig";
-import { SocialLinks } from "@/app/libs/types";
+import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
+import { SocialLinks } from "@/app/_libs/types";
 
 export default function SocialNetworkPage() {
     const [isEditing, setIsEditing] = useState(true);

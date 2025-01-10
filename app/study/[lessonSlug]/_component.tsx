@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import VideoPlayer from "@/app/components/LessonViewControl/VideoLessonPlayer"
-import { LessonList } from "@/app/components/Lesson";
-import { LessonData, CourseData, LessonItem } from "@/app/libs/types";
+import VideoPlayer from "@/app/_components/LessonViewControl/VideoLessonPlayer"
+import { LessonList } from "@/app/_components/Lesson";
+import { LessonData, CourseData, LessonItem } from "@/app/_libs/types";
 
-import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig";
-import Loading from "@/app/components/Loading";
-import PdfLessonView from "@/app/components/LessonViewControl/PdfLessonView";
+import axiosCustomerConfig from "@/app/_libs/configs/axiosCustomerConfig";
+import Loading from "@/app/_components/Loading";
+import PdfLessonView from "@/app/_components/LessonViewControl/PdfLessonView";
 
 
 export default function StudyPageComponent({ lesson_sv, isLogin }: { lesson_sv: LessonItem, isLogin: boolean }) {

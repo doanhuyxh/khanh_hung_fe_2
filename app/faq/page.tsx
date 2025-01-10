@@ -1,8 +1,8 @@
-import '../styles/home_khanh_hung.css'
+import '../_styles/home_khanh_hung.css'
 
 import dynamic from "next/dynamic";
-const Header = dynamic(() => import('@/app/components/Header/CustomerKhanhHung'));
-import Footer from "@/app/components/Footer/KhanhHung";
+const Header = dynamic(() => import('@/app/_components/Header/CustomerKhanhHung'));
+import Footer from "@/app/_components/Footer/KhanhHung";
 import Image from "next/image";
 
 const Component = dynamic(() => import('./_component_feature_khahung'));

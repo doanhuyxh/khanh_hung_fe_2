@@ -1,11 +1,10 @@
 'use client'
 
-import Pagination from "@/app/components/Pagination";
-import Sidebar from "@/app/components/Sidebar/Customer";
-import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig";
-import ModalViewHtml from "@/app/components/Modal/ModalViewHtml";
-import { unixToDatetime } from "@/app/libs/utils";
-import { NotificationItem } from "@/app/libs/types";
+import Pagination from "@/app/_components/Pagination";
+import axiosCustomerConfig from "@/app/_libs/configs/axiosCustomerConfig";
+import ModalViewHtml from "@/app/_components/Modal/ModalViewHtml";
+import { unixToDatetime } from "@/app/_libs/utils";
+import { NotificationItem } from "@/app/_libs/types";
 import { useState, useEffect, useCallback } from "react";
 
 export default function Notification() {

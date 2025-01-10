@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
-const Header = dynamic(() => import("../components/Header/CustomerKhanhHung"));
-import "../styles/study.scss";
+const Header = dynamic(() => import("../_components/Header/CustomerKhanhHung"));
+import "../_styles/study.scss";
 
-import Sidebar from "@/app/components/Sidebar/Customer";
+import Sidebar from "@/app/_components/Sidebar/Customer";
 
 export default async function LearnLayout({ children }: { children: React.ReactNode }) {
 

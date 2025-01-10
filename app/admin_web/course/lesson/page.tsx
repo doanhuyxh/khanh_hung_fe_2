@@ -4,17 +4,17 @@ import { ReactSortable } from "react-sortablejs";
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
-import axiosInstance, { postFormData } from '@/app/libs/configs/axiosAdminConfig';
-import Loading from '@/app/components/Loading';
-import ModalScroll from '@/app/components/Modal/ModalScroll';
-import { FormLesson } from '@/app/components/Form';
-import { LessonItemAdmin } from '@/app/components/Lesson';
-import ModalViewHtml from '@/app/components/Modal/ModalViewHtml';
-import { LessonItem } from '@/app/libs/types';
-import VideoPlayerType from '@/app/components/LessonViewControl/VideoPlayerType';
+import axiosInstance, { postFormData } from '@/app/_libs/configs/axiosAdminConfig';
+import Loading from '@/app/_components/Loading';
+import ModalScroll from '@/app/_components/Modal/ModalScroll';
+import { FormLesson } from '@/app/_components/Form';
+import { LessonItemAdmin } from '@/app/_components/Lesson';
+import ModalViewHtml from '@/app/_components/Modal/ModalViewHtml';
+import { LessonItem } from '@/app/_libs/types';
+import VideoPlayerType from '@/app/_components/LessonViewControl/VideoPlayerType';
 import toast from "react-hot-toast";
-import ModalViewVideo from "@/app/components/Modal/ModelVideo";
-import ModalViewPDF from "@/app/components/Modal/ModalPdf";
+import ModalViewVideo from "@/app/_components/Modal/ModelVideo";
+import ModalViewPDF from "@/app/_components/Modal/ModalPdf";
 
 export default function CourseLesson() {
     const [loading, setLoading] = useState(true)

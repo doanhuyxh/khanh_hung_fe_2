@@ -5,10 +5,10 @@ import confetti from 'canvas-confetti';
 import Image from 'next/image';
 import { toast } from 'react-hot-toast';
 
-import axiosCustomerConfig from '@/app/libs/configs/axiosCustomerConfig';
-import { Customer } from '@/app/libs/types';
-import '../../styles/home_khanh_hung.css'
-import Image_7_day_return from '@/app/components/HomePageSection/KhanhHung/Image_7_day_return';
+import axiosCustomerConfig from '@/app/_libs/configs/axiosCustomerConfig';
+import { Customer } from '@/app/_libs/types';
+import '../../_styles/home_khanh_hung.css'
+import Image_7_day_return from '@/app/_components/HomePageSection/KhanhHung/Image_7_day_return';
 
 
 export default function PaymentPage() {

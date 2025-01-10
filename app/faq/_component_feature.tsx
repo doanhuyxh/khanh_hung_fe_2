@@ -1,5 +1,5 @@
 'use client';
-import '../styles/borntowrite.css'
+import '../_styles/borntowrite.css'
 
 import {useState} from "react";
 import 'flowbite';

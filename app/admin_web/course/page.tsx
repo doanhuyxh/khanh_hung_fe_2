@@ -1,13 +1,13 @@
 'use client'
 import { useEffect, useState, useCallback } from 'react';
-import Loading from '@/app/components/Loading';
-import Pagination from '@/app/components/Pagination';
+import Loading from '@/app/_components/Loading';
+import Pagination from '@/app/_components/Pagination';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { DataPage, ResponseData } from '@/app/libs/types';
-import Dropdown from '@/app/components/DropDown';
+import { DataPage, ResponseData } from '@/app/_libs/types';
+import Dropdown from '@/app/_components/DropDown';
 
-import axiosInstance from '@/app/libs/configs/axiosAdminConfig';
+import axiosInstance from '@/app/_libs/configs/axiosAdminConfig';
 import toast from 'react-hot-toast';
 
 export default function Course() {

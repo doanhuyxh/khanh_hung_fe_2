@@ -1,7 +1,7 @@
-import '../styles/borntowrite.css'
+import '../_styles/borntowrite.css'
 
-import Header from '../components/Header/CustomerBorntowrite'
-import Footer from '../components/Footer/Borntowrite'
+import Header from '../_components/Header/CustomerBorntowrite'
+import Footer from '../_components/Footer/Borntowrite'
 import Image from 'next/image'
 
 export default function PageContact() {

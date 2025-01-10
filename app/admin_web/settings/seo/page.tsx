@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import axiosInstance from "@/app/libs/configs/axiosAdminConfig";
-import { Seo } from "@/app/libs/types";
-import FileUploadImage from "@/app/components/FileHandle/FileUploadImage";
+import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
+import { Seo } from "@/app/_libs/types";
+import FileUploadImage from "@/app/_components/FileHandle/FileUploadImage";
 
 export default function SeoSetting() {
     const [seoData, setSeoData] = useState<Seo>({

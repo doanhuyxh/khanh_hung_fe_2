@@ -1,12 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import axiosInstance from '@/app/libs/configs/axiosAdminConfig';
+import axiosInstance from '@/app/_libs/configs/axiosAdminConfig';
 import toast from 'react-hot-toast';
-import { Page } from '@/app/libs/types';
-import EditorReactQuill from '@/app/components/Editor/ReactQuill';
-import { unixToDatetime } from '@/app/libs/utils';
-import { generateSlug } from '@/app/libs/utils';
+import { Page } from '@/app/_libs/types';
+import EditorReactQuill from '@/app/_components/Editor/ReactQuill';
+import { unixToDatetime } from '@/app/_libs/utils';
+import { generateSlug } from '@/app/_libs/utils';
 
 
 export default function News() {

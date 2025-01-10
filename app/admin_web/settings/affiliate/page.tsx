@@ -1,8 +1,8 @@
 'use client'
 
-import { EditorReactQuill } from "@/app/components/Editor";
-import axiosInstance from "@/app/libs/configs/axiosAdminConfig";
-import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig";
+import { EditorReactQuill } from "@/app/_components/Editor";
+import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
+import axiosCustomerConfig from "@/app/_libs/configs/axiosCustomerConfig";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 

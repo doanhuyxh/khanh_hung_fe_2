@@ -1,7 +1,7 @@
 'use client'
 
-import axiosInstance from "@/app/libs/configs/axiosAdminConfig";
-import { Customer } from "@/app/libs/types";
+import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
+import { Customer } from "@/app/_libs/types";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";

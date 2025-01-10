@@ -1,11 +1,11 @@
-import './styles/home_khanh_hung.css'
-import Header from './components/Header/CustomerKhanhHung';
-import Footer from './components/Footer/Borntowrite';
-import BannerReceive from './components/HomePageSection/KhanhHung/BannerReceive';
-import HallOfFrame from './components/HomePageSection/KhanhHung/hall_of_frame';
-import BannerThird from "@/app/components/HomePageSection/KhanhHung/BannerThird";
-import BannerFourth from "@/app/components/HomePageSection/Borntowrite/BannerFourth";
-import CourseList from './components/HomePageSection/KhanhHung/CourseList';
+import './_styles/home_khanh_hung.css'
+import Header from './_components/Header/CustomerKhanhHung';
+import Footer from './_components/Footer/Borntowrite';
+import BannerReceive from './_components/HomePageSection/KhanhHung/BannerReceive';
+import HallOfFrame from './_components/HomePageSection/KhanhHung/hall_of_frame';
+import BannerThird from "@/app/_components/HomePageSection/KhanhHung/BannerThird";
+import BannerFourth from "@/app/_components/HomePageSection/Borntowrite/BannerFourth";
+import CourseList from './_components/HomePageSection/KhanhHung/CourseList';
 
 
 export default async function Home() {

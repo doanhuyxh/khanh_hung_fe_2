@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import fetchData from '@/app/libs/configs/fetchDataServer'
-import "./styles/global.css";
+import fetchData from '@/app/_libs/configs/fetchDataServer'
+import "./_styles/global.css";
 import { Toaster } from 'react-hot-toast';
-import { Seo } from './libs/types';
+import { Seo } from './_libs/types';
 
 
 export async function generateMetadata(): Promise<Metadata> {

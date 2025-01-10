@@ -1,11 +1,10 @@
 'use client';
 import React, { useEffect } from 'react';
-import ImageUploadUser from "@/app/components/FileHandle/Image/imagesUser"
+import ImageUploadUser from "@/app/_components/FileHandle/Image/imagesUser"
 
-import Sidebar from "@/app/components/Sidebar/Customer"
 import { useState } from "react";
 import toast from 'react-hot-toast';
-import axiosCustomerConfig from '@/app/libs/configs/axiosCustomerConfig';
+import axiosCustomerConfig from '@/app/_libs/configs/axiosCustomerConfig';
 
 
 function ProfilePage() {

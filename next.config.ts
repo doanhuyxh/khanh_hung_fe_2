@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
     removeConsole: false
   },
   sassOptions: {
-    includePaths: ["./app/styles", "./app/components"],
+    includePaths: ["./app/_styles", "./app/_components"],
     quietDeps: true,
   },
   reactStrictMode: false,

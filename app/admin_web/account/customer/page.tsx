@@ -1,10 +1,10 @@
 'use client'
 
 import { useCallback, useEffect, useState } from "react";
-import { Customer } from "@/app/libs/types";
-import axiosInstance from "@/app/libs/configs/axiosAdminConfig";
-import { unixToDatetime } from "@/app/libs/utils";
-import Pagination from "@/app/components/Pagination";
+import { Customer } from "@/app/_libs/types";
+import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
+import { unixToDatetime } from "@/app/_libs/utils";
+import Pagination from "@/app/_components/Pagination";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 

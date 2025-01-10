@@ -1,9 +1,8 @@
 'use client'
 
-import { Sidebar } from "@/app/components/Sidebar"
 import toast from "react-hot-toast"
 import { useState } from "react"
-import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig"
+import axiosCustomerConfig from "@/app/_libs/configs/axiosCustomerConfig"
 
 export default function ChangePassword() {
 

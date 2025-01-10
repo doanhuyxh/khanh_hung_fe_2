@@ -2,8 +2,8 @@
 
 import { useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import axiosCustomerConfig from '@/app/libs/configs/axiosCustomerConfig';
-import { getLastStudyLesion } from '@/app/libs/services/ApiCustomerServices';
+import axiosCustomerConfig from '@/app/_libs/configs/axiosCustomerConfig';
+import { getLastStudyLesion } from '@/app/_libs/services/ApiCustomerServices';
 
 export default function LoadingSocial() {
   const query = useSearchParams();

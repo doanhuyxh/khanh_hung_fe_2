@@ -1,9 +1,9 @@
 'use client'
 
 import { useState, useEffect } from "react";
-import { BannerHeaderTop } from "../../../libs/types"
-import axiosInstance from "@/app/libs/configs/axiosAdminConfig";
-import ModalScroll from "@/app/components/Modal/ModalScroll";
+import { BannerHeaderTop } from "../../../_libs/types"
+import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
+import ModalScroll from "@/app/_components/Modal/ModalScroll";
 import toast from "react-hot-toast";
 
 

@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import { cookies } from 'next/headers'
-import fetchData from '@/app/libs/configs/fetchDataServer'
-import { LessonItem } from '@/app/libs/types'
+import fetchData from '@/app/_libs/configs/fetchDataServer'
+import { LessonItem } from '@/app/_libs/types'
 const StudyPageComponent = dynamic(() => import('./_component'),{ ssr: true })
 
 type Props = {

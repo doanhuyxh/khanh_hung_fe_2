@@ -1,7 +1,6 @@
 'use client'
 
-import Sidebar from "@/app/components/Sidebar/Customer";
-import axiosCustomerConfig from "@/app/libs/configs/axiosCustomerConfig";
+import axiosCustomerConfig from "@/app/_libs/configs/axiosCustomerConfig";
 import { useEffect, useState } from "react";
 
 export default function AffiliatePolicy() {
