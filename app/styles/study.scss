@@ -6,17 +6,12 @@ html {
   overflow-x: hidden;
 }
 
-// body{
-//   overflow-x: hidden;
-// }
-
 body *:not(input):not(textarea) {
   cursor: default;
   user-select: none;
 }
 
-p,
-span {
+p, span {
   font-size: 1.4rem;
 }
 
@@ -25,29 +20,12 @@ span {
   min-height: 68vh;
 }
 
-@media (min-width: 2000px) {
-  html {
-    font-size: 70%;
-  }
-}
-
-@media (max-width: 1580px) {
-  html {
-    font-size: 8px;
-  }
-}
-
-@media (max-width: 1200px) {
-  html {
-    font-size: 10px;
-  }
-}
-
+/* Study Container */
 .study_container {
   margin: 0 auto;
   margin-top: 1rem;
-  max-width: calc(1694 / var(--h-page)* 100vh);
-  padding: 0 calc(15 / var(--h-page)* 100vh);
+  max-width: calc(1694 / var(--h-page) * 100vh);
+  padding: 0 calc(15 / var(--h-page) * 100vh);
   width: 90%;
 }
 
@@ -55,19 +33,18 @@ span {
   max-height: 60vh;
 }
 
-.title_course {
+/* Titles */
+.title_course, .lesson_name {
   font-size: var(--f-sz);
   font-weight: 600;
   text-transform: uppercase;
 }
 
 .lesson_name {
-  font-size: var(--f-sz);
-  font-weight: 600;
-  text-transform: uppercase;
-  color: rgb(58, 58, 58);
+  color: #3a3a3a;
 }
 
+/* Lists and Containers */
 .video_list {
   overflow-y: auto;
 }
@@ -79,6 +56,7 @@ span {
   max-height: 75vh;
 }
 
+/* Miscellaneous */
 .border_top_nav_course {
   border-top: 3px solid var(--color-primary);
 }
@@ -94,38 +72,52 @@ span {
   background-color: gray;
 }
 
-@media (max-width:800px) {
+/* Media Queries */
+@media (min-width: 2000px) {
+  html {
+      font-size: 70%;
+  }
+}
+
+@media (max-width: 1580px) {
+  html {
+      font-size: 8px;
+  }
+}
+
+@media (max-width: 1200px) {
+  html {
+      font-size: 10px;
+  }
+}
+
+@media (max-width: 800px) {
   .study_container {
-    width: 100%;
+      width: 100%;
   }
-
-  .title_course,
-  .lesson_name {
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
-    line-height: 1.3;
+  .title_course, .lesson_name {
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      line-height: 1.3;
   }
-
   .burger-icon {
-    margin-left: 8px;
+      margin-left: 8px;
   }
-
   .img_preview_md {
-    width: 13rem;
+      width: 13rem;
   }
-
 }
 
 @media (min-width: 1200px) {
   .video_list {
-    height: auto;
-    max-height: calc(100vh - 10rem);
-    overflow-y: auto;
+      height: auto;
+      max-height: calc(100vh - 10rem);
+      overflow-y: auto;
   }
 }
 
 @media screen and (max-width: 1300px) {
   .study_container {
-    padding: 0 1rem;
+      padding: 0 1rem;
   }
 }

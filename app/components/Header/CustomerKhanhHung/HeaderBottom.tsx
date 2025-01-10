@@ -43,7 +43,6 @@ const HeaderBottom = () => {
           sessionStorage.setItem("user", JSON.stringify(res.data));
         } else {
           sessionStorage.clear();
-          localStorage.clear();
         }
       });
   }, [pathname])
