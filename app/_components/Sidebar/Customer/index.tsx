@@ -54,7 +54,7 @@ function Sidebar() {
         // },
         {
           name: "Thông báo của bạn",
-          imageSrc: "/assets/images/ic-history-email.svg",
+          imageSrc: "/assets/images/ic-histories-email.svg",
           link: "/learn/notification"
         },
 

@@ -65,6 +65,21 @@ const menuGroups = [
       },
     ],
   },
+  {
+    name: "",
+    menuItems: [
+      {
+        icon: <i className="fa-solid fa-envelope"></i>,
+        label: "Cấu hình Email",
+        route: "#",
+        children: [
+          {label: "Tài khoản mail", route: "/admin_web/settings/mail/config"},
+          {label: "Template Mail", route: "/admin_web/settings/mail/template"},
+          {label: "Lịch sử gửi mail", route: "/admin_web/settings/mail/histories"},
+        ],
+      },
+    ],
+  },
 
   {
     name: "",
