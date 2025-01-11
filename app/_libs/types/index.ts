@@ -175,3 +175,12 @@ export interface Seo {
   twitterImage:string,
   twitterSite:string
 }
+
+export interface TemplateMail {
+    id: string,
+    name: string,
+    senderName: string,
+    subject: string,
+    contentTemplate: string,
+    createdAt: number
+}

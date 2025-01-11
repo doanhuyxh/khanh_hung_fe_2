@@ -2,6 +2,7 @@
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 import { debounce } from 'lodash';
+import {useEffect, useState} from "react";
 
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
 
@@ -49,9 +50,18 @@ export default function EditorReactQuill({ value, onChange }: { value: string; o
         },
     };
 
+
+
     const debouncedOnChange = debounce((newValue) => {
         onChange(newValue);
-    }, 100);
+    }, 1);
+
+
+    useEffect(() => {
+        return () => {
+            debouncedOnChange.cancel();
+        };
+    }, []);
 
     return (
         <ReactQuill
@@ -60,6 +70,8 @@ export default function EditorReactQuill({ value, onChange }: { value: string; o
             value={value}
             onChange={debouncedOnChange}
             modules={modules}
+            placeholder="Nhập nội dung"
+            style={{ height: 'auto', minHeight: '300px',boxSizing: 'border-box' }}
             className='w-full h-full'
         />
     );

@@ -62,8 +62,8 @@ export default function Affiliate() {
     const renderAffiliateInfo = () => (
         <div className="flex flex-col justify-center items-center gap-10">
             <h3 className="text-center text-2xl font-bold">Thông tin Level Affiliate</h3>
-            <div className="flex flex-row gap-4">
-                <div className="flex flex-col gap-2">
+            <div className="flex flex-row gap-4 bg-white px-10 py-5 rounded">
+                <div className="flex flex-col gap-2 ">
                     <p className="text-center my-2">Cấp độ Affiliate</p>
                     {affiliateLevel.map((item, index) => (
                         <div key={index} className="flex flex-row items-center justify-center align-middle gap-4">
@@ -108,7 +108,7 @@ export default function Affiliate() {
     )
 
     const renderPolicy = () => (
-        <div className="w-full h-auto pb-10">
+        <div className="w-full h-auto bg-white pt-5 pb-20 px-10 rounded-lg">
             <div className="flex flex-col gap-4 mb-3">
                 <h3 className="text-center text-2xl font-bold">Chính sách Affiliate</h3>
                 <EditorReactQuill value={value} onChange={handleEditorChange} />
