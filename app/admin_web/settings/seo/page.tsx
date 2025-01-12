@@ -73,7 +73,7 @@ export default function SeoSetting() {
     return (
         <div className="w-full flex flex-col gap-10">
 
-            <div className="w-10/12 p-10 shadow-lg overflow-x-auto m-auto">
+            <div className="w-10/12 p-10 shadow-lg overflow-x-auto m-auto bg-white rounded">
                 <div className="w-full flex justify-between mb-10">
                     <h2 className="text-center font-[600] text-3xl">Quản lý cấu hình thông tin web</h2>
                     <div className="flex justify-end">

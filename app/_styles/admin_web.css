@@ -9,3 +9,9 @@ body {
 .ql-editor{
     min-height: 300px;
 }
+
+.ant-table-thead > tr > th{
+    background-color: #0b60df !important;
+    font-weight: 600;
+    color: aliceblue !important;
+}

@@ -42,11 +42,11 @@ const menuGroups = [
     menuItems: [
       {
         icon: <i className="fa-solid fa-users"></i>,
-        label: "Tài khoản",
+        label: "Học viên",
         route: "#",
         children: [
-          { label: "Học viên", route: "/admin_web/account/customer" },
-          // { label: "Quản trị viên", route: "/admin_web/account/admin" },
+          { label: "Danh sách học viên", route: "/admin_web/students/customer" },
+          { label: "Nhóm học viên", route: "/admin_web/students/group" },
         ],
       },
     ],
