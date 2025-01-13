@@ -7,6 +7,7 @@ import { unixToDatetime } from "@/app/_libs/utils";
 import { NotificationItem } from "@/app/_libs/types";
 import { useState, useEffect, useCallback } from "react";
 
+
 export default function Notification() {
 
 
@@ -33,14 +34,14 @@ export default function Notification() {
     }
 
     const GetNotification = useCallback(async () => {
-        const res_data = await axiosCustomerConfig.get(`/notification/get-notify?page=${page}&status=${status}`);
+        const res_data = await axiosCustomerConfig.get(`/notification/get-mail?page=${page}&status=${status}`);
         setData(res_data.data.data);
         setTotalPage(res_data.data.totalPage);
         setTotalResult(res_data.data.totalResult);
     }, [page, status]);
 
     const GetTotalNotification = useCallback(async () => {
-        const res_data = await axiosCustomerConfig.get(`/notification/get-total-notify`);
+        const res_data = await axiosCustomerConfig.get(`/notification/get-total-mail`);
         setTotalNotification({
             read: res_data.data.total_read,
             unread: res_data.data.total_un_read
@@ -58,7 +59,7 @@ export default function Notification() {
         ));
 
         if (item.status === "un_read") {
-            axiosCustomerConfig.get(`/notification/update-notify?messId=${item.messUserId}`);
+            axiosCustomerConfig.get(`/notification/update-mail?mailId=${item.messUserId}`);
         }
 
     }
@@ -70,7 +71,7 @@ export default function Notification() {
 
     return (
         <>
-            <div className="container m-auto mt-10 lg:mt-30">
+            <div className="w-11/12 m-auto ml-0 mt-10 lg:mt-30">
                 <div className="w-full flex justify-center items-center mb-10">
                     <h1 className="text-3xl lg:text-6xl font-bold transform scale-150 text-color-secondary animate-jump-in animate-once animate-ease-out" >Thông báo của bạn</h1>
                 </div>
@@ -118,7 +119,7 @@ export default function Notification() {
                                 </tr>
                             </thead>
                             <tbody className="text-gray-600 text-xl">
-                                {data.map((item: NotificationItem, index: number) => (
+                                {data && data.map((item: NotificationItem, index: number) => (
                                     <tr className="border-b border-gray-200 hover:bg-gray-50" key={index}>
                                         <td className="py-4 px-6">{index + 1}</td>
 
@@ -146,6 +147,14 @@ export default function Notification() {
                                         </td>
                                     </tr>
                                 ))}
+
+                                {data.length === 0 && (
+                                    <tr>
+                                        <td colSpan={6} className="text-center py-4">Không có thông báo nào</td>
+                                    </tr>
+                                )}
+
+
                             </tbody>
 
                         </table>
@@ -197,7 +206,7 @@ export default function Notification() {
 
             </div>
             <ModalViewHtml isOpen={isOpen} onClose={() => setIsOpen(false)} title={title} >
-                {content}
+                <div className="p-4" dangerouslySetInnerHTML={{ __html: content }} />
             </ModalViewHtml>
         </>
     )

@@ -28,7 +28,7 @@ export default function ModalViewHtml({isOpen, onClose, title, children}: ModalS
                             <span className="text-lg text-gray-500"></span>
                         </h2>
                         <button
-                            className="animate-spin animate-infinite animate-ease-linear absolute top-0 right-0 mx-2 my-0 px-3 py-2 rounded-xl hover:text-red-500 text-3xl font-thin scale-150 opacity-55"
+                            className="cursor-pointer animate-spin animate-infinite animate-ease-linear absolute top-0 right-0 mx-2 my-0 px-3 py-2 rounded-xl hover:text-red-500 text-3xl font-bold scale-150 opacity-55"
                             onClick={onClose}>
                             x
                         </button>

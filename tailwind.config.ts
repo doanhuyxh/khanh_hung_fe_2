@@ -20,6 +20,11 @@ export default {
       variants: {
         extend: {
           backgroundClip: ['hover', 'focus'],
+          fontFamily: {
+            alegreya: ['Alegreya', 'serif'],
+            bebas: ['Bebas Neue', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
         },
       },
       backgroundClip: {

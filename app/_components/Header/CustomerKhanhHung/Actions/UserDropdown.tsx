@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { Customer } from '@/app/_libs/types';
 import axiosCustomerConfig from '@/app/_libs/configs/axiosCustomerConfig';
@@ -24,7 +23,7 @@ export default function UserDropdown({ isDropdown, user, setIsDropdown }: { isDr
         >
             <ul className="dropdown_menu_item bg-white shadow-lg rounded-lg py-2">
                 <li>
-                    <Link href="/learn/profile" className="flex items-center gap-2 px-5 py-3">
+                    <a href="/learn/profile" className="flex items-center gap-2 px-5 py-3">
                         <div className="flex justify-center align-middle items-center transform translate-y-[-8px] w[20px]">
                             <Image src="/assets/images/header/user-icon.svg" alt="profile" width={20} height={20} />
                         </div>
@@ -37,10 +36,10 @@ export default function UserDropdown({ isDropdown, user, setIsDropdown }: { isDr
                                 </span>
                             </p>
                         </div>
-                    </Link>
+                    </a>
                 </li>
                 <li>
-                    <Link href="/learn/profile" className="flex gap-2 px-5 py-3">
+                    <a href="/learn/profile" className="flex gap-2 px-5 py-3">
                         <div className="flex overflow-hidden w-[20px]">
                             <Image src="/assets/images/header/cup-icon.svg" alt="profile" width={15} height={15} />
                         </div>
@@ -50,17 +49,17 @@ export default function UserDropdown({ isDropdown, user, setIsDropdown }: { isDr
                                 {user?.level_affiliate || ""}
                             </span>
                         </p>
-                    </Link>
+                    </a>
                 </li>
                 <li>
-                    <Link href="/learn/profile" className="flex items-center gap-2 px-5 py-3">
+                    <a href="/learn/change-password" className="flex items-center gap-2 px-5 py-3">
                         <div className="flex justify-center transform w-[20px] cursor-pointer">
                             <Image src="/assets/images/header/key-icon.svg" alt="profile" width={15} height={15} />
                         </div>
                         <div className="text-nowrap text-xl flex flex-col gap-2">
                             <p className="text-gray-500 font-semibold cursor-pointer">Đổi mật khẩu</p>
                         </div>
-                    </Link>
+                    </a>
                 </li>
                 <li>
                     

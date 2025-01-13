@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 const Header = dynamic(() => import("../_components/Header/CustomerKhanhHung"));
-import "../_styles/study.scss";
+import "../_styles/study.css";
 
 import Sidebar from "@/app/_components/Sidebar/Customer";
 
@@ -8,8 +8,8 @@ export default async function LearnLayout({ children }: { children: React.ReactN
 
   return (
     <>
-      <Header/>
-      <div className="w-full flex flex-row">
+        <Header/>
+        <div className="w-full flex flex-row">
         <div className="hidden lg:block h-[100vh]">
           <Sidebar />
         </div>

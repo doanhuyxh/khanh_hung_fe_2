@@ -7,7 +7,6 @@ import { Customer } from '@/app/_libs/types';
 import { usePathname } from 'next/navigation';
 import ButtonUpgrade from '@/app/_components/Button/ButtonUpgrade';
 import ButtonLearnNow from '@/app/_components/Button/ButtonLearnNow';
-import ButtonDownLoadAppMobile from '@/app/_components/Button/ButtonDownLoadAppMobile';
 
 export default function UserActions({ user }: { user: Customer }) {
     const [isDropdown, setIsDropdown] = useState(false);

@@ -1,15 +1,23 @@
 'use client';
 
-import { Table, Tag } from 'antd';
-import React, { useEffect, useState } from 'react';
+import {Table, Tag, Select, DatePicker} from 'antd';
+import React, {useEffect, useState} from 'react';
 import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
-import { ResponseData } from "@/app/_libs/types";
-import { unixToDatetime } from "@/app/_libs/utils";
+import {ResponseData, Customer, TemplateMail} from "@/app/_libs/types";
+import {unixToDatetime} from "@/app/_libs/utils";
+import dayjs from "dayjs";
+
+
+const {Option} = Select;
 
 export default function Histories() {
-    const [data, setData] = useState([]);
-    const [templates, setTemplates] = useState([]);
-    const [users, setUsers] = useState([]); // Đổi tên từ userInfo để đồng nhất
+    const [data, setData] = useState<any[]>([]);
+    const [templates, setTemplates] = useState<TemplateMail[]>([]);
+    const [users, setUsers] = useState<Customer[]>([]);
+    const [pageSize, setPageSize] = useState(5);
+    const [startDate, setStartDate] = useState(0);
+    const [endDate, setEndDate] = useState(0);
+
 
     const columns = [
         {
@@ -69,11 +77,32 @@ export default function Histories() {
         },
     ];
 
+    const handlePageSizeChange = (value) => {
+        setPageSize(value);
+    };
+
+    const handleStartDateChange = (date, dateString) => {
+        if (date) {
+            setStartDate(dayjs(dateString).unix());
+        } else {
+            setStartDate(0);
+        }
+    };
+
+
+    const handleEndDateChange = (date, dateString) => {
+        if (date) {
+            setEndDate(dayjs(dateString).unix());
+        } else {
+            setEndDate(0);
+        }
+    };
+
     const getHistorySendEmail = async () => {
         try {
-            const res: ResponseData = await axiosInstance.get(`/email/get-history-send-email?page=1&pageSize=3000`);
+            const res: ResponseData = await axiosInstance.get(`/email/get-history-send-email?page=1&pageSize=${pageSize}&startTime=${startDate}&endTime=${endDate}`);
             if (res.code === 200 && Array.isArray(res.data)) {
-                setData(res.data.map((item, index) => ({ ...item, key: index }))); // Đảm bảo `key` là duy nhất
+                setData(res.data.map((item, index) => ({...item, key: index})));
             }
         } catch (error) {
             console.error("Lỗi khi lấy lịch sử gửi email:", error);
@@ -102,20 +131,60 @@ export default function Histories() {
         }
     };
 
+
     useEffect(() => {
         document.title = "Lịch sử gửi mail";
         getTemplate();
         getUsers();
-        getHistorySendEmail();
     }, []);
+
+    useEffect(() => {
+        getHistorySendEmail();
+    }, [pageSize, startDate, endDate]);
+
 
     return (
         <div className="w-full p-4 rounded mx-4 my-6 bg-white">
             <h1 className="font-bold my-5">Lịch sử gửi mail</h1>
+            <div style={{marginBottom: 16}}>
+                <span style={{marginRight: 8}}>Số dòng trên mỗi trang:</span>
+                <Select
+                    value={pageSize}
+                    onChange={handlePageSizeChange}
+                    style={{width: 100}}
+                >
+                    <Option value={5}>5</Option>
+                    <Option value={10}>10</Option>
+                    <Option value={25}>25</Option>
+                    <Option value={50}>50</Option>
+                    <Option value={100}>100</Option>
+                </Select>
+
+                <span style={{marginLeft: 16, marginRight: 8}}>Từ ngày:</span>
+                <DatePicker
+                    format="YYYY-MM-DD HH:mm"
+                    showTime={{
+                        defaultValue: dayjs("00:00", "HH:mm"),
+                    }}
+                    onChange={handleStartDateChange}
+                    style={{width: 250}}
+                />
+
+                <span style={{marginLeft: 16, marginRight: 8}}>Đến ngày:</span>
+                <DatePicker
+                    format="YYYY-MM-DD HH:mm"
+                    showTime={{
+                        defaultValue: dayjs("00:00", "HH:mm"),
+                    }}
+                    onChange={handleEndDateChange}
+                    style={{width: 250}}
+                />
+
+            </div>
             <Table
                 dataSource={data}
                 columns={columns}
-                pagination={{ pageSize: 5 }}
+                pagination={{pageSize}}
             />
         </div>
     );

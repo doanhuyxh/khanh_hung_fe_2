@@ -24,7 +24,7 @@ const GroupStudent = () => {
     const [isOpenedModalAddStudent, setIsOpenedModalAddStudent] = useState(false);
     const [isOpenedModalViewStudent, setIsOpenedModalViewStudent] = useState(false);
     const [groupStudentId, setGroupStudentId] = useState("");
-    const [userInGroup, setUserInGroup] = useState([]);
+    const [userInGroup, setUserInGroup] = useState<any[]>([]);
     const [listUserIdSelected, setListUserIdSelected] = useState<string[]>([])
 
     const [isOpenedModalSendMail, setIsOpenedModalSendMail] = useState(false);
@@ -51,7 +51,7 @@ const GroupStudent = () => {
                 <Space size="middle">
                     <Tooltip title="Sửa tên nhóm">
                         <Button type="link" onClick={() => handleEdit(record)}>
-                            <span className="px-2 py-1 rounded bg-blue-300 text-white">
+                            <span className="px-2 py-1 rounded bg-blue-500 text-white">
                                 <i className="fa-solid fa-pen-to-square"></i>
                             </span>
                         </Button>
@@ -65,14 +65,14 @@ const GroupStudent = () => {
                     </Tooltip>
                     <Tooltip title="Thêm học viên">
                         <Button type="link" onClick={() => handleViewStudent(record.id)}>
-                            <span className="px-2 py-1 rounded bg-violet-400 text-white">
+                            <span className="px-2 py-1 rounded bg-violet-500 text-white">
                                 <i className="fa-solid fa-graduation-cap"></i>
                             </span>
                         </Button>
                     </Tooltip>
                     <Tooltip title="Xóa nhóm">
                         <Button type="link" danger onClick={() => handleDelete(record.id)}>
-                            <span className="px-2 py-1 rounded bg-red-300 text-white">
+                            <span className="px-2 py-1 rounded bg-red-500 text-white">
                                 <i className="fa-solid fa-trash"></i>
                             </span>
                         </Button>
@@ -187,7 +187,7 @@ const GroupStudent = () => {
                 <Space size="middle">
                     <Tooltip title="Xóa khỏi nhóm">
                         <Button type="link" danger onClick={() => handleRemoveStudent(record.id)}>
-                            <span className="px-2 py-1 rounded bg-red-300 text-white">
+                            <span className="px-2 py-1 rounded bg-red-500 text-white">
                                 <i className="fa-solid fa-trash"></i>
                             </span>
                         </Button>
@@ -238,13 +238,13 @@ const GroupStudent = () => {
     };
 
     const handleOpenModalSendMailToGroup = async (values) => {
-        let time = 0
+        let time = "";
         if (values.dateTime) {
-            const timeSend = moment(values.dateTime).format("YYYY-MM-DD HH:mm:ss")
-            time = moment(timeSend).unix()
+            time = moment(values.dateTime.$d).format("YYYY-MM-DD HH:mm:ss");
         }else{
-            time = moment().unix()
+            time = moment().format("YYYY-MM-DD HH:mm:ss");
         }
+
         const jsonData = {
             groupId: groupStudentId,
             dateTime: time,
@@ -373,7 +373,7 @@ const GroupStudent = () => {
         getGroupStudent();
         getAllStudent();
 
-        axiosInstance.get("/email/get-all-template-email?page=1&pageSize=300")
+        axiosInstance.get("/email/get-all-template-email?page=1&pageSize=500")
             .then((res: any) => {
                 if (res.code == 200) {
                     setListMailTemplate(res.data)

@@ -10,7 +10,6 @@ const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
 
   const [isClient, setIsClient] = useState(false)
   const [isOpenSidebar, setIsOpenSidebar] = useState(false)
-
   const [logo, setLogo] = useState('')
 
   const handleOverlayClick = (e: React.MouseEvent) => {
@@ -23,6 +22,13 @@ const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
   }
 
   useEffect(() => {
+
+    const header = document.querySelector('header')
+    const headerHeight = header?.clientHeight
+
+
+
+
     setIsClient(true);
   }, []);
 
@@ -53,7 +59,7 @@ const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
         </Link>
       </div>
 
-      <div className={`fixed top-[60px] left-0 w-[100vw] h-screen transition bg-black z-99999 bg-opacity-60 ${isOpenSidebar ? 'block' : 'hidden'}`}
+      <div className={`fixed top-[80px] height_header left-0 w-[100vw] h-screen transition bg-black z-99999 bg-opacity-60 ${isOpenSidebar ? 'block' : 'hidden'}`}
         onClick={handleOverlayClick}>
         <div className={`w-fit h-full bg-white overflow-hidden`} onClick={handleSidebarClick}>
           <Sidebar />

@@ -9,7 +9,7 @@
     transform: translate(-50%, -50%);
     width: 20px;
     height: 2px;
-    background-color: var(--color-primary);
+    background-color: var(--primary-color);
     cursor: pointer;
 }
 
@@ -20,6 +20,6 @@
     transform: translate(-50%, -50%);
     width: 2px;
     height: 20px;
-    background-color: var(--color-primary);
+    background-color: var(--primary-color);
     cursor: pointer;
 }

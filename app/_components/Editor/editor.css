@@ -1,0 +1,31 @@
+.ql-font-arial {
+    font-family: Arial, sans-serif;
+}
+.ql-font-georgia {
+    font-family: Georgia, serif;
+}
+.ql-font-impact {
+    font-family: Impact, sans-serif;
+}
+.ql-font-tahoma {
+    font-family: Tahoma, sans-serif;
+}
+.ql-font-times-new-roman {
+    font-family: "Times New Roman", serif;
+}
+.ql-font-verdana {
+    font-family: Verdana, sans-serif;
+}
+
+.ql-size-small {
+    font-size: 0.75em;
+}
+.ql-size-normal {
+    font-size: 1em;
+}
+.ql-size-large {
+    font-size: 1.5em;
+}
+.ql-size-huge {
+    font-size: 2.5em;
+}
