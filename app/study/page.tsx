@@ -66,7 +66,7 @@ export default async function StudyPage() {
             <div className="">
                 <FormAuth/>
             </div>
-            <div className="video_list lg:w-1/3 w-full">
+            <div className="video_list lg:w-1/3 w-full max-w-[600px]">
                 <LessonList
                 />
             </div>
