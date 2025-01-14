@@ -204,3 +204,49 @@ export interface GroupUserDetail {
     numberUser: number,
     users: User[]
 }
+
+
+export interface ScriptAutoEmailMarketing {
+    id: string,
+    name: string,
+    description: string,
+    sequentially: boolean,
+    condition: string,
+    listSchedulingEmails: string[],
+}
+
+export interface ScriptAutoEmailMarketingView {
+    id: string,
+    name: string,
+    description: string,
+    sequentially: boolean,
+    condition: any[],
+    listSchedulingEmails: ScriptAutoSchedulingEmails[],
+}
+
+
+export interface ScriptAutoSchedulingEmails {
+    id: string,
+    name: string,
+    time: string,
+    date: string,
+    isActive: boolean,
+    condition: string,
+    templateMailId: string,
+}
+
+export interface Condition {
+    id: string,
+    label: string,
+    conditionListLabel: string,
+    conditionType: string,
+    conditionKey: string[],
+    value: string,
+}
+
+export interface ConditionSelected {
+    label: string,
+    subLabel: string,
+    condition: string,
+    value: string
+}

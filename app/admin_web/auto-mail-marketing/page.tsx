@@ -1,63 +1,65 @@
 'use client';
 
-import {useState} from "react";
+import { useState } from "react";
+import dynamic from "next/dynamic";
+import { useSearchParams, useRouter } from "next/navigation";
 
-import Script from "./_script";
-import Template from "./_template";
+
+const Script = dynamic(() => import("./_script"), { ssr: false });
+const Template = dynamic(() => import("./_template"), { ssr: false });
+const Emails = dynamic(() => import("./_email"), { ssr: false });
 
 export default function AutoMailMarketing() {
-    const [tab, setTab] = useState("script");
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const query_tab = searchParams.get("tab");
+
+    const updateQuery = (newTabValue: string) => {
+        const params = new URLSearchParams(searchParams);
+        params.set("tab", newTabValue);
+        router.push(`?${params.toString()}`);
+        setTab(newTabValue);
+    };
+
+    const [tab, setTab] = useState(query_tab || "script");
 
     return (
-        <div className="w-full m-10">
+        <div className="w-full">
             <div className="flex flex-row flex-wrap justify-between bg-white px-3 py-2 rounded w-11/12">
                 <div className="flex flex-row flex-wrap gap-4">
                     <button
-                        onClick={() => setTab("script")}
+                        onClick={() => updateQuery("script")}
                         className={`px-3 py-1 ${tab === "script" ? "bg-blue-500 text-white rounded" : ""}`}
                     >
                         Kịch bản
                     </button>
                     <button
-                        onClick={() => setTab("email")}
+                        onClick={() => updateQuery("email")}
                         className={`px-3 py-1 ${tab === "email" ? "bg-blue-500 text-white rounded" : ""}`}
                     >
                         Email
                     </button>
                     <button
-                        onClick={() => setTab("template")}
+                        onClick={() => updateQuery("template")}
                         className={`px-3 py-1 ${tab === "template" ? "bg-blue-500 text-white rounded" : ""}`}
                     >
                         Mẫu
                     </button>
                     <button
-                        onClick={() => setTab("report")}
+                        onClick={() => updateQuery("report")}
                         className={`px-3 py-1 ${tab === "report" ? "bg-blue-500 text-white rounded" : ""}`}
                     >
                         Báo cáo
                     </button>
                 </div>
-
-                <div className="flex flex-row gap-4">
-                    {
-                        tab === "script" && (
-                            <button className="px-3 py-2 bg-green-500 text-white rounded">
-                                <i className="fas fa-plus mx-1"/>
-                                Thêm kịch bản
-                            </button>
-                        )
-                    }
-                </div>
-
             </div>
 
             <div className="my-10 w-11/12 p-5 rounded">
-                {tab === "script" && <Script/>}
-                {tab === "email" && <div>Email</div>}
-                {tab === "template" && <Template/>}
+                {tab === "script" && <Script />}
+                {tab === "email" && <Emails />}
+                {tab === "template" && <Template />}
                 {tab === "report" && <div>Báo cáo</div>}
             </div>
-
         </div>
     );
 }

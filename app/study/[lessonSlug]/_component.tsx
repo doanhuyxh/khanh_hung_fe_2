@@ -3,7 +3,7 @@
 import {useEffect, useState} from "react";
 import VideoPlayer from "@/app/_components/LessonViewControl/VideoLessonPlayer"
 import {LessonList} from "@/app/_components/Lesson";
-import {LessonData, CourseData, LessonItem} from "@/app/_libs/types";
+import {LessonItem} from "@/app/_libs/types";
 
 import axiosCustomerConfig from "@/app/_libs/configs/axiosCustomerConfig";
 import Loading from "@/app/_components/Loading";

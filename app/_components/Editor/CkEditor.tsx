@@ -54,7 +54,7 @@ const LICENSE_KEY =
 	'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3MzQ5OTgzOTksImp0aSI6ImEwZGRmYjc5LTAzMTMtNDQyZC1hYThlLWZhNzYwNTlmMTRkNCIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjVlNzhhYTg0In0.AdRBkBFVVdn_WUFv38awtt8yIOjG6F7_FnTiVpf2JdAanU-mtxYUafXVkCCTkJUOzyeDkM-SKka258_tsspBlA';
 
 const CLOUD_SERVICES_TOKEN_URL =
-	'https://kf9vxwqg03w2.cke-cs.com/token/dev/a965ebdd7b10e685732c9fc9b3d834fbcb59da8864a2f8fd3ee7d2985d03?limit=10';
+	'https://kf9vxwqg03w2.cke-cs.com/token/dev/a965ebdd7b10e685732c9fc9b3d834fbcb59da8864a2f8fd3ee7d2985d03?limit=120';
 
 export default function EditorCkeditor({ value, onChange }: { value: string, onChange: (data: string) => void }) {
 	const editorRef = useRef(null);

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function FileUploadImage({ onChange, value, index }: { onChange: ChangeEventHandler<HTMLInputElement>; value: string; index: number }) {
 
-    const [file, setFile] = useState<File | null>();
+    const [file, setFile] = useState<File>();
     const [preview, setPreview] = useState<string>();
 
     const UploadFileToServer = useCallback(async () => {

@@ -30,7 +30,7 @@ const GroupStudent = () => {
     const [isOpenedModalSendMail, setIsOpenedModalSendMail] = useState(false);
 
     const [formGroup] = Form.useForm();
-    const [formSendMail] = Form.useForm();
+
     const { Option } = Select;
 
     const columns = [
@@ -245,11 +245,15 @@ const GroupStudent = () => {
             time = moment().format("YYYY-MM-DD HH:mm:ss");
         }
 
+
         const jsonData = {
             groupId: groupStudentId,
             dateTime: time,
             emailId: values.emailType
         }
+
+        console.log(jsonData)
+
 
         try {
             const res:ResponseData = await axiosInstance.post("/email/send-email-to-group", jsonData)

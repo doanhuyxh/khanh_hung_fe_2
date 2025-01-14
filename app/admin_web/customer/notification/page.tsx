@@ -1,15 +1,15 @@
 'use client'
 
 import toast from "react-hot-toast"
-import { useCallback, useEffect, useState } from "react"
+import {useCallback, useEffect, useState} from "react"
 
 import Loading from "@/app/_components/Loading"
-import { FormNotification } from "@/app/_components/Form"
+import {FormNotification} from "@/app/_components/Form"
 import ModalScroll from "@/app/_components/Modal/ModalScroll"
-import { unixToDatetime, dateToUnixTimestamp } from "@/app/_libs/utils"
-import axiosInstance, { postFormData } from "@/app/_libs/configs/axiosAdminConfig"
+import {unixToDatetime, dateToUnixTimestamp} from "@/app/_libs/utils"
+import axiosInstance, {postFormData} from "@/app/_libs/configs/axiosAdminConfig"
 import Pagination from "@/app/_components/Pagination"
-import { DataPage } from "@/app/_libs/types"
+import {DataPage} from "@/app/_libs/types"
 
 export default function Notification() {
 
@@ -52,16 +52,16 @@ export default function Notification() {
                     position: "top-right"
                 })
             }).finally(() => {
-                setIsShowModelForm(false)
-                setFormNotify({
-                    Id: "",
-                    PrivateName: "",
-                    Title: "",
-                    Content: "",
-                    Type: ""
-                })
-                getNotification();
+            setIsShowModelForm(false)
+            setFormNotify({
+                Id: "",
+                PrivateName: "",
+                Title: "",
+                Content: "",
+                Type: ""
             })
+            getNotification();
+        })
     }
 
     const HandleUpdate = async (id: string) => {
@@ -143,7 +143,7 @@ export default function Notification() {
     }, [])
 
     if (!isClient) {
-        return <Loading />
+        return <Loading/>
     }
 
     return (
@@ -154,20 +154,25 @@ export default function Notification() {
 
                 <div className="flex gap-5 ml-auto">
                     <button className={`px-4 py-2 border-2 rounded-lg ${status == "" && "bg-blue-600 text-white"}`}
-                        onClick={() => setStatus("")}>Tất cả</button>
+                            onClick={() => setStatus("")}>Tất cả
+                    </button>
 
                     <button className={`px-4 py-2 border-2 rounded-lg ${status == "send" && "bg-blue-600 text-white"}`}
-                        onClick={() => setStatus("send")}>Đã gửi</button>
+                            onClick={() => setStatus("send")}>Đã gửi
+                    </button>
 
-                    <button className={`px-4 py-2 border-2 rounded-lg ${status == "pending" && "bg-blue-600 text-white"}`}
-                        onClick={() => setStatus("pending")}>Chưa gửi</button>
+                    <button
+                        className={`px-4 py-2 border-2 rounded-lg ${status == "pending" && "bg-blue-600 text-white"}`}
+                        onClick={() => setStatus("pending")}>Chưa gửi
+                    </button>
 
                     <button className={`px-4 py-2 border-2 rounded-lg ${status == "draft" && "bg-blue-600 text-white"}`}
-                        onClick={() => setStatus("draft")}>Nháp</button>
+                            onClick={() => setStatus("draft")}>Nháp
+                    </button>
 
                 </div>
             </div>
-            <hr />
+            <hr/>
             <div className="mt-3 flex gap-8 mb-3  rounded-lg shadow-sm">
                 <button
                     className='bg-blue-100 text-black hover:bg-green-100 hover:text-green-500 px-4 py-2 rounded-md'
@@ -204,12 +209,15 @@ export default function Notification() {
 
                 <div className="flex items-center gap-8">
 
-                    <button className="px-2 py-2 text-green-500 hover:bg-green-200 hover:text-green-800 rounded-lg" onClick={() => handleUpdateStatus('send')}>
+                    <button className="px-2 py-2 text-green-500 hover:bg-green-200 hover:text-green-800 rounded-lg"
+                            onClick={() => handleUpdateStatus('send')}>
                         <i className="fa-solid fa-paper-plane"></i> Gửi thông báo
                     </button>
 
 
-                    <button className="px-2 py-2 text-red-500 hover:bg-red-200 hover:text-red-800 rounded-lg" onClick={() => { }}>
+                    <button className="px-2 py-2 text-red-500 hover:bg-red-200 hover:text-red-800 rounded-lg"
+                            onClick={() => {
+                            }}>
                         <i className="fa-solid fa-trash"></i> Xoá
                     </button>
 
@@ -218,7 +226,7 @@ export default function Notification() {
 
                 <div className="flex items-center ml-auto">
                     <button className="px-4 py-2 border-2 hover:bg-green-400 rounded-xl"
-                        onClick={() => setIsShowModelForm(true)}>
+                            onClick={() => setIsShowModelForm(true)}>
                         <i className="fa-solid fa-plus"></i>
                     </button>
                 </div>
@@ -227,46 +235,50 @@ export default function Notification() {
             <div className="w-full overflow-y-auto mt-3">
                 <table className="w-full text-sm text-left text-gray-700 border-collapse">
                     <thead>
-                        <tr className="bg-gray-100 border-b text-nowrap">
-                            <th className="px-6 py-4 font-medium">STT</th>
-                            <th className="px-6 py-4 font-medium">Tên thông báo (nội bộ)</th>
-                            <th className="px-6 py-4 font-medium">Tiêu đề</th>
-                            <th className="px-6 py-4 font-medium">Nội dung</th>
-                            <th className="px-6 py-4 font-medium">Trạng thái</th>
-                            <th className="px-6 py-4 font-medium">Loại thông báo</th>
-                            <th className="px-6 py-4 font-medium">Ngày tạo</th>
-                            <th className="px-6 py-4 font-medium">Ngày gửi</th>
-                            <th className="px-6 py-4 font-medium">Số lượt xem</th>
-                            <th className="px-6 py-4 font-medium"></th>
-                        </tr>
+                    <tr className="bg-gray-100 border-b text-nowrap">
+                        <th className="px-6 py-4 font-medium">STT</th>
+                        <th className="px-6 py-4 font-medium">Tên thông báo (nội bộ)</th>
+                        <th className="px-6 py-4 font-medium">Tiêu đề</th>
+                        <th className="px-6 py-4 font-medium">Nội dung</th>
+                        <th className="px-6 py-4 font-medium">Trạng thái</th>
+                        <th className="px-6 py-4 font-medium">Loại thông báo</th>
+                        <th className="px-6 py-4 font-medium">Ngày tạo</th>
+                        <th className="px-6 py-4 font-medium">Ngày gửi</th>
+                        <th className="px-6 py-4 font-medium">Số lượt xem</th>
+                        <th className="px-6 py-4 font-medium"></th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {
-                            data?.data && data?.data.map((item: any, index: number) => {
-                                return <tr key={index} className="hover:bg-gray-50 border-b">
-                                    <td className='p-4 flex items-center gap-1' onClick={() => handleChangeCheckbox(item.id)}>
-                                        <input type='checkbox' value={item.id} checked={checkbox.includes(item.id)} onChange={() => { }} />
-                                        {index + 1}
-                                    </td>
-                                    <td className="px-6 py-4 font-medium">{item.privateName}</td>
-                                    <td className="px-6 py-4">{item.title}</td>
-                                    <td className="px-6 py-4 max-w-xs truncate">{item.content}</td>
-                                    <td className="px-6 py-4">
-                                        <span className={`px-2 py-1 rounded-full text-xs ${item.status === 'send' ? 'bg-green-100 text-green-800' :
-                                            item.status === 'pending' ? 'bg-yellow-100 text-gray-800' :
-                                                item.status === 'draft' ? 'bg-gray-100 text-gray-800' :
-                                                    'bg-yellow-100 text-yellow-800'
+                    {
+                        data?.data && data?.data.map((item: any, index: number) => {
+                            return <tr key={index} className="hover:bg-gray-50 border-b">
+                                <td className='p-4 flex items-center gap-1' onClick={() => handleChangeCheckbox(item.id)}>
+                                    <input type='checkbox' value={item.id} checked={checkbox.includes(item.id)}
+                                           onChange={() => {
+                                           }}/>
+                                    {index + 1}
+                                </td>
+                                <td className="px-6 py-4 font-medium">{item.privateName}</td>
+                                <td className="px-6 py-4">{item.title}</td>
+                                <td className="px-6 py-4 max-w-xs truncate">{item.content}</td>
+                                <td className="px-6 py-4">
+                                        <span
+                                            className={`px-2 py-1 rounded-full text-xs ${item.status === 'send' ? 'bg-green-100 text-green-800' :
+                                                item.status === 'pending' ? 'bg-yellow-100 text-gray-800' :
+                                                    item.status === 'draft' ? 'bg-gray-100 text-gray-800' :
+                                                        'bg-yellow-100 text-yellow-800'
                                             }`}>
                                             {item.status == 'pending' && "Đang chờ"}
                                             {item.status == 'draft' && "Nháp"}
                                             {item.status == 'send' && "Đã gửi"}
                                         </span>
-                                    </td>
-                                    <td className="px-6 py-4 text-sm">
-                                        <span className={`px-2 py-1 rounded-full text-xs ${item.type === 'all' ? 'bg-purple-100 text-purple-800' :
-                                            item.type === 'mail' ? 'bg-blue-100 text-blue-800' :
-                                                item.type === 'app' ? 'bg-orange-100 text-orange-800' :
-                                                    'bg-green-100 text-green-800'
+                                </td>
+                                <td className="px-6 py-4 text-sm">
+                                        <span
+                                            className={`px-2 py-1 rounded-full text-xs ${item.type === 'all' ? 'bg-purple-100 text-purple-800' :
+                                                item.type === 'mail' ? 'bg-blue-100 text-blue-800' :
+                                                    item.type === 'app' ? 'bg-orange-100 text-orange-800' :
+                                                        'bg-green-100 text-green-800'
                                             }`}>
                                             {item.type === '' && "Tất cả"}
                                             {item.type === 'all' && "Tất cả"}
@@ -274,34 +286,36 @@ export default function Notification() {
                                             {item.type === 'app' && "App"}
                                             {item.type === 'web' && "Web"}
                                         </span>
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-500">{unixToDatetime(item.createdAt)}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-500">
-                                        {item.sendAt == '0' ? "Chưa gửi" : unixToDatetime(item.sendAt)}
-                                    </td>
-                                    <td className="px-6 py-4 text-center">{item.totalRead}</td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex gap-2">
-                                            <button className="px-3 py-1 rounded-md bg-blue-600 hover:bg-blue-800 text-white"
+                                </td>
+                                <td className="px-6 py-4 text-sm text-gray-500">{unixToDatetime(item.createdAt)}</td>
+                                <td className="px-6 py-4 text-sm text-gray-500">
+                                    {item.sendAt == '0' ? "Chưa gửi" : unixToDatetime(item.sendAt)}
+                                </td>
+                                <td className="px-6 py-4 text-center">{item.totalRead}</td>
+                                <td className="px-6 py-4">
+                                    <div className="flex gap-2">
+                                        <button className="px-3 py-1 rounded-md bg-blue-600 hover:bg-blue-800 text-white"
                                                 onClick={() => HandleUpdate(item.id)}>
-                                                <i className="fa-solid fa-pen-to-square"></i>
-                                            </button>
-                                            <button className="px-3 py-1 rounded-md bg-red-600 hover:bg-red-800 text-white"
+                                            <i className="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                        <button className="px-3 py-1 rounded-md bg-red-600 hover:bg-red-800 text-white"
                                                 onClick={() => HandleDelete(item.id)}>
-                                                <i className="fa-solid fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            })
-                        }
+                                            <i className="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        })
+                    }
                     </tbody>
                 </table>
-                <Pagination pageSize={pageSize} page={page} length={data?.data.length} onPageChange={setPage} totalPage={data?.totalPage ?? 0} totalResult={data?.totalResult ?? 0} />
+                <Pagination pageSize={pageSize} page={page} length={data?.data.length} onPageChange={setPage}
+                            totalPage={data?.totalPage ?? 0} totalResult={data?.totalResult ?? 0}/>
             </div>
 
-            <ModalScroll isOpen={isShowModelForm} onClose={() => setIsShowModelForm(!isShowModelForm)} title="Thông báo khách hàng">
-                <FormNotification formNotify={formNotify} setFormNotify={setFormNotify} save={HandelSave} />
+            <ModalScroll isOpen={isShowModelForm} onClose={() => setIsShowModelForm(!isShowModelForm)}
+                         title="Thông báo khách hàng">
+                <FormNotification formNotify={formNotify} setFormNotify={setFormNotify} save={HandelSave}/>
             </ModalScroll>
         </div>
     )
