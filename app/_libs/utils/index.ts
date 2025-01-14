@@ -22,6 +22,7 @@ function generateSlug(title: string) {
     const from = "áàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵđ";
     const to = "aaaaaaaaaaaaaaaaaeeeeeeeeeeeiiiiiooooooooooooooooouuuuuuuuuuuyyyyyd";
     const regex = new RegExp(from.split('').join('|'), 'g');
+    title = title.replace(/[^\w\s]/gi, '');
 
     title = title.toLowerCase().replace(regex, c => to.charAt(from.indexOf(c)));
     return title.replace(/ /g, '-');

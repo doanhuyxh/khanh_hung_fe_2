@@ -1,13 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import axiosInstance from '@/app/_libs/configs/axiosAdminConfig';
 import toast from 'react-hot-toast';
-import { Page } from '@/app/_libs/types';
+import {Page} from '@/app/_libs/types';
 import EditorReactQuill from '@/app/_components/Editor/ReactQuill';
-import { unixToDatetime } from '@/app/_libs/utils';
-import { generateSlug } from '@/app/_libs/utils';
-
+import {unixToDatetime} from '@/app/_libs/utils';
+import {generateSlug} from '@/app/_libs/utils';
 
 export default function News() {
     const [news, setNews] = useState<Page[]>([]);
@@ -121,46 +120,46 @@ export default function News() {
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white rounded-lg shadow-md">
                     <thead className="bg-gray-100 text-gray-700">
-                        <tr>
-                            <th className="px-4 py-2 text-left">STT</th>
-                            <th className="px-4 py-2 text-left">Tiêu đề</th>
-                            <th className="px-4 py-2 text-left">Slug</th>
-                            <th className="px-4 py-2 text-left">Ngày tạo</th>
-                            <th className="px-4 py-2 text-left">Thao tác</th>
-                        </tr>
+                    <tr>
+                        <th className="px-4 py-2 text-left">STT</th>
+                        <th className="px-4 py-2 text-left">Tiêu đề</th>
+                        <th className="px-4 py-2 text-left">Slug</th>
+                        <th className="px-4 py-2 text-left">Ngày tạo</th>
+                        <th className="px-4 py-2 text-left">Thao tác</th>
+                    </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
-                        {news && news.map((item, index) => (
-                            <tr key={item.id}>
-                                <td className="px-4 py-2 border-b">{index + 1}</td>
-                                <td className="px-4 py-2 border-b">{item.title}</td>
-                                <td className="px-4 py-2 border-b">{item.slug}</td>
-                                <td className="px-4 py-2 border-b">
-                                    {unixToDatetime(item.createdAt)}
-                                </td>
-                                <td className="px-4 py-2 border-b">
+                    {news && news.map((item, index) => (
+                        <tr key={item.id}>
+                            <td className="px-4 py-2 border-b">{index + 1}</td>
+                            <td className="px-4 py-2 border-b">{item.title}</td>
+                            <td className="px-4 py-2 border-b">{item.slug}</td>
+                            <td className="px-4 py-2 border-b">
+                                {unixToDatetime(item.createdAt)}
+                            </td>
+                            <td className="px-4 py-2 border-b">
                                 <button
-                                        onClick={() => handleEdit(item)}
-                                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mr-2"
-                                    >
-                                        <i className="fa-solid fa-pen-to-square"></i>
-                                    </button>
-                                    <button
-                                        onClick={() => handleDelete(item.id)}
-                                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                                    >
-                                        <i className="fa-solid fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                        {
-                            news.length == 0  && <tr>
-                                <td colSpan={5}>
-                                    <p className='text-center my-10'>Không có trang nào</p>
-                                </td>
-                            </tr>
-                        }
+                                    onClick={() => handleEdit(item)}
+                                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mr-2"
+                                >
+                                    <i className="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button
+                                    onClick={() => handleDelete(item.id)}
+                                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                                >
+                                    <i className="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                    {
+                        news.length == 0 && <tr>
+                            <td colSpan={5}>
+                                <p className='text-center my-10'>Không có trang nào</p>
+                            </td>
+                        </tr>
+                    }
                     </tbody>
                 </table>
             </div>
@@ -172,12 +171,12 @@ export default function News() {
                             {page.id ? 'Cập nhật tin tức' : 'Thêm tin tức mới'}
                         </h2>
                         <div className="flex flex-col gap-6">
-                            {/* Input for Title */}
+
                             <div className="relative">
                                 <label
                                     htmlFor="title"
                                     className={`absolute left-2 top-0 text-gray-500 text-sm transition-all ${page?.title ? "top-0 text-xs text-gray-700" : ""
-                                        }`}
+                                    }`}
                                 >
                                     Tiêu đề
                                 </label>
@@ -186,19 +185,19 @@ export default function News() {
                                     type="text"
                                     placeholder="Nhập tiêu đề"
                                     value={page?.title}
-                                    onChange={(e) =>
-                                        setPage((prev) => ({ ...prev, title: e.target.value }))
-                                    }
+                                    onChange={(e) => {
+                                        setPage((prev) => ({...prev, title: e.target.value}))
+                                        setPage((prev) => ({...prev, slug: generateSlug(e.target.value)}))
+                                    }}
                                     className="w-full border border-gray-300 rounded-md px-3 pt-5 pb-2 focus:border-blue-400 focus:ring focus:ring-blue-200 focus:outline-none"
                                 />
                             </div>
 
-                            {/* Input for Slug */}
                             <div className="relative">
                                 <label
                                     htmlFor="slug"
                                     className={`absolute left-2 top-0 text-gray-500 text-sm transition-all ${page?.slug ? "top-0 text-xs text-gray-700" : ""
-                                        }`}
+                                    }`}
                                 >
                                     Slug
                                 </label>
@@ -208,13 +207,12 @@ export default function News() {
                                     placeholder="Nhập slug"
                                     value={page?.slug}
                                     onChange={(e) =>
-                                        setPage((prev) => ({ ...prev, slug: e.target.value }))
+                                        setPage((prev) => ({...prev, slug: e.target.value}))
                                     }
                                     className="w-full border border-gray-300 rounded-md px-3 pt-5 pb-2 focus:border-blue-400 focus:ring focus:ring-blue-200 focus:outline-none"
                                 />
                             </div>
 
-                            {/* Editor for Content */}
                             <div className="relative">
                                 <label
                                     htmlFor="content"
@@ -225,7 +223,7 @@ export default function News() {
                                 <EditorReactQuill
                                     value={page?.content}
                                     onChange={(data) =>
-                                        setPage((prev) => ({ ...prev, content: data }))
+                                        setPage((prev) => ({...prev, content: data}))
                                     }
                                 />
                             </div>

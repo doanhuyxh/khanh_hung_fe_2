@@ -15,3 +15,14 @@ body {
     font-weight: 600;
     color: aliceblue !important;
 }
+
+.ant-card{
+    background: transparent !important;
+}
+
+.ant-card-head{
+    background-color: #0b60df !important;
+}
+.ant-card-body{
+    padding: 0 !important;
+}

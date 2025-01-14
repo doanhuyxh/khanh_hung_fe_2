@@ -45,23 +45,33 @@ const menuGroups = [
         label: "Học viên",
         route: "#",
         children: [
-          { label: "Danh sách học viên", route: "/admin_web/students/customer" },
+          { label: "Danh sách học viên", route: "/admin_web/students/all" },
           { label: "Nhóm học viên", route: "/admin_web/students/group" },
         ],
       },
     ],
   },
+  // {
+  //   name: "",
+  //   menuItems: [
+  //     {
+  //       icon: <i className="fa-solid fa-users"></i>,
+  //       label: "Chăm sóc khách hàng",
+  //       route: "#",
+  //       children: [
+  //         // { label: "Thông báo", route: "/admin_web/customer/notification" },
+  //         // { label: "Ticket", route: "/admin_web/customer/ticket" },
+  //       ],
+  //     },
+  //   ],
+  // },
   {
     name: "",
     menuItems: [
       {
-        icon: <i className="fa-solid fa-users"></i>,
-        label: "Chăm sóc khách hàng",
-        route: "#",
-        children: [
-          { label: "Thông báo", route: "/admin_web/customer/notification" },
-          // { label: "Ticket", route: "/admin_web/customer/ticket" },
-        ],
+        icon: <i className="fa-solid fa-envelopes-bulk"></i>,
+        label: "Auto Mail Marketing",
+        route: "/admin_web/auto-mail-marketing",
       },
     ],
   },
@@ -121,7 +131,6 @@ const AdminSideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-white duration-300 ease-linear lg:static lg:translate-x-0 -translate-x-full ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
           }`}
       >
-        {/* <!-- SIDEBAR HEADER --> */}
         <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
           <Link href="/admin_web/dashboard">
             <Image
