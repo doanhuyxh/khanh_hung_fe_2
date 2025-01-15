@@ -9,10 +9,9 @@ import toast from "react-hot-toast";
 
 const {TextArea} = Input;
 
-export default function FormScript({open, initData}: { open: boolean, initData: ScriptAutoEmailMarketing }) {
+export default function FormScript({open, onClose}: { open: boolean, onClose:()=>void }) {
     
     const [form] = Form.useForm();
-    const [isOpened, setIsOpened] = useState(open);
     const [conditions, setConditions] = useState([]);
     const [listCondition, setListCondition] = useState<ConditionSelected[]>([]);
 
@@ -44,8 +43,8 @@ export default function FormScript({open, initData}: { open: boolean, initData: 
     }
 
     const handleSaveScript = async (values: any) => {
-        const data = {
-            id: initData.id,
+        const save_data = {
+            id: data.id,
             name: values.name,
             description: values.description,
             sequentially: values.sequentially,
@@ -53,9 +52,9 @@ export default function FormScript({open, initData}: { open: boolean, initData: 
             listSchedulingEmails: []
         }
 
-        const res: ResponseData = await axiosInstance.post("/email/create-or-update-script-auto-email-marketing", data)
+        const res: ResponseData = await axiosInstance.post("/email/create-or-update-script-auto-email-marketing", save_data)
         if (res.code == 200) {
-            setIsOpened(false);
+            onClose();
             toast.success("Lưu kịch bản thành công!");
         }
 
@@ -78,37 +77,32 @@ export default function FormScript({open, initData}: { open: boolean, initData: 
 
 
     useEffect(() => {
+        form.resetFields();
+        const initData = sessionStorage.getItem("data-script");
+        const data = initData ? JSON.parse(initData) : null;
+
         if (initData != null) {
-            form.resetFields();
             form.setFieldsValue({
-                name: initData.name,
-                description: initData.description,
-                sequentially: initData.sequentially
+                name: data.name,
+                description: data.description,
+                sequentially: data.sequentially
             });
 
-            if (initData.condition) {
+            if (data.condition) {
 
-                setListCondition(JSON.parse(initData.condition));
+                setListCondition(JSON.parse(data.condition));
             }
-            setData(initData);
+            setData(data);
+            sessionStorage.removeItem("data-script")
         }
-    }, [initData]);
-
-    useEffect(() => {
-        setIsOpened(open);
-    }, [open]);
-
-
-    if (initData == null) {
-        return null;
-    }
+    }, []);
 
 
     return (
         <Modal
             width={1200}
-            open={isOpened}
-            onCancel={() => setIsOpened(false)}
+            open={open}
+            onCancel={onClose}
             title={data?.id ? "Chỉnh sửa kịch bản" : "Thêm kịch bản"}
             footer={null}
         >

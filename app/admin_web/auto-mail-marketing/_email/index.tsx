@@ -4,15 +4,27 @@ import {useEffect, useState} from "react";
 import {Table, Tag, Space, Button} from 'antd';
 import {ResponseData} from "@/app/_libs/types";
 import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
-import FormSchedulingEmails from "@/app/admin_web/auto-mail-marketing/_components/form-scheduling-emails";
+
 
 export default function Emails() {
     const [data, setData] = useState([]);
-
+    const [isLoading, setIsLoading] = useState(false);
+    
     const getData = async () => {
-        const res: ResponseData = await axiosInstance.get("/email/get-script-auto-scheduling-emails?page=1&pageSize=300");
-        if (res.code === 200) {
-            setData(res.data);
+        setIsLoading(true);
+        try {
+            const res: ResponseData = await axiosInstance.get("/email/get-script-auto-scheduling-emails?page=1&pageSize=300");
+            if (res.code === 200) {
+                const dataWithKeys = res.data.map((item) => ({
+                    ...item,
+                    key: item.id, 
+                }));
+                setData(dataWithKeys);
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        } finally {
+            setIsLoading(false); 
         }
     }
 
@@ -31,7 +43,7 @@ export default function Emails() {
             dataIndex: 'condition',
             key: 'condition',
             render: (text) => (
-                <Tag color={text === 'Có' ? 'green' : 'red'}>{text}</Tag>
+                0
             ),
         },
         {
@@ -46,11 +58,12 @@ export default function Emails() {
         },
         {
             title: 'Trạng thái',
-            dataIndex: 'status',
-            key: 'status',
+            dataIndex: 'isActived',
+            key: 'isActived',
             render: (status) => {
-                let color = status === 'Đã gửi' ? 'green' : status === 'Đang chờ' ? 'orange' : 'red';
-                return <Tag color={color}>{status}</Tag>;
+                const color = status ? 'green' : 'red';
+                const statusText = status ? 'Hoạt động' : 'Không hoạt động';
+                return <Tag color={color}>{statusText}</Tag>;
             },
         },
         {
@@ -80,8 +93,8 @@ export default function Emails() {
         },
         {
             title: 'Mẫu mail',
-            dataIndex: 'template',
-            key: 'template',
+            dataIndex: 'templateMailId',
+            key: 'templateMailId',
         },
         {
             title: 'Chức năng',
@@ -97,8 +110,7 @@ export default function Emails() {
 
     return (
         <div>
-            <Table columns={columns} dataSource={data}/>
-            <FormSchedulingEmails/>
+            <Table columns={columns} dataSource={data} loading={isLoading}/>
         </div>
     );
 }

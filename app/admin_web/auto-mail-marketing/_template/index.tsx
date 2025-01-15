@@ -19,10 +19,14 @@ export default function Template() {
 
     const [form] = Form.useForm();
     const [isModalVisible, setIsModalVisible] = useState(false);
+
+    
     const [selectedTemplate, setSelectedTemplate] = useState<TemplateMail | null>(null);
     const [inputSubject, setInputSubject] = useState("");
     const [inputContentTemplate, setInputContentTemplate] = useState("");
     const [showContentTemplate, setShowContentTemplate] = useState("");
+
+
 
     const handleSelectChangeSubject = (value:any) => {
         setInputSubject(inputSubject + value);

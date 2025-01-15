@@ -1,15 +1,13 @@
 'use client'
 
-import React, {useEffect, useState} from "react";
-import {Table, Tag, Space, Button, Modal, Form, Input, Select, TimePicker, DatePicker, Row, Col} from 'antd';
-import {ConditionSelected, ResponseData} from "@/app/_libs/types";
+import React, { useEffect, useState } from "react";
+import { Table, Tag, Space, Button, Modal, Form, Input, Select, TimePicker, DatePicker, Row, Col } from 'antd';
+import { ConditionSelected, ResponseData } from "@/app/_libs/types";
 import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
 import ConditionSelector from "@/app/_components/ConditionSelectAutoMail";
 import moment from "moment";
 
-export default function FormSchedulingEmails() {
-    const [data, setData] = useState([]);
-    const [visible, setVisible] = useState(true);
+export default function FormSchedulingEmails({ visible, onClose }: { visible: boolean, onClose: () => void }) {
     const [form] = Form.useForm();
     const [template, setTemplate] = useState([]);
     const [condition, setCondition] = useState([]);
@@ -49,17 +47,17 @@ export default function FormSchedulingEmails() {
         axiosInstance.post("/email/create-or-update-script-auto-scheduling-emails", data)
             .then((res: any) => {
                 if (res.code === 200) {
-                    setVisible(false);
+                    onClose();
                     form.resetFields();
                 }
             })
 
-        setVisible(false);
+        onClose();
         form.resetFields();
     };
 
     const handleCancel = () => {
-        setVisible(false);
+        onClose();
         form.resetFields();
     };
 
@@ -86,12 +84,34 @@ export default function FormSchedulingEmails() {
     }, []);
 
 
+    useEffect(() => {
+        const initData = sessionStorage.getItem("data-email");
+        const data = initData ? JSON.parse(initData) : null;
+
+        if (initData != null) {
+            form.resetFields();
+            form.setFieldsValue({
+                name: data.name,
+                time: moment(data.time, "HH:mm"),
+                date: data.date ? moment(data.date, "YYYY-MM-DD") : null,
+                selectOption: data.templateMailId,
+            });
+
+            if (data.condition) {
+                setListCondition(JSON.parse(data.condition));
+            }
+
+            sessionStorage.removeItem("data-email")
+        }
+
+    },[visible, form])
+
     return (
         <Modal
             open={visible}
-            width={1000}
+            width={1400}
             title={"Thêm mới"}
-            onCancel={handleCancel}
+            onCancel={onClose}
             onOk={() => {
                 form
                     .validateFields()
@@ -112,30 +132,36 @@ export default function FormSchedulingEmails() {
                 <Form.Item
                     label="Tên"
                     name="name"
-                    rules={[{required: true, message: 'Vui lòng nhập tên!'}]}
+                    rules={[{ required: true, message: 'Vui lòng nhập tên!' }]}
                 >
-                    <Input placeholder="Nhập tên" className="rounded"/>
+                    <Input placeholder="Nhập tên" className="rounded" />
                 </Form.Item>
 
-                <Form.Item
-                    label="Giờ"
-                    name="time"
-                    rules={[{required: true, message: 'Vui lòng chọn giờ!'}]}
-                >
-                    <TimePicker format="HH:mm" style={{width: '100%'}}/>
-                </Form.Item>
+                <Row gutter={16}>
+                    <Col span={12}>
+                        <Form.Item
+                            label="Giờ"
+                            name="time"
+                            rules={[{ required: true, message: 'Vui lòng chọn giờ!' }]}
+                        >
+                            <TimePicker format="HH:mm" style={{ width: '100%' }} />
+                        </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                        <Form.Item
+                            label="Ngày (để trống nếu muốn chạy hàng ngày)"
+                            name="date"
+                        >
+                            <DatePicker format="YYYY-MM-DD" style={{ width: '100%' }} />
+                        </Form.Item>
+                    </Col>
+                </Row>
 
-                <Form.Item
-                    label="Ngày (để trống nếu muốn chạy hàng ngày)"
-                    name="date"
-                >
-                    <DatePicker format="YYYY-MM-DD" style={{width: '100%'}}/>
-                </Form.Item>
 
                 <Form.Item
                     label="Lựa chọn mẫu template"
                     name="selectOption"
-                    rules={[{required: true, message: 'Vui lòng chọn một giá trị!'}]}
+                    rules={[{ required: true, message: 'Vui lòng chọn một giá trị!' }]}
                 >
                     <Select placeholder="Chọn một giá trị">
                         {template.map((item: any) => (
@@ -148,7 +174,7 @@ export default function FormSchedulingEmails() {
                     <label className="w-full text-center flex justify-between">
                         <span className="font-bold">Điều kiện</span>
                         <span className="bg-green-400 px-2 py-1 rounded text-white my-4 cursor-pointer"
-                              onClick={handleAddCondition}>Thêm điều kiện</span>
+                            onClick={handleAddCondition}>Thêm điều kiện</span>
                     </label>
 
                     <div className="flex flex-col gap-3 my-3">
@@ -158,7 +184,7 @@ export default function FormSchedulingEmails() {
                                     <ConditionSelector
                                         intData={item}
                                         onChange={(data: ConditionSelected) => handleConditionChange(index, data)}
-                                        data={condition}/>
+                                        data={condition} />
                                     <Button
                                         type="primary"
                                         danger

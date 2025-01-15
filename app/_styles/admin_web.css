@@ -22,6 +22,8 @@ body {
 
 .ant-card-head{
     background-color: #0b60df !important;
+    border-radius: 8px !important;
+    margin-bottom: 12px !important;
 }
 .ant-card-body{
     padding: 0 !important;
