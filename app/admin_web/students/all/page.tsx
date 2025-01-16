@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Customer } from "@/app/_libs/types";
 import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
-import { unixToDatetime } from "@/app/_libs/utils";
+import { formatTime } from "@/app/_libs/utils";
 import { useRouter } from "next/navigation";
 import { Table, Input, Button, Pagination, Avatar, Space } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
@@ -65,7 +65,7 @@ export default function CustomerPage() {
         {
             title: "Ngày tham gia",
             dataIndex: "createdAt",
-            render: (createdAt: number) => unixToDatetime(createdAt),
+            render: (createdAt: string) => formatTime(createdAt),
         },
         {
             title: "Hành động",

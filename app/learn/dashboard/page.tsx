@@ -1,7 +1,7 @@
 'use client'
 
 import axiosCustomerConfig from "@/app/_libs/configs/axiosCustomerConfig";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 
@@ -11,7 +11,8 @@ export default function Page() {
     const [lessonName, setLessonName] = useState<any>([]);
     const [courseProgress, setCourseProgress] = useState<any>([]);
     const [data, setData] = useState<any>([]);
-    const [showLessonIndex, setShowLessonIndex] = useState<number>(0);
+    const [showLessonIndex, setShowLessonIndex] = useState<number>(-1);
+
 
     useEffect(() => {
         axiosCustomerConfig.get("/course/get-course-name")
@@ -73,8 +74,8 @@ export default function Page() {
                                 <div className="flex flex-row justify-start gap-10 items-start">
                                     <div className="w-[200px] h-fit">
                                         {item.image && <img src={item.image} alt=""
-                                                            className="w-full h-auto object-cover rounded-md"
-                                                            loading="lazy"/>}
+                                            className="w-full h-auto object-cover rounded-md"
+                                            loading="lazy" />}
                                     </div>
                                     <div>
                                         <h4 className="text-xl font-bold mt-4">{item.courseName}</h4>
@@ -82,9 +83,10 @@ export default function Page() {
                                     </div>
                                 </div>
                                 <div className="mt-4 flex justify-end">
-                                    <button onClick={() => setShowLessonIndex(index)}
-                                            className="text-lg bg-color-primary text-white px-4 py-2 rounded-md cursor-pointer">Xem
-                                        chi tiết
+                                    <button
+                                        onClick={() => setShowLessonIndex(index)}
+                                        className="text-lg bg-color-primary text-white px-4 py-2 rounded-md cursor-pointer">
+                                            {showLessonIndex === index ? "Ẩn bài học" : "Xem bài học"}
                                     </button>
                                 </div>
                                 {showLessonIndex === index && <div className="flex flex-col">
@@ -101,11 +103,12 @@ export default function Page() {
                                             <div
                                                 className="flex flex-row justify-start gap-4 items-center p-2 bg-gray-100 rounded-md mt-2"
                                                 key={index}>
-                                                <div>
+                                                <div className="min-w-[100px] max-w-[150px] min-h-[50px]">
                                                     <Image
                                                         loading={"lazy"}
                                                         src={lessonName.find((i: any) => i.id == lesson.lessonId)?.image}
-                                                        alt={""} width={100} height={50}/>
+                                                        style={{ width: "100%", height: "auto" }}
+                                                        alt={""} width={100} height={50} />
                                                 </div>
                                                 <div>
                                                     <p className="text-lg font-bold">{lessonName.find((i: any) => i.id == lesson.lessonId)?.name}</p>

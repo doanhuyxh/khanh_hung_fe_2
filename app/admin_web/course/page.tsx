@@ -72,6 +72,7 @@ export default function Course() {
         {
             key: '1',
             label: 'Chuyển sang công khai',
+            className: 'text-green-500',
             onClick: () => handleUpdateStatus('published'),
         },
         {

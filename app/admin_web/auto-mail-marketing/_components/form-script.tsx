@@ -11,7 +11,7 @@ const {TextArea} = Input;
 
 export default function FormScript({open, onClose}: { open: boolean, onClose:()=>void }) {
     
-    const [form] = Form.useForm();
+    const [form_data] = Form.useForm();
     const [conditions, setConditions] = useState([]);
     const [listCondition, setListCondition] = useState<ConditionSelected[]>([]);
 
@@ -43,10 +43,11 @@ export default function FormScript({open, onClose}: { open: boolean, onClose:()=
     }
 
     const handleSaveScript = async (values: any) => {
+        
         const save_data = {
             id: data.id,
             name: values.name,
-            description: values.description,
+            description: values.description||"",
             sequentially: values.sequentially,
             condition: JSON.stringify(listCondition),
             listSchedulingEmails: []
@@ -77,12 +78,12 @@ export default function FormScript({open, onClose}: { open: boolean, onClose:()=
 
 
     useEffect(() => {
-        form.resetFields();
+        form_data.resetFields();
         const initData = sessionStorage.getItem("data-script");
         const data = initData ? JSON.parse(initData) : null;
 
         if (initData != null) {
-            form.setFieldsValue({
+            form_data.setFieldsValue({
                 name: data.name,
                 description: data.description,
                 sequentially: data.sequentially
@@ -95,7 +96,7 @@ export default function FormScript({open, onClose}: { open: boolean, onClose:()=
             setData(data);
             sessionStorage.removeItem("data-script")
         }
-    }, []);
+    }, [open]);
 
 
     return (
@@ -107,7 +108,7 @@ export default function FormScript({open, onClose}: { open: boolean, onClose:()=
             footer={null}
         >
             <Form
-                form={form}
+                form={form_data}
                 layout="vertical"
                 onFinish={handleSaveScript}
             >

@@ -109,7 +109,7 @@ export interface Customer {
     bankAccountNumber: string;
     accountBankName: string;
     accountBankOwner: string;
-    createdAt: number;
+    createdAt: string;
     totalMoney: number;
     code: string;
     level_affiliate: number;
@@ -124,8 +124,8 @@ export interface NotificationItem {
     messId: string;
     messUserId: string;
     status: string;
-    sendAt: number;
-    readAt: number;
+    sendAt: string;
+    readAt: string;
     title: string;
     content: string;
 }

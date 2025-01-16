@@ -4,6 +4,8 @@ import colors from "tailwindcss/colors";
 import tailwindScrollbar from 'tailwind-scrollbar';
 import tailwindAnimated from 'tailwindcss-animated';
 import flowbitePlugin from 'flowbite/plugin';
+import lineClampPlugin from "@tailwindcss/line-clamp";
+
 
 
 export default {
@@ -15,6 +17,7 @@ export default {
   theme: {
     screens: {
       ...defaultTheme.screens,
+      "6xl": "2500px",
     },
     extend: {
       variants: {
@@ -363,6 +366,6 @@ export default {
   plugins: [
     tailwindAnimated,
     tailwindScrollbar({ nocompatible: true }),
-    flowbitePlugin,
+    flowbitePlugin
   ],
 } satisfies Config;

@@ -4,7 +4,7 @@ import {Table, Tag, Select, DatePicker} from 'antd';
 import React, {useEffect, useState} from 'react';
 import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
 import {ResponseData, Customer, TemplateMail} from "@/app/_libs/types";
-import {unixToDatetime} from "@/app/_libs/utils";
+import {formatTime} from "@/app/_libs/utils";
 import dayjs from "dayjs";
 
 
@@ -15,8 +15,8 @@ export default function Histories() {
     const [templates, setTemplates] = useState<TemplateMail[]>([]);
     const [users, setUsers] = useState<Customer[]>([]);
     const [pageSize, setPageSize] = useState(5);
-    const [startDate, setStartDate] = useState(0);
-    const [endDate, setEndDate] = useState(0);
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
 
 
     const columns = [
@@ -33,19 +33,19 @@ export default function Histories() {
             title: 'Thời gian tạo',
             dataIndex: 'createdAt',
             key: 'createdAt',
-            render: (text) => unixToDatetime(text), // Thêm `return` cho giá trị
+            render: (text) => formatTime(text), // Thêm `return` cho giá trị
         },
         {
             title: 'Khung giờ gửi',
             dataIndex: 'sendAt',
             key: 'sendAt',
-            render: (text) => (text ? unixToDatetime(text) : ''),
+            render: (text) => (text ? formatTime(text) : ''),
         },
         {
             title: 'Thời gian xem',
             dataIndex: 'readAt',
             key: 'readAt',
-            render: (text) => (text ? unixToDatetime(text) : 'Chưa xem'),
+            render: (text) => (text ? formatTime(text) : 'Chưa xem'),
         },
         {
             title: 'Mẫu mail',
@@ -83,18 +83,18 @@ export default function Histories() {
 
     const handleStartDateChange = (date, dateString) => {
         if (date) {
-            setStartDate(dayjs(dateString).unix());
+            setStartDate(dayjs(dateString).format("YYYY-MM-DD HH:mm"));
         } else {
-            setStartDate(0);
+            setStartDate('');
         }
     };
 
 
     const handleEndDateChange = (date, dateString) => {
         if (date) {
-            setEndDate(dayjs(dateString).unix());
+            setEndDate(dayjs(dateString).format("YYYY-MM-DD HH:mm"));
         } else {
-            setEndDate(0);
+            setEndDate("");
         }
     };
 

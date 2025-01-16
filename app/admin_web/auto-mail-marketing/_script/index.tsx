@@ -66,14 +66,12 @@ export default function Script() {
 
     useEffect(() => {
 
-        if (emails.length > 0) {
-            getListScript();
-        } else {
-            getListScriptAuto();
-        }
+
+        getListScript();
+        getListScriptAuto();
 
 
-    }, [emails.length]);
+    }, []);
 
 
     const onDragStart = (event: any) => {
@@ -93,8 +91,6 @@ export default function Script() {
     };
 
 
-
-
     return (
         <>
             <DndContext collisionDetection={closestCenter} onDragEnd={onDragEnd} onDragMove={onDragMove} onDragStart={onDragStart}>
@@ -103,15 +99,16 @@ export default function Script() {
                         <Col xs={24} sm={24} md={8} lg={6}>
                             <Card
                                 style={{ marginBottom: 20, padding: "10px" }}
-                                className="border-[2px] border-gray-700 border-dashed"
+                                className="border-[2px] border-gray-700 border-dashed bg-transparent"
                             >
                                 <Space direction="vertical" size="middle" style={{ width: "100%" }}>
                                     <div className="flex justify-between bg-black bg-opacity-30 px-1 py-3 rounded">
-                                        <span className="font-bold">
+                                        <span className="font-bold flex gap-2 items-center">
                                             {emails.length > 0 && (
                                                 <>
-                                                    <i className="fa-solid fa-list"></i> Danh sách email
-                                                    <span className="text-white"> ({emails.length})</span>
+                                                    <i className="fa-solid fa-list"></i>
+                                                    Danh sách email
+                                                    <span className=""> ({emails.length})</span>
                                                 </>
                                             )}
 
@@ -173,7 +170,7 @@ export default function Script() {
                                         <Col xs={24} sm={12} md={12} lg={12} key={index}>
                                             <Card
                                                 id={"script" + script.id}
-                                                className="border-[1px] border-dashed border-gray-500 p-3"
+                                                className="border-[1px] border-dashed border-gray-500 p-3 bg-transparent"
                                                 title={<div className="text-white">{script.name}</div>}
                                                 extra={
                                                     <Space>

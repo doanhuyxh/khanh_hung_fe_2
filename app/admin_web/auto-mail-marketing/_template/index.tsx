@@ -6,7 +6,7 @@ import axiosAdminConfig from "@/app/_libs/configs/axiosAdminConfig";
 import {TemplateMail} from "@/app/_libs/types";
 import EditorReactQuill from "@/app/_components/Editor/ReactQuill";
 import ModalViewHtml from "@/app/_components/Modal/ModalViewHtml";
-import {unixToDatetime} from "@/app/_libs/utils";
+import {formatTime} from "@/app/_libs/utils";
 
 
 export default function Template() {
@@ -144,7 +144,7 @@ export default function Template() {
             title: "Ngày tạo",
             dataIndex: "createdAt",
             key: "createdAt",
-            render: (createdAt: number) => unixToDatetime(createdAt),
+            render: (createdAt: string) => formatTime(createdAt),
         },
         {
             title: "Hành động",

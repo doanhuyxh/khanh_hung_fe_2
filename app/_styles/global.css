@@ -30,7 +30,7 @@
     --sz-hd-foot: 4.8rem;
     --sz-hd: calc(var(--sz-hd-top) + var(--sz-hd-bot));
     --h-page: 950;
-    --f-sz: calc(13 / var(--h-page) * 100vh);
+    --f-sz: calc(16 / var(--h-page) * 100vh);
     --rg: 0rem;
     --cg: 0rem;
     --sz-ic-mb: 4.4rem;

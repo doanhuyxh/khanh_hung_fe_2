@@ -1,38 +1,3 @@
-// 'use client'
-// import Loading from '../_components/Loading'
-// import {useEffect, useState} from 'react'
-//
-// import axiosCustomerConfig from "@/app/_libs/configs/axiosCustomerConfig";
-//
-// export default function StudyPage() {
-//     const [loading, setLoading] = useState(true)
-//
-//     const ChangePageToFirstLearn = async () => {
-//         const respone:any = await axiosCustomerConfig.get("/course/get-last-lesson")
-//         if (respone.code === 200) {
-//             window.location.href = `/study/${respone.data}`
-//         } else {
-//             window.location.href = '/'
-//         }
-//     }
-//     useEffect(() => {
-//         setLoading(false)
-//     }, [])
-//
-//     useEffect(() => {
-//         if (!loading) {
-//             ChangePageToFirstLearn()
-//
-//         }
-//     }, [loading])
-//
-//     return (
-//         <div>
-//             <Loading/>
-//         </div>
-//     )
-// }
-//
 
 import dynamic from "next/dynamic";
 import {cookies} from "next/headers";
@@ -62,7 +27,7 @@ export default async function StudyPage() {
     }
 
     return (
-        <div className="container m-auto flex flex-col lg:flex-row justify-center items-center gap-20 mt-10 lg:mt-20">
+        <div className=" max-w-[2100px] m-auto flex flex-col lg:flex-row justify-center items-center gap-20 mt-10 lg:mt-20">
             <div className="">
                 <FormAuth/>
             </div>

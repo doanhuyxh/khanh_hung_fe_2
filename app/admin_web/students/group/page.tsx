@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import {Table, Button, Space, Modal, Form, Input, Tooltip, Avatar, Checkbox, Select, DatePicker} from "antd";
 import {GroupUser, ResponseData} from "@/app/_libs/types";
 import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
-import {unixToDatetime} from "@/app/_libs/utils";
+import {formatTime} from "@/app/_libs/utils";
 import {toast} from "react-hot-toast";
 import moment from "moment";
 import dayjs from "dayjs";
@@ -141,7 +141,7 @@ const GroupStudent = () => {
             title: "Ngày đăng ký",
             dataIndex: "createdAt",
             key: "createdAt",
-            render: (_, record) => <span>{unixToDatetime(record.createdAt)}</span>
+            render: (_, record) => <span>{formatTime(record.createdAt)}</span>
         },
         {
             title: "Loại học viên",
@@ -172,7 +172,7 @@ const GroupStudent = () => {
             title: "Ngày đăng ký",
             dataIndex: "createdAt",
             key: "createdAt",
-            render: (_, record) => <span>{unixToDatetime(record.createdAt)}</span>
+            render: (_, record) => <span>{formatTime(record.createdAt)}</span>
         },
         {
             title: "Loại học viên",

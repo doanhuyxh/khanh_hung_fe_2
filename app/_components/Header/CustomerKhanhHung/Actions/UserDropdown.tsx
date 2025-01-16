@@ -29,7 +29,7 @@ export default function UserDropdown({ isDropdown, user, setIsDropdown }: { isDr
                         </div>
                         <div className="text-nowrap text-xl flex flex-col gap-2 cursor-pointer">
                             <span className="text-gray-500 font-semibold">Mã khách hàng:</span>
-                            <p className="text-black font-thin flex items-center gap-2">
+                            <p className="text-black font-medium flex items-center gap-2">
                                 {user?.code || ""}
                                 <span>
                                     <Image src="/assets/images/header/tag-icon.svg" alt="copy" width={15} height={15} />

@@ -81,8 +81,8 @@ export default function CourseForm() {
             <h1 className="text-center text-2xl font-bold mb-5">{title}</h1>
             <div className="grid grid-cols-3 gap-4">
 
-                <div className="col-span-2 shadow-lg p-4 rounded-lg">
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="col-span-2 bg-white p-4 rounded-lg">
+                    <div className="rounded-lg p-4 shadow-sm">
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Tên khoá học

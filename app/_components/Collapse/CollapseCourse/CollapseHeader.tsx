@@ -25,13 +25,13 @@ const CollapseHeader = ({
   return (
     <button
       onClick={onClick}
-      className={`w-full text-left rounded-t-md flex justify-center items-center overflow-hidden ${isOpen ? "sticky top-0 z-20 bg-white px-3 pt-3 pb-3 md:h-33" : "mt-3 mb-1 px-3 md:h-28"}`}
+      className={`w-full text-left rounded-t-md flex justify-center items-center overflow-hidden ${isOpen ? "sticky top-0 z-20 bg-white px-3 pt-3 pb-3 md:h-34 6xl:h-36" : "mt-3 mb-1 px-3 md:h-29 6xl:h-36"}`}
     >
       <div className="w-full h-fit relative">
-        <h2 className="title_course w-11/12 text-color-primary text-wrap xl:pr-2 mx-1 cursor-pointer">
+        <h2 className="title_course w-11/12 text-color-primary text-wrap xl:pr-2 mx-1 cursor-pointer line-clamp-2">
           {title}
         </h2>
-        <div className="flex justify-between bg-white mx-2 text_mobile cursor-pointer">
+        <div className="flex justify-between items-center bg-white mx-2 text_mobile cursor-pointer">
           <p className="flex gap-2 text-nowrap">
             <span className="w-[18px]">
               <Image
@@ -44,7 +44,7 @@ const CollapseHeader = ({
             <span className="text-black opacity-50">Số lượng:</span>
             <span className="text-black">{numberVideo} video</span>
           </p>
-          <p className="flex gap-2 text-nowrap">
+          <p className="flex  items-center gap-2 text-nowrap">
             <span className="w-[18px]">
               <Image
                 src="/assets/images/pro-box-note-2.svg"

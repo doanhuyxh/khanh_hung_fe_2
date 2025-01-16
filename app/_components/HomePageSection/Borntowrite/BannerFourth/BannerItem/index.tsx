@@ -31,7 +31,6 @@ export default function BannerItem({icon, name, job, content, img}) {
                                 width={100}
                                 height={100}
                                 alt=""
-                                layout="responsive"
                                 className="w-full"
                             />
                         </div>

@@ -54,8 +54,10 @@ export default function Ceo() {
                 <div className="absolute inset-0 w-full h-full">
                     <Image
                         src={"/assets/images/home/web-statistics-bg.png"}
-                        layout="fill"
+                        width={1920}
+                        height={1080}
                         alt="Background"
+                        style={{width: "100%", height: "auto"}}
                     />
                 </div>
                 <div className="relative z-10 text-center text-gray-800">

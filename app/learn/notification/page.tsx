@@ -3,7 +3,7 @@
 import Pagination from "@/app/_components/Pagination";
 import axiosCustomerConfig from "@/app/_libs/configs/axiosCustomerConfig";
 import ModalViewHtml from "@/app/_components/Modal/ModalViewHtml";
-import { unixToDatetime } from "@/app/_libs/utils";
+import { formatTime } from "@/app/_libs/utils";
 import { NotificationItem } from "@/app/_libs/types";
 import { useState, useEffect, useCallback } from "react";
 
@@ -134,9 +134,9 @@ export default function Notification() {
                                             </span>
                                         </td>
 
-                                        <td className="py-4 px-6">{unixToDatetime(item.sendAt)}</td>
+                                        <td className="py-4 px-6">{formatTime(item.sendAt)}</td>
 
-                                        <td className="py-4 px-6">{item.readAt ? unixToDatetime(item.readAt) : "-"}</td>
+                                        <td className="py-4 px-6">{item.status == "read" ? formatTime(item.readAt) : "-"}</td>
 
                                         <td className="py-4 px-6">
                                             {item.status === "read" ? (
@@ -182,13 +182,13 @@ export default function Notification() {
                                     <div className="flex justify-between mt-2">
                                         <span className="font-semibold text-gray-400">Thời gian gửi:</span>
                                         <span className="text-gray-600">
-                                            {unixToDatetime(item.sendAt)}
+                                            {formatTime(item.sendAt)}
                                         </span>
                                     </div>
                                     <div className="flex justify-between mt-2">
                                         <span className="font-semibold text-gray-400">Thời gian xem:</span>
                                         <span className="text-gray-600">
-                                            {item.readAt == 0 ? unixToDatetime(item.readAt) : "-"}
+                                            {item.status == "read" ? formatTime(item.readAt) : "-"}
                                         </span>
                                     </div>
                                     <div className="flex justify-between mt-2">
