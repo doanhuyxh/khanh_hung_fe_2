@@ -45,7 +45,9 @@ export default function Histories() {
             title: 'Thời gian xem',
             dataIndex: 'readAt',
             key: 'readAt',
-            render: (text) => (text ? formatTime(text) : 'Chưa xem'),
+            render: (_, record) => {
+                return record.isRead ? formatTime(record.readAt) : 'Chưa xem';
+            },
         },
         {
             title: 'Mẫu mail',

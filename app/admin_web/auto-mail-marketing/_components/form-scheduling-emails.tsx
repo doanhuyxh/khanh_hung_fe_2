@@ -35,14 +35,16 @@ export default function FormSchedulingEmails({ visible, onClose }: { visible: bo
 
 
         const data = {
-            id: "",
+            id: values.id,
             name: values.name,
             time: values.time.format("HH:mm"),
             date: values.date ? values.date.format("YYYY-MM-DD") : null,
             templateMailId: values.selectOption,
             condition: JSON.stringify(listCondition),
-            isActived: true
+            isActived: false
         }
+
+        console.log(values);
 
         axiosInstance.post("/email/create-or-update-script-auto-scheduling-emails", data)
             .then((res: any) => {
@@ -54,11 +56,7 @@ export default function FormSchedulingEmails({ visible, onClose }: { visible: bo
 
         onClose();
         form.resetFields();
-    };
-
-    const handleCancel = () => {
-        onClose();
-        form.resetFields();
+        window.location.reload();
     };
 
     useEffect(() => {
@@ -91,6 +89,7 @@ export default function FormSchedulingEmails({ visible, onClose }: { visible: bo
         if (initData != null) {
             form.resetFields();
             form.setFieldsValue({
+                id: data.id,
                 name: data.name,
                 time: moment(data.time, "HH:mm"),
                 date: data.date ? moment(data.date, "YYYY-MM-DD") : null,
@@ -104,7 +103,7 @@ export default function FormSchedulingEmails({ visible, onClose }: { visible: bo
             sessionStorage.removeItem("data-email")
         }
 
-    },[visible, form])
+    }, [visible, form])
 
     return (
         <Modal
@@ -130,7 +129,13 @@ export default function FormSchedulingEmails({ visible, onClose }: { visible: bo
                 }}
             >
                 <Form.Item
-                    label="Tên"
+                    name="id"
+                    hidden
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Tên Auto Mail"
                     name="name"
                     rules={[{ required: true, message: 'Vui lòng nhập tên!' }]}
                 >
@@ -157,7 +162,6 @@ export default function FormSchedulingEmails({ visible, onClose }: { visible: bo
                     </Col>
                 </Row>
 
-
                 <Form.Item
                     label="Lựa chọn mẫu template"
                     name="selectOption"
@@ -170,29 +174,27 @@ export default function FormSchedulingEmails({ visible, onClose }: { visible: bo
                     </Select>
                 </Form.Item>
 
-                <div className="w-full h-fit">
+                <div className="w-full h-fit mt-3 mb-10">
                     <label className="w-full text-center flex justify-between">
                         <span className="font-bold">Điều kiện</span>
                         <span className="bg-green-400 px-2 py-1 rounded text-white my-4 cursor-pointer"
                             onClick={handleAddCondition}>Thêm điều kiện</span>
                     </label>
-
                     <div className="flex flex-col gap-3 my-3">
                         {
                             listCondition.map((item, index) =>
-                                <div key={index} className="flex justify-between items-center">
+                                <div key={index} className="flex justify-start items-center">
                                     <ConditionSelector
                                         intData={item}
                                         onChange={(data: ConditionSelected) => handleConditionChange(index, data)}
                                         data={condition} />
-                                    <Button
-                                        type="primary"
-                                        danger
+                                    <button
+                                        className="text-red-500 px-2 py-1 rounded hover:bg-red-500 hover:text-white transition duration-300"
                                         onClick={() => handleRemoveCondition(index)}>
                                         <i className="fa-solid fa-trash"></i>
-                                    </Button>
-                                </div>)
-                        }
+                                    </button>
+                                </div>
+                            )}
                     </div>
                 </div>
             </Form>

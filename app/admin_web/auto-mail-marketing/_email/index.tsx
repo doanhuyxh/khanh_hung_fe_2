@@ -1,12 +1,13 @@
 'use client';
 
 import {useEffect, useState} from "react";
-import {Table, Tag, Space, Button, Switch} from 'antd';
+import {Table, Space, Button, Switch} from 'antd';
 import {ResponseData} from "@/app/_libs/types";
 import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
 
 
-export default function Emails() {
+
+export default function Emails({setOpenMail} : {setOpenMail: any}) {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     
@@ -28,6 +29,31 @@ export default function Emails() {
         }
     }
 
+    const deleteEmail = async (id: string) => {
+        try {
+            const res: ResponseData = await axiosInstance.get(`/email/delete-script-auto-scheduling-emails?id=${id}`);
+            if (res.code === 200) {
+                await getData();
+            }
+        } catch (error) {
+            console.error("Error deleting email:", error);
+        }
+    }
+
+    const handleStatusChange = (record: any) => {
+        axiosInstance.get("/email/update-status-script-auto-scheduling-emails?id="+record.id, {
+        }).then(() => {
+            getData();
+            console.log("record", record)
+            if(record.isActived){
+                axiosInstance.get("/hangfire-schedule/delete?jobId="+record.id)
+            }else{
+                axiosInstance.post(`/hangfire-schedule/add?time=${record.time}&jobId=${record.id}&date=${record.date}`)
+            }
+
+        });
+    };
+
     useEffect(() => {
         getData()
     }, []);
@@ -48,21 +74,27 @@ export default function Emails() {
         },
         {
             title: 'Giờ gửi',
-            dataIndex: 'sendTime',
-            key: 'sendTime',
+            dataIndex: 'time',
+            key: 'time',
         },
         {
             title: 'Ngày gửi',
-            dataIndex: 'sendDate',
-            key: 'sendDate',
+            dataIndex: 'date',
+            key: 'date',
+            render  : (date) => (
+                date ? date : 'Hàng ngày'
+            )
         },
         {
             title: 'Trạng thái',
             dataIndex: 'isActived',
             key: 'isActived',
-            render: (status:boolean) => {
-
-            },
+            render: (_, record) => (
+                <Switch 
+                checked={record.isActived} 
+                onClick={() => handleStatusChange(record)} 
+            />
+            ),
         },
         {
             title: 'Đã gửi',
@@ -81,8 +113,8 @@ export default function Emails() {
         },
         {
             title: 'Lỗi',
-            dataIndex: 'error',
-            key: 'error',
+            dataIndex: 'fail',
+            key: 'fail',
         },
         {
             title: 'Đang chờ',
@@ -99,8 +131,11 @@ export default function Emails() {
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
-                    <Button type="primary">Sửa</Button>
-                    <Button type="default">Xoá</Button>
+                    <Button type="primary" onClick={()=>{
+                        sessionStorage.setItem('data-email', JSON.stringify(record))
+                        setOpenMail()
+                    }}>Sửa</Button>
+                    <Button type="default" onClick={()=>deleteEmail(record.id)}>Xoá</Button>
                 </Space>
             ),
         },

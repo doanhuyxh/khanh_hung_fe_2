@@ -77,7 +77,7 @@ export default function AutoMailMarketing() {
 
             <div className="my-10 w-11/12 p-5 rounded">
                 {tab === "script" && <Script />}
-                {tab === "email" && <Emails />}
+                {tab === "email" && <Emails setOpenMail={()=>setIsShowAddEmail(!isShowAddEmail)} />}
                 {tab === "template" && <Template />}
                 {tab === "report" && <div>Báo cáo</div>}
             </div>
