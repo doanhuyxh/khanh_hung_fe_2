@@ -1,7 +1,7 @@
 'use client';
 
 import {useEffect, useState} from "react";
-import {Table, Tag, Space, Button} from 'antd';
+import {Table, Tag, Space, Button, Switch} from 'antd';
 import {ResponseData} from "@/app/_libs/types";
 import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
 
@@ -15,7 +15,7 @@ export default function Emails() {
         try {
             const res: ResponseData = await axiosInstance.get("/email/get-script-auto-scheduling-emails?page=1&pageSize=300");
             if (res.code === 200) {
-                const dataWithKeys = res.data.map((item) => ({
+                const dataWithKeys = res.data.map((item:any) => ({
                     ...item,
                     key: item.id, 
                 }));
@@ -60,10 +60,8 @@ export default function Emails() {
             title: 'Trạng thái',
             dataIndex: 'isActived',
             key: 'isActived',
-            render: (status) => {
-                const color = status ? 'green' : 'red';
-                const statusText = status ? 'Hoạt động' : 'Không hoạt động';
-                return <Tag color={color}>{statusText}</Tag>;
+            render: (status:boolean) => {
+
             },
         },
         {
@@ -93,8 +91,8 @@ export default function Emails() {
         },
         {
             title: 'Mẫu mail',
-            dataIndex: 'templateMailId',
-            key: 'templateMailId',
+            dataIndex: 'templateMailName',
+            key: 'templateMailName',
         },
         {
             title: 'Chức năng',

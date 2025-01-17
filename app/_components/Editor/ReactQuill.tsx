@@ -1,9 +1,9 @@
-'use client'
+
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 import './editor.css';
 import { debounce } from 'lodash';
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
 
@@ -32,9 +32,6 @@ export default function EditorReactQuill({ value, onChange }: { value: string; o
             ['align', 'color', 'background'],
         ],
     };
-
-
-
 
 
     const debouncedOnChange = debounce((newValue) => {
