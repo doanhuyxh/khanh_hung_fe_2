@@ -62,7 +62,7 @@ const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
         </Link>
       </div>
 
-      <div className={`fixed top-[${headerHeight}px] height_header left-0 w-[100vw] h-screen transition bg-black z-99999 bg-opacity-60 ${isOpenSidebar ? 'block' : 'hidden'}`}
+      <div className={`fixed top-[60px] height_header left-0 w-[100vw] h-screen transition bg-black z-99999 bg-opacity-60 ${isOpenSidebar ? 'block' : 'hidden'}`}
         onClick={handleOverlayClick}>
         <div className={`w-fit h-full bg-white overflow-hidden`} onClick={handleSidebarClick}>
           <Sidebar />

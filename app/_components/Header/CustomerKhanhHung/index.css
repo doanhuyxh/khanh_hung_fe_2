@@ -359,3 +359,17 @@
 
   
 }
+
+
+@media screen and (max-width: 900px) {
+  .height_header{
+    top: 60px !important;
+  }
+  
+}
+
+@media screen and (min-width: 1400px) {
+  .height_header{
+    top: 80px !important;
+  }
+}
