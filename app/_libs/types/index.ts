@@ -173,7 +173,8 @@ export interface Seo {
     domain: string,
     OgImage: string,
     twitterImage: string,
-    twitterSite: string
+    twitterSite: string,
+    robots:string
 }
 
 export interface TemplateMail {

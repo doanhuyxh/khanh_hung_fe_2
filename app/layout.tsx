@@ -21,46 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: data.title || '',
     description: data.description || '',
     keywords: data.keywords || '',
-    openGraph: {
-      url: data.domain || 'http://vuacontent.vn',
-      title: data.title || '',
-      description: data.description || '',
-      siteName: data.domain || '',
-      images: [
-        {
-          url: data.OgImage || '',
-          width: 1200,
-          height: 630,
-        },
-      ],
-      locale: data.locale || '',
-      type: 'website',
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
-    twitter: {
-      card: 'summary_large_image',
-      site: data.twitterSite || '',
-      title: data.title || '',
-      description: data.description || '',
-      images: [data.twitterImage || ''],
-    },
-    alternates: {
-      canonical: data.domain || '',
-      languages: {
-        vi: data.domain || '',
-        en: data.domain || '',
-      },
-    },
+    robots: data.robots || '',
   };
  
 };
