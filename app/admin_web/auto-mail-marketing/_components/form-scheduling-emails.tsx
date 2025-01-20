@@ -1,8 +1,7 @@
-'use client'
 
 import React, { useEffect, useState } from "react";
-import { Table, Tag, Space, Button, Modal, Form, Input, Select, TimePicker, DatePicker, Row, Col } from 'antd';
-import { ConditionSelected, ResponseData } from "@/app/_libs/types";
+import { Modal, Form, Input, Select, TimePicker, DatePicker, Row, Col } from 'antd';
+import { ConditionSelected } from "@/app/_libs/types";
 import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
 import ConditionSelector from "@/app/_components/ConditionSelectAutoMail";
 import moment from "moment";

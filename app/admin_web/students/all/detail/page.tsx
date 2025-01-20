@@ -15,6 +15,32 @@ export default function CustomerDetailPage() {
     const [courseProgress, setCourseProgress] = useState<any[]>([]);
     const [emailHistory, setEmailHistory] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [progress, setProgress] = useState<Record<string, any[]>>({});
+    const [showIndexCourse, setShowIndexCourse] = useState<string>("");
+
+    const GetProgressCourse = async (userId: string, courseId: string) => {
+        try {
+            const res = await axiosInstance.get(`/course/GetLessonProgressInCourse?userId=${userId}&courseId=${courseId}`)
+            return res.data;
+        } catch (error) {
+            return []
+        }
+    }
+
+    const GetProgress = (courseId: string) => {
+        const data = progress[courseId];
+        if (!data) {
+            GetProgressCourse(id || "", courseId)
+                .then((res) => {
+                    setProgress({...progress, [courseId]: res});
+                    return res
+                })
+
+        } else {
+            return data;
+        }
+
+    }
 
     useEffect(() => {
         axiosInstance.get(`/customer/get-by-id?id=${id}`)
@@ -25,7 +51,9 @@ export default function CustomerDetailPage() {
             .finally(() => setIsLoading(false));
 
         axiosInstance.get(`/course/GetAllProgressByCustomerId?page=1&pageSize=50&customerId=${id}`)
-            .then((res) => setCourseProgress(res.data))
+            .then((res) => {
+                setCourseProgress(res.data)
+            })
             .catch((err) => console.error(err));
 
         axiosInstance.get(`/customer/get-history-mail?id=${id}&page=1&pageSize=100`)
@@ -33,6 +61,18 @@ export default function CustomerDetailPage() {
             .catch((err) => console.error(err));
 
     }, [id]);
+
+    useEffect(() => {
+        if (courseProgress.length != 0) {
+            courseProgress.forEach((item) => {
+                GetProgress(item.courseId)
+            })
+        }
+    }, [courseProgress]);
+
+    useEffect(() => {
+        console.log(progress)
+    }, [progress]);
 
     if (isLoading) {
         return (
@@ -101,23 +141,66 @@ export default function CustomerDetailPage() {
             children: (
                 <div className="bg-white p-4 rounded-lg shadow-md">
                     {courseProgress.map((item, index) => (
-                        <div key={index} className="bg-gray-100 p-4 rounded-lg shadow-md flex items-center gap-4">
-                            <Image
-                                src={item.courseImageThump}
-                                alt={item.courseName}
-                                width={100}
-                                height={100}
-                                className="rounded-lg"
-                            />
-                            <div className="flex-grow">
-                                <h4 className="text-lg font-semibold">{item.courseName}</h4>
-                                <div className="mt-2 bg-gray-200 rounded-full h-2.5">
-                                    <div
-                                        className="bg-blue-600 h-2.5 rounded-full"
-                                        style={{width: `${item.progress}%`}}
-                                    />
+                        <div key={index} className="bg-gray-100 p-4 rounded-lg shadow-md">
+                            <div className="flex items-center gap-4">
+                                {item.courseImageThump && <Image
+                                    src={item.courseImageThump}
+                                    alt={item.courseName}
+                                    width={100}
+                                    height={100}
+                                    className="rounded-lg"
+                                />}
+                                {
+                                    !item.courseImageThump && <div className="w-20 h-20 bg-gray-300 rounded-lg"/>
+                                }
+                                <div className="flex-grow">
+                                    <h4 className="text-lg font-semibold">{item.courseName}</h4>
+                                    <div className="mt-2 bg-gray-200 rounded-full h-2.5">
+                                        <div
+                                            className="bg-blue-600 h-2.5 rounded-full"
+                                            style={{width: `${item.progress}%`}}
+                                        />
+                                    </div>
+                                    <p>Tiến độ: {item.progress}%</p>
                                 </div>
-                                <p>Tiến độ: {item.progress}%</p>
+                            </div>
+                            <div className="w-full">
+                                <div className="w-full h-fit flex justify-end">
+                                    <span className="px-2 py-1 bg-violet-400 text-white rounded cursor-pointer"
+                                          onClick={() => setShowIndexCourse(item.courseId)}>Xem chi tiết </span>
+                                </div>
+                                {showIndexCourse == item.courseId && <div className="w-full">
+                                    {
+                                        progress[item.courseId].map((lesson, index) => {
+                                            return (
+                                                <div key={index} className="ml-20 flex items-center gap-4">
+                                                    {
+                                                        lesson.image && <Image
+                                                            src={lesson.image}
+                                                            alt={lesson.lesson_name}
+                                                            width={100}
+                                                            height={100}
+                                                            className="rounded-lg"
+                                                        />
+                                                    }
+                                                    {
+                                                        !lesson.image && <div className="w-20 h-20 bg-gray-300 rounded-lg"/>
+                                                    }
+                                                    <div className="flex-grow">
+                                                        <h4 className="text-lg font-semibold">{lesson.lesson_name}</h4>
+                                                        <div className="mt-2 bg-gray-200 rounded-full h-2.5">
+                                                            <div
+                                                                className="bg-blue-600 h-2.5 rounded-full"
+                                                                style={{width: `${lesson.progress}%`}}
+                                                            />
+                                                        </div>
+                                                        <p>Tiến độ: {lesson.progress}%</p>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>}
                             </div>
                         </div>
                     ))}
@@ -160,7 +243,7 @@ export default function CustomerDetailPage() {
                                 <td className="border border-gray-300 px-4 py-2">{unixToDatetime(item.createdAt)}</td>
                                 <td className="border border-gray-300 px-4 py-2">{unixToDatetime(item.sendAt)}</td>
                                 <td className="border border-gray-300 px-4 py-2">
-                                    { item.isRead ? unixToDatetime(item.readAt) : '' }
+                                    {item.isRead ? unixToDatetime(item.readAt) : ''}
                                 </td>
                                 <td className="border border-gray-300 px-4 py-2">{item.name}</td>
                                 <td className="border border-gray-300 px-4 py-2">{item.typeMailSend}</td>
