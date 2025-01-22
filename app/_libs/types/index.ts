@@ -168,13 +168,6 @@ export interface Seo {
     keywords: string,
     favicon: string,
     logo: string,
-    siteName: string,
-    locale: string,
-    domain: string,
-    OgImage: string,
-    twitterImage: string,
-    twitterSite: string,
-    robots:string
 }
 
 export interface TemplateMail {

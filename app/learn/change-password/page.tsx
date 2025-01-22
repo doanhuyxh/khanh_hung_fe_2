@@ -70,9 +70,9 @@ export default function ChangePassword() {
     }
 
     return (
-        <div className="container mt-10 lg:mt-20 ">
+        <div className="container m-auto mt-10 lg:mt-20 ">
             <div className="w-full flex justify-center items-center">
-                <h1 className="text-3xl lg:text-5xl font-bold transform scale-150  text-color-secondary">Bổ sung mật khẩu</h1>
+                <h1 className="text-3xl lg:text-5xl font-bold transform   text-color-secondary">Bổ sung mật khẩu</h1>
             </div>
             <div className="w-11/12 lg:w-10/12 m-auto p-10 lg:p-30 shadow-[0_0_20px_rgba(0,0,0,0.2)] rounded-xl mt-10 bg-white">
                 <div className="w-full flex flex-col lg:flex-row lg:gap-50 lg:p-8">
@@ -102,7 +102,7 @@ export default function ChangePassword() {
                     </div>
                 </div>
                 <div className="w-full flex justify-end items-center px-8 mt-10 lg:mt-0">
-                    <button className="bg-color-primary text-white py-4 px-4 rounded-lg text-3xl transition-colors text-nowrap" onClick={handleChangePassword}>
+                    <button className="bg-color-primary text-white py-4 px-4 rounded-lg text-3xl transition-colors text-nowrap cursor-pointer" onClick={handleChangePassword}>
                         Cập nhật mật khẩu
                     </button>
                 </div>

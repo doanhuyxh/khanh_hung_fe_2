@@ -67,10 +67,10 @@ export default function Page() {
             <div className="w-full min-h-[40vh] px-10 flex flex-col gap-10 bg-gray-100 rounded-2xl p-10">
                 <h2 className="text-3xl">Tiến độ học tập</h2>
 
-                <div className="flex flex-row flex-wrap gap-4">
+                <div className="flex flex-row flex-wrap gap-5">
                     {
                         data.map((item: any, index: number) => (
-                            <div className="bg-white shadow-md rounded-md p-4 max-w-[600px] h-fit" key={index}>
+                            <div className="bg-white shadow-md rounded-md p-4 max-w-[510px] h-fit" key={index}>
                                 <div className="flex flex-row justify-start gap-10 items-start">
                                     <div className="w-[200px] h-fit">
                                         {item.image && <img src={item.image} alt=""
@@ -84,7 +84,7 @@ export default function Page() {
                                 </div>
                                 <div className="mt-4 flex justify-end">
                                     <button
-                                        onClick={() => setShowLessonIndex(index)}
+                                        onClick={() => setShowLessonIndex(showLessonIndex === index ? -1 : index)}
                                         className="text-lg bg-color-primary text-white px-4 py-2 rounded-md cursor-pointer">
                                             {showLessonIndex === index ? "Ẩn bài học" : "Xem bài học"}
                                     </button>

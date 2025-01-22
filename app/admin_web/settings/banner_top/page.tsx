@@ -100,7 +100,7 @@ export default function BannerTop() {
 
     return (
         <div className="w-full p-4">
-            <h2 className="text-center text-2xl font-semibold mb-4">Quản lý thông báo banner trên cùng</h2>
+            <h2 className="text-center text-2xl font-semibold mb-4">Quản lý thông báo</h2>
 
             <div className="flex justify-between items-center mb-4">
                 <Input

@@ -13,12 +13,6 @@ export default function SeoSetting() {
         description: '',
         keywords: '',
         logo: '',
-        siteName: '',
-        locale: '',
-        domain: "",
-        OgImage: "",
-        twitterImage: "",
-        twitterSite: ""
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -86,18 +80,7 @@ export default function SeoSetting() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
 
                     <div className="flex flex-col gap-6">
-                        <div className="flex flex-col gap-2">
-                            <label className="font-semibold">Domain</label>
-                            <input
-                                type="text"
-                                name="domain"
-                                className="border border-gray-300 rounded-md p-2"
-                                placeholder="Enter domain"
-                                value={seoData.domain}
-                                onChange={handleChange}
-                            />
-                        </div>
-
+                        
                         <div className="flex flex-col gap-2">
                             <label className="font-semibold">Title</label>
                             <input
@@ -122,30 +105,7 @@ export default function SeoSetting() {
                             />
                         </div>
 
-                        <div className="flex flex-col gap-2">
-                            <label className="font-semibold">Site Name</label>
-                            <input
-                                type="text"
-                                name="siteName"
-                                className="border border-gray-300 rounded-md p-2"
-                                placeholder="Enter site name"
-                                value={seoData.siteName}
-                                onChange={handleChange}
-                            />
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label className="font-semibold">Locale</label>
-                            <input
-                                type="text"
-                                name="locale"
-                                className="border border-gray-300 rounded-md p-2"
-                                placeholder="Enter locale"
-                                value={seoData.locale}
-                                onChange={handleChange}
-                            />
-                        </div>
-
+                    
                         <div className="flex flex-col gap-2">
                             <label className="font-semibold">Description</label>
                             <textarea
@@ -161,7 +121,7 @@ export default function SeoSetting() {
                     </div>
 
                     <div className="flex flex-col gap-6">
-                        {['favicon', 'logo', 'OgImage', 'twitterImage', 'twitterSite'].map((key, index) => (
+                        {['favicon', 'logo'].map((key, index) => (
                             <div key={key} className="flex flex-col gap-2">
                                 <label className="font-semibold capitalize">{key}</label>
                                 <div className="flex items-center gap-2">
@@ -180,7 +140,7 @@ export default function SeoSetting() {
                                         Chọn ảnh
                                     </label>
                                 </div>
-                                <div className="w-2/12 h-fit">
+                                <div className={`${key == 'favicon' ? 'w-16' : 'w-auto'} h-auto`}>
                                     <FileUploadImage
                                         onChange={(newUrl: any) => handleChangeValue(key, newUrl)}
                                         value={seoData[key as keyof Seo]}

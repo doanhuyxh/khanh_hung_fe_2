@@ -6,7 +6,7 @@ import {useSearchParams} from "next/navigation";
 import {useEffect, useState} from "react";
 import {Tabs, Spin} from "antd";
 import Image from "next/image";
-import {unixToDatetime} from "@/app/_libs/utils";
+import {formatTime} from "@/app/_libs/utils";
 
 export default function CustomerDetailPage() {
     const query = useSearchParams();
@@ -240,10 +240,10 @@ export default function CustomerDetailPage() {
                         {emailHistory.map((item, index) => (
                             <tr key={index} className="hover:bg-gray-100">
                                 <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
-                                <td className="border border-gray-300 px-4 py-2">{unixToDatetime(item.createdAt)}</td>
-                                <td className="border border-gray-300 px-4 py-2">{unixToDatetime(item.sendAt)}</td>
+                                <td className="border border-gray-300 px-4 py-2">{formatTime(item.createdAt)}</td>
+                                <td className="border border-gray-300 px-4 py-2">{formatTime(item.sendAt)}</td>
                                 <td className="border border-gray-300 px-4 py-2">
-                                    {item.isRead ? unixToDatetime(item.readAt) : ''}
+                                    {item.isRead ? formatTime(item.readAt) : ''}
                                 </td>
                                 <td className="border border-gray-300 px-4 py-2">{item.name}</td>
                                 <td className="border border-gray-300 px-4 py-2">{item.typeMailSend}</td>

@@ -66,10 +66,26 @@ function ProfilePage() {
     const handleUpdateInfo = async () => {
         axiosCustomerConfig.post("/customer/update-info", info)
             .then(() => {
-                toast.success("Cập nhật thông tin thành công")
+                toast.success("Cập nhật thông tin thành công", {
+                    duration: 3000,
+                    position: 'top-right',
+                    style:{
+                        backgroundColor: '#10B981',
+                        color: '#fff',
+                        fontSize: '1.6rem',
+                    }
+                })
             })
             .catch(() => {
-                toast.error("Cập nhật thông tin thất bại")
+                toast.error("Cập nhật thông tin thất bại",{
+                    duration: 3000,
+                    position: 'top-right',
+                    style:{
+                        backgroundColor: 'red',
+                        color: '#fff',
+                        fontSize: '1.6rem',
+                    }
+                })
             })
     }
 
@@ -239,7 +255,7 @@ function ProfilePage() {
 
 
                         <div className="flex justify-end items-center ">
-                            <button className="bg-color-primary text-white px-5 py-5 rounded-lg text-3xl"
+                            <button className="bg-color-primary text-white px-5 py-5 rounded-lg text-3xl cursor-pointer"
                                 onClick={handleUpdateInfo}>Lưu lại</button>
                         </div>
 

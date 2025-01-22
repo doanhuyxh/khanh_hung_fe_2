@@ -41,7 +41,7 @@ const menuGroups = [
     name: "",
     menuItems: [
       {
-        icon: <i className="fa-solid fa-users"></i>,
+        icon: <i className="fa-solid fa-users" style={{color:"brown"}}></i>,
         label: "Học viên",
         route: "#",
         children: [
@@ -69,7 +69,7 @@ const menuGroups = [
     name: "",
     menuItems: [
       {
-        icon: <i className="fa-solid fa-envelopes-bulk"></i>,
+        icon: <i className="fa-solid fa-envelopes-bulk" style={{color:"brown"}}></i>,
         label: "Auto Mail Marketing",
         route: "/admin_web/auto-mail-marketing",
       },
@@ -79,7 +79,7 @@ const menuGroups = [
     name: "",
     menuItems: [
       {
-        icon: <i className="fa-solid fa-envelope"></i>,
+        icon: <i className="fa-solid fa-envelope"  style={{color:"brown"}}></i>,
         label: "Cấu hình Email",
         route: "#",
         children: [
@@ -90,19 +90,32 @@ const menuGroups = [
       },
     ],
   },
-
   {
     name: "",
     menuItems: [
       {
-        icon: <i className="fa-solid fa-gear"></i>,
+        icon: <i className="fa-solid fa-bag-shopping" style={{color:"brown"}}></i>,
+        label: "Bán hàng",
+        route: "#",
+        children: [
+          {label: "Cấu hình thanh toán", route: "/admin_web/sell/bank_config"},
+          {label: "Lịch sử thanh toán", route: "/admin_web/sell/trans_history"},
+        ],
+      },
+    ],
+  },
+  {
+    name: "",
+    menuItems: [
+      {
+        icon: <i className="fa-solid fa-gear" style={{color:"brown"}}></i>,
         label: "Cấu hình Website",
         route: "#",
         children: [
           { label: "Affiliate", route: "/admin_web/settings/affiliate" },
           { label: "Tin tức", route: "/admin_web/settings/news" },
           { label: "Liên kết MXH", route: "/admin_web/settings/social_network" },
-          { label: "Banner Top", route: "/admin_web/settings/banner_top" },
+          { label: "Thông báo", route: "/admin_web/settings/banner_top" },
           { label: "Cấu hình Web", route: "/admin_web/settings/seo" },
         ],
       },
