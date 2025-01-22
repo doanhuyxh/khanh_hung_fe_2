@@ -30,22 +30,17 @@ export default function Footer(){
                     <hr className="w-full h-1 bg-white"/>
                 </div>
 
-                <div className="flex flex-col gap-3 text-white justify-center">
-                    <a className="">Kết bạn</a>
-                    <a className="">Colleague Club</a>
-                    <a className="">Hỏi đáp</a>
-                </div>
 
                 <div className="flex flex-col gap-4">
                     <p className="text-white underline font-bold text-[18px]">Liên hệ với tôi</p>
                     <p className="text-white">
-                        <i aria-hidden="true" className="fas fa-phone text-[#26A5BE]"></i> {": "} 0395.018.203
+                        <i aria-hidden="true" className="fas fa-phone text-[#26A5BE]"></i> {": "} 0817.726.406
                     </p>
+                    <a href='mailto:hotro.vuacontent@gmail.com' className="text-white">
+                        <i aria-hidden="true" className="fas fa-envelope text-[#26A5BE]"></i> {": "} hotro.vuacontent@gmail.com
+                    </a>
                     <p className="text-white">
-                        <i aria-hidden="true" className="fas fa-envelope text-[#26A5BE]"></i> {": "} admin@borntowrite.vn
-                    </p>
-                    <p className="text-white">
-                        <i aria-hidden="true" className="fas fa-home text-[#26A5BE]"></i> {": "} ACM Build, 96 Cao Thắng, P.4, Q3
+                        <i aria-hidden="true" className="fas fa-home text-[#26A5BE]"></i> {": "} An Vượng - Hà Đông - Hà Nội
                     </p>
 
                 </div>

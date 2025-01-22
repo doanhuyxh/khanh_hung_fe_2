@@ -94,7 +94,7 @@ const GroupStudent = () => {
                             setListUserIdSelected([]);
                         }
                     }}
-                    checked={listUserIdSelected.length === userInfoSearch.length && userInfoSearch.length > 0}
+                    checked={listUserIdSelected.length == userInfoSearch.length && userInfoSearch.length > 0}
                     indeterminate={listUserIdSelected.length > 0 && listUserIdSelected.length < userInfoSearch.length}
                 />
             ),

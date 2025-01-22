@@ -11,7 +11,7 @@ const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
   const [isClient, setIsClient] = useState(false)
   const [isOpenSidebar, setIsOpenSidebar] = useState(false)
   const [logo, setLogo] = useState('')
-  const [headerHeight, setHeaderHeight] = useState(80)
+  
 
   const handleOverlayClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -23,15 +23,6 @@ const HeaderLogo = ({ isLogin }: { isLogin: boolean }) => {
   }
 
   useEffect(() => {
-
-    const header = document.querySelector('header')
-    
-    if (header) {
-      const headerHeight = header.clientHeight
-      setHeaderHeight(headerHeight)
-    }
-
-
     setIsClient(true);
   }, []);
 

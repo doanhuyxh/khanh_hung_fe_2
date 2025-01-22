@@ -1,6 +1,6 @@
 'use client';
 
-import {Table, Tag, Select, DatePicker} from 'antd';
+import {Table, Tag, Select, DatePicker, Popconfirm, Button} from 'antd';
 import React, {useEffect, useState} from 'react';
 import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
 import {ResponseData, Customer, TemplateMail} from "@/app/_libs/types";
@@ -77,6 +77,25 @@ export default function Histories() {
                 return <Tag color={color}>{status}</Tag>;
             },
         },
+        {
+            title: '',
+            dataIndex: 'action',
+            key: 'action',
+            render: (_, record) => {
+                return (<Popconfirm
+                title="Bạn có chắc chắn muốn hủy?"
+                description="Hành động này không thể hoàn tác."
+                okText="Đồng ý"
+                cancelText="Hủy bỏ"
+                onConfirm={() => {
+                    handleDeleteHistory(record.id);
+                }}
+                onCancel={() => console.log('Đã hủy thao tác.')}
+              >
+                <Button type="default" className='bg-red-500 text-white'>Xoá</Button>
+              </Popconfirm>)
+            },
+        }
     ];
 
     const handlePageSizeChange = (value) => {
@@ -132,6 +151,18 @@ export default function Histories() {
             console.error("Lỗi khi lấy thông tin người dùng:", error);
         }
     };
+
+
+    const handleDeleteHistory = async (id: string) => {
+        try {
+            const res: ResponseData = await axiosInstance.get(`/email/delete-history-send-email?id=${id}`);
+            if (res.code === 200) {
+                getHistorySendEmail();
+            }
+        } catch (error) {
+            console.error("Lỗi khi xóa lịch sử gửi email:", error);
+        }
+    }
 
 
     useEffect(() => {

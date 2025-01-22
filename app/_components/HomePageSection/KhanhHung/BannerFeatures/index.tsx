@@ -25,7 +25,7 @@ export default function BannerFeatures(){
     ]
 
     return (
-        <div className="flex flex-col lg:flex-row justify-center gap-10 lg:gap-20 bg-[#580B94] py-20 pb-30">
+        <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start gap-10 lg:gap-20 bg-[#580B94] py-20 pb-30">
             {BANNER_ITEMS.map((item, index) => (
                 <BannerItem key={index} title={item.title} imageSrc={item.image} EXPERIENCE_ITEMS={item.EXPERIENCE_ITEMS}/>
             ))}

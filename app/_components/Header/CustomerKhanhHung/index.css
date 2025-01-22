@@ -373,3 +373,15 @@
     top: 80px !important;
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .header_bottom_wrapper{
+    margin: 0 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header_bottom_wrapper_right{
+    min-width: 20rem;
+  }
+}

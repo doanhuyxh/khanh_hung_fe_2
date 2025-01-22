@@ -28,7 +28,7 @@ export default function BannerFourth() {
     ]
 
     return (
-        <div className="pt-30 pb-10 px-10 bg-[#440873] rounded-t-[20%]">
+        <div className="pt-30 pb-10 px-10 bg-[#440873] lg:rounded-t-[20%]">
 
             <div className="max-w-[1200px] text-white m-auto">
                 <div className="flex flex-col items-center gap-5 mb-20">

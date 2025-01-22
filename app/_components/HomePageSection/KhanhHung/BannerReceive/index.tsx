@@ -11,7 +11,7 @@ export default function BannerReceive(){
             <Image src={"/template/assets/images/home/bg-grid.png"} alt='' width={1000} height={300} style={{ width: "100%", height: "auto", minHeight:300 }} />
           </div>
 
-          <div className="container flex flex-col md:flex-row justify-between items-center m-auto z-100">
+          <div className="container max-w-[1600px] flex flex-col md:flex-row justify-center lg:justify-between items-center m-auto z-100">
             <InTro />
             <AuthTabs />
 

@@ -1,10 +1,10 @@
 'use client'
-import {useEffect, useState, useCallback} from 'react';
-import {Button, Input, Table, Dropdown, Space, message, Spin, Menu} from 'antd';
-import type {MenuProps} from 'antd';
-import {useRouter} from 'next/navigation';
+import { useEffect, useState, useCallback } from 'react';
+import { Button, Input, Table, Dropdown, Space, message, Spin, Menu, Popconfirm } from 'antd';
+import type { MenuProps } from 'antd';
+import { useRouter } from 'next/navigation';
 import axiosInstance from '@/app/_libs/configs/axiosAdminConfig';
-import {ResponseData} from "@/app/_libs/types";
+import { ResponseData } from "@/app/_libs/types";
 
 export default function Course() {
     const router = useRouter();
@@ -111,7 +111,7 @@ export default function Course() {
         {
             title: 'Ảnh thumbnail',
             dataIndex: 'image',
-            render: (image: string) => image && <img src={image} alt="thumbnail" style={{width: 100, height: 100}}/>,
+            render: (image: string) => image && <img src={image} alt="thumbnail" style={{ width: 100, height: 100 }} />,
         },
         {
             title: 'Số bài học',
@@ -125,9 +125,24 @@ export default function Course() {
             title: 'Hành động',
             render: (record: any) => (
                 <Space>
-                    <Button type="link" onClick={() => handleAddOrUpdateCourse(record.id)}>Sửa</Button>
-                    <Button type="link" onClick={() => handleDetailCourse(record.id)}>Chi tiết</Button>
-                    <Button type="link" danger onClick={() => handleDeleteCourse(record.id)}>Xoá</Button>
+                    <Button type="link" onClick={() => handleAddOrUpdateCourse(record.id)}>
+                        <i className="fas fa-edit" />
+                    </Button>
+                    <Button type="link" onClick={() => handleDetailCourse(record.id)}>
+                        <i className="fas fa-eye" />
+                    </Button>
+                    <Popconfirm
+                        title="Bạn có chắc chắn muốn xoá?"
+                        description="Hành động này không thể hoàn tác."
+                        okText="Đồng ý"
+                        cancelText="Hủy bỏ"
+                        onConfirm={() => handleDeleteCourse(record.id)}
+                        onCancel={() => console.log('Đã hủy thao tác.')}
+                    >
+                        <Button type="link" danger>
+                            <i className="fas fa-trash" />
+                        </Button>
+                    </Popconfirm>
                 </Space>
             ),
         },
@@ -135,7 +150,7 @@ export default function Course() {
 
     return (
         <div>
-            <div style={{display: 'flex', justifyContent: 'space-between', justifyItems: "center", marginBottom: 20}}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', justifyItems: "center", marginBottom: 20 }}>
                 <h1 className="font-bold">Danh sách khoá học</h1>
 
                 <div className="flex gap-2">
@@ -165,14 +180,14 @@ export default function Course() {
                             className="rounded"
                             value={searchKeyword}
                             onChange={(e) => setSearchKeyword(e.target.value)}
-                            style={{width: 280}}
+                            style={{ width: 280 }}
                         />
 
-                        <Dropdown overlay={<Menu items={menuItems}/>} placement="bottomLeft" arrow>
-                            <Button style={{height: 40}}>Thao tác</Button>
+                        <Dropdown overlay={<Menu items={menuItems} />} placement="bottomLeft" arrow>
+                            <Button style={{ height: 40 }}>Thao tác</Button>
                         </Dropdown>
 
-                        <Button type="primary" style={{height: 40}} onClick={() => handleAddOrUpdateCourse('')}>+ Thêm
+                        <Button type="primary" style={{ height: 40 }} onClick={() => handleAddOrUpdateCourse('')}>+ Thêm
                             mới</Button>
 
                     </Space>

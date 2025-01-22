@@ -16,8 +16,13 @@ export default function BankConfig() {
         formData.append('accountNumber', values.accountNumber);
         formData.append('accountHolder', values.accountHolder);
         formData.append('balance', values.balance);
+        formData.append('old_balance', values.old_balance);
 
-        axiosInstance.post('/settings/update-web-config', formData)
+        axiosInstance.post('/settings/update-web-config', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
             .then(response => {
                 toast.success('Cập nhật thông tin thanh toán thành công!', {
                     duration: 3000,
@@ -49,6 +54,7 @@ export default function BankConfig() {
                     accountNumber: bankConfig.accountNumber,
                     accountHolder: bankConfig.accountHolder,
                     balance: bankConfig.balance,
+                    old_balance: bankConfig.old_balance,
                 });
             })
             .catch(error => {
@@ -101,7 +107,17 @@ export default function BankConfig() {
                 </Form.Item>
 
                 <Form.Item
-                    label="Số tiền thanh toán khoá học"
+                    label="Số tiền thanh toán khoá học gốc"
+                    name="old_balance"
+                    rules={[
+                        { required: true, message: 'Vui lòng nhập số tiền!' },
+                    ]}
+                >
+                    <Input type='number' placeholder="Nhập số tiền" />
+                </Form.Item>
+
+                <Form.Item
+                    label="Số tiền thanh toán khoá học thanh toán"
                     name="balance"
                     rules={[
                         { required: true, message: 'Vui lòng nhập số tiền!' },

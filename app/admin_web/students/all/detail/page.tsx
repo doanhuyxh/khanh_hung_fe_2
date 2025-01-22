@@ -1,12 +1,12 @@
 'use client';
 
 import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
-import {Customer} from "@/app/_libs/types";
-import {useSearchParams} from "next/navigation";
-import {useEffect, useState} from "react";
-import {Tabs, Spin} from "antd";
+import { Customer } from "@/app/_libs/types";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState, useCallback } from "react";
+import { Tabs, Spin } from "antd";
 import Image from "next/image";
-import {formatTime} from "@/app/_libs/utils";
+import { formatTime } from "@/app/_libs/utils";
 
 export default function CustomerDetailPage() {
     const query = useSearchParams();
@@ -27,20 +27,18 @@ export default function CustomerDetailPage() {
         }
     }
 
-    const GetProgress = (courseId: string) => {
+    const GetProgress = useCallback((courseId: string) => {
         const data = progress[courseId];
         if (!data) {
             GetProgressCourse(id || "", courseId)
                 .then((res) => {
-                    setProgress({...progress, [courseId]: res});
-                    return res
-                })
-
+                    setProgress((prevProgress) => ({ ...prevProgress, [courseId]: res }));
+                    return res;
+                });
         } else {
             return data;
         }
-
-    }
+    }, [id, progress]);
 
     useEffect(() => {
         axiosInstance.get(`/customer/get-by-id?id=${id}`)
@@ -68,16 +66,13 @@ export default function CustomerDetailPage() {
                 GetProgress(item.courseId)
             })
         }
-    }, [courseProgress]);
+    }, [courseProgress, GetProgress]);
 
-    useEffect(() => {
-        console.log(progress)
-    }, [progress]);
 
     if (isLoading) {
         return (
             <div className="w-full h-screen flex justify-center items-center">
-                <Spin size="large"/>
+                <Spin size="large" />
             </div>
         )
     }
@@ -151,14 +146,14 @@ export default function CustomerDetailPage() {
                                     className="rounded-lg"
                                 />}
                                 {
-                                    !item.courseImageThump && <div className="w-20 h-20 bg-gray-300 rounded-lg"/>
+                                    !item.courseImageThump && <div className="w-20 h-20 bg-gray-300 rounded-lg" />
                                 }
                                 <div className="flex-grow">
                                     <h4 className="text-lg font-semibold">{item.courseName}</h4>
                                     <div className="mt-2 bg-gray-200 rounded-full h-2.5">
                                         <div
                                             className="bg-blue-600 h-2.5 rounded-full"
-                                            style={{width: `${item.progress}%`}}
+                                            style={{ width: `${item.progress}%` }}
                                         />
                                     </div>
                                     <p>Tiến độ: {item.progress}%</p>
@@ -166,12 +161,12 @@ export default function CustomerDetailPage() {
                             </div>
                             <div className="w-full">
                                 <div className="w-full h-fit flex justify-end">
-                                    <span className="px-2 py-1 bg-violet-400 text-white rounded cursor-pointer"
-                                          onClick={() => setShowIndexCourse(item.courseId)}>Xem chi tiết </span>
+                                    <span className={`px-2 py-1 ${showIndexCourse == item.courseId ?"bg-violet-500" :"bg-violet-400"} text-white rounded cursor-pointer`}
+                                        onClick={() => setShowIndexCourse(item.courseId)}>Xem chi tiết </span>
                                 </div>
                                 {showIndexCourse == item.courseId && <div className="w-full">
                                     {
-                                        progress[item.courseId].map((lesson, index) => {
+                                        progress[item.courseId] && progress[item.courseId].map((lesson, index) => {
                                             return (
                                                 <div key={index} className="ml-20 flex items-center gap-4">
                                                     {
@@ -180,18 +175,18 @@ export default function CustomerDetailPage() {
                                                             alt={lesson.lesson_name}
                                                             width={100}
                                                             height={100}
-                                                            className="rounded-lg"
+                                                            className="rounded"
                                                         />
                                                     }
                                                     {
-                                                        !lesson.image && <div className="w-20 h-20 bg-gray-300 rounded-lg"/>
+                                                        !lesson.image && <div className="w-20 h-20 bg-gray-300 rounded-lg" />
                                                     }
                                                     <div className="flex-grow">
                                                         <h4 className="text-lg font-semibold">{lesson.lesson_name}</h4>
                                                         <div className="mt-2 bg-gray-200 rounded-full h-2.5">
                                                             <div
                                                                 className="bg-blue-600 h-2.5 rounded-full"
-                                                                style={{width: `${lesson.progress}%`}}
+                                                                style={{ width: `${lesson.progress}%` }}
                                                             />
                                                         </div>
                                                         <p>Tiến độ: {lesson.progress}%</p>
@@ -226,34 +221,34 @@ export default function CustomerDetailPage() {
                 <div className="bg-white p-4 rounded-lg shadow-md">
                     <table className="table-auto w-full border-collapse border border-gray-300">
                         <thead>
-                        <tr className="bg-gray-100">
-                            <th className="border border-gray-300 px-4 py-2 text-left">STT</th>
-                            <th className="border border-gray-300 px-4 py-2 text-left">Thời gian tạo</th>
-                            <th className="border border-gray-300 px-4 py-2 text-left">Thời gian gửi</th>
-                            <th className="border border-gray-300 px-4 py-2 text-left">Thời gian xem</th>
-                            <th className="border border-gray-300 px-4 py-2 text-left">Mẫu mail</th>
-                            <th className="border border-gray-300 px-4 py-2 text-left">Loại</th>
-                            <th className="border border-gray-300 px-4 py-2 text-left">Trạng thái</th>
-                        </tr>
+                            <tr className="bg-gray-100">
+                                <th className="border border-gray-300 px-4 py-2 text-left">STT</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Thời gian tạo</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Thời gian gửi</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Thời gian xem</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Mẫu mail</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Loại</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Trạng thái</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        {emailHistory.map((item, index) => (
-                            <tr key={index} className="hover:bg-gray-100">
-                                <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
-                                <td className="border border-gray-300 px-4 py-2">{formatTime(item.createdAt)}</td>
-                                <td className="border border-gray-300 px-4 py-2">{formatTime(item.sendAt)}</td>
-                                <td className="border border-gray-300 px-4 py-2">
-                                    {item.isRead ? formatTime(item.readAt) : ''}
-                                </td>
-                                <td className="border border-gray-300 px-4 py-2">{item.name}</td>
-                                <td className="border border-gray-300 px-4 py-2">{item.typeMailSend}</td>
-                                <td className="border border-gray-300 px-4 py-2">
-                                    {item.isRead ?
-                                        <span className="bg-green-500 px-2 py-1 rounded text-white">Đã xem</span> :
-                                        <span className="bg-red-500 px-2 py-1 rounded text-white">Chưa xem</span>}
-                                </td>
-                            </tr>
-                        ))}
+                            {emailHistory.map((item, index) => (
+                                <tr key={index} className="hover:bg-gray-100">
+                                    <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
+                                    <td className="border border-gray-300 px-4 py-2">{formatTime(item.createdAt)}</td>
+                                    <td className="border border-gray-300 px-4 py-2">{formatTime(item.sendAt)}</td>
+                                    <td className="border border-gray-300 px-4 py-2">
+                                        {item.isRead ? formatTime(item.readAt) : ''}
+                                    </td>
+                                    <td className="border border-gray-300 px-4 py-2">{item.name}</td>
+                                    <td className="border border-gray-300 px-4 py-2">{item.typeMailSend}</td>
+                                    <td className="border border-gray-300 px-4 py-2">
+                                        {item.isRead ?
+                                            <span className="bg-green-500 px-2 py-1 rounded text-white">Đã xem</span> :
+                                            <span className="bg-red-500 px-2 py-1 rounded text-white">Chưa xem</span>}
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
@@ -262,8 +257,14 @@ export default function CustomerDetailPage() {
     ];
 
     return (
-        <div className="container mx-auto p-4">
-            <Tabs items={items}/>
-        </div>
+        <>
+            <a href="/admin_web/students/all" className="float-left bg-blue-500 text-white px-4 py-2 rounded-md">
+                <i className="fas fa-arrow-left" />
+            </a>
+            <div className="container mx-auto p-4">
+
+                <Tabs items={items} />
+            </div>
+        </>
     );
 }

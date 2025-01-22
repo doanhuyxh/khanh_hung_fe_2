@@ -167,7 +167,7 @@ export default function AuthTabs() {
 
     if (isLogin) {
         return (
-            <div className="banner-right rounded-lg p-8 text-center flex flex-col gap-10 items-center"
+            <div className="banner-right rounded-lg p-8 text-center lg:flex flex-col gap-10 items-center hidden"
                  onClick={handleChangeStudyPage}>
                 <h2 className="text-3xl lg:text-5xl font-bold text-white mb-4 text-nowrap">
                     Chào mừng đồng nghiệp quay trở lại!

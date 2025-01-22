@@ -138,6 +138,10 @@ function switch_display_subLabel(value: string) {
   return displayValue;
 }
 
+function formatNumber(number: number) {
+  return new Intl.NumberFormat().format(number);
+}
+
 export {
   unixToDatetime,
   dateToUnixTimestamp,
@@ -145,5 +149,6 @@ export {
   switch_display_value,
   switch_display_label,
   switch_display_subLabel,
-  formatTime
+  formatTime,
+  formatNumber
 };

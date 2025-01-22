@@ -2,7 +2,6 @@
 
 import { EditorReactQuill } from "@/app/_components/Editor";
 import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
-import axiosCustomerConfig from "@/app/_libs/configs/axiosCustomerConfig";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
@@ -16,9 +15,8 @@ export default function Affiliate() {
 
     const handleSavePolicy = () => {
         const formData = new FormData();
-        formData.append('key', 'affiliate_policy');
-        formData.append('value', value);
-        axiosCustomerConfig.post('/web_config/add-or-update', formData, {
+        formData.append('affiliate_policy', value);
+        axiosInstance.post('/settings/update-web-config', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

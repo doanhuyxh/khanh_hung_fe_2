@@ -6,7 +6,7 @@ import UpgradeForm from '@/app/_components/HomePageSection/KhanhHung/UpgradeForm
 
 export default function UpgradePage() {
 
-    window.location.href = ""
+    
 
     return <div className='w-full min-h-screen flex flex-col items-center justify-start bg-[linear-gradient(180deg,#340658,#7c0fd1)]'>
         <div className='w-full max-w-[1920px] h-auto p-4 flex flex-col xl:gap-10 items-center' style={{ backgroundImage: `url('/assets/images/up-bg-top.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>

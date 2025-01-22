@@ -5,7 +5,7 @@ import { Customer } from "@/app/_libs/types";
 import axiosInstance from "@/app/_libs/configs/axiosAdminConfig";
 import { formatTime } from "@/app/_libs/utils";
 import { useRouter } from "next/navigation";
-import { Table, Input, Button, Pagination, Avatar, Space } from "antd";
+import { Table, Input, Button, Pagination, Avatar, Space, Popconfirm } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
 export default function CustomerPage() {
@@ -20,6 +20,13 @@ export default function CustomerPage() {
     const handleViewCustomer = (id: string) => {
         router.push(`/admin_web/students/all/detail?id=${id}`);
     };
+
+    const handleDeleteCustomer = (id: string) => {
+        axiosInstance.get(`/customer/delete?id=${id}`)
+            .then(() => {
+                fetchCustomerData();
+            });
+    }
 
     const fetchCustomerData = useCallback(async () => {
         const response = await axiosInstance(
@@ -75,9 +82,18 @@ export default function CustomerPage() {
                     <Button type="primary" onClick={() => handleViewCustomer(record.id)}>
                         Xem
                     </Button>
-                    <Button danger onClick={() => handleViewCustomer(record.id)}>
-                        Xoá
-                    </Button>
+                    <Popconfirm
+                        title="Bạn có chắc chắn muốn xoá?"
+                        description="Hành động này không thể hoàn tác."
+                        okText="Đồng ý"
+                        cancelText="Hủy bỏ"
+                        onConfirm={() => {
+                            handleDeleteCustomer(record.id);
+                        }}
+                        onCancel={() => console.log('Đã hủy thao tác.')}
+                    >
+                        <Button type="default" className='bg-red-500 text-white'>Xoá</Button>
+                    </Popconfirm>
                 </Space>
             ),
         },
@@ -107,13 +123,13 @@ export default function CustomerPage() {
                 bordered
             />
             <div className="flex justify-end">
-            <Pagination
-                current={page}
-                total={totalResult}
-                pageSize={pageSize}
-                onChange={(page) => setPage(page)}
-                style={{ marginTop: "16px", textAlign: "right" }}
-            />
+                <Pagination
+                    current={page}
+                    total={totalResult}
+                    pageSize={pageSize}
+                    onChange={(page) => setPage(page)}
+                    style={{ marginTop: "16px", textAlign: "right" }}
+                />
             </div>
         </div>
     );

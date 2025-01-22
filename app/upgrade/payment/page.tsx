@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import confetti from 'canvas-confetti';
 import Image from 'next/image';
 import { toast } from 'react-hot-toast';
+import {formatNumber} from '@/app/_libs/utils';
 
 import axiosCustomerConfig from '@/app/_libs/configs/axiosCustomerConfig';
 import { Customer } from '@/app/_libs/types';
@@ -13,14 +14,21 @@ import Image_7_day_return from '@/app/_components/HomePageSection/KhanhHung/Imag
 
 export default function PaymentPage() {
 
-    const [qrCode, setQrCode] = useState<string>('https://img.vietqr.io/image/ICB-101873915294-qr_only.png');
-    const amount = 199000;
+    const [bankConfig, setBankConfig] = useState<any>({
+        bankName: '',
+        accountNumber: '',
+        accountHolder: '',
+        balance: '',
+        old_balance: '',
+    });
+
+    const [logo, setLogo] = useState<string>('');
+    
     const [user, setUser] = useState<Customer>({} as Customer);
 
     const GetUserInfo = async () => {
         const res = await axiosCustomerConfig.get('/customer/get-info');
         setUser(res.data);
-        setQrCode(`https://img.vietqr.io/image/ICB-101873915294-qr_only.png?${amount}=790000&addInfo=${user?.code}`);
     }
 
     const [countDown, setCountDown] = useState<number>(600);
@@ -52,8 +60,8 @@ export default function PaymentPage() {
             if (countDown % 10 === 0) {
                 axiosCustomerConfig.get('/customer/get-member-type')
                     .then((res) => {
-                        if (res.data == "vip") {
-                            toast.success("Bạn đã được nâng cấp thành viên VIP", {
+                        if (res.data == "pro") {
+                            toast.success("Bạn đã được nâng cấp thành viên PRO", {
                                 duration: 10000,
                                 position: "top-right",
                                 style: {
@@ -105,6 +113,47 @@ export default function PaymentPage() {
     }, []);
 
 
+    useEffect(() => {
+        axiosCustomerConfig.get("/public/get-bank-config")
+            .then(response => {
+                const temp_bank = {} as any
+                response.data.forEach((bank: any) => {
+                    if (bank.key === "accountHolder") {
+                        temp_bank.accountHolder = bank.value;   
+                    }
+                    if (bank.key === "accountNumber") {
+                        temp_bank.accountNumber = bank.value;
+                    }
+                    if (bank.key === "bankName") {
+                        temp_bank.bankName = bank.value;
+                    }
+                    if (bank.key === "balance") {
+                        temp_bank.balance = formatNumber(bank.value);
+                    }
+                    
+                    if (bank.key === "old_balance") {
+                        temp_bank.old_balance = formatNumber(bank.value);
+                    }
+
+                });
+                setBankConfig(temp_bank);
+            })
+            .catch(error => {
+                console.log('Lỗi:', error);
+            });
+        
+        axiosCustomerConfig.get("/public/social-key?key=logo")
+            .then(response => {
+                setLogo(response.data);
+            })
+            .catch(error => {
+                console.log('Lỗi:', error);
+            });
+
+    }, []);
+
+
+
     return (
         <div className="w-screen h-screen overflow-y-auto">
             {/* <canvas ref={confettiCanvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none" /> */}
@@ -118,26 +167,27 @@ export default function PaymentPage() {
                         </div>
                     </div>
 
-                    <div className='w-full flex flex-col gap-0 items-center'>
+                    <div className='w-full flex flex-col gap-2 items-center'>
                         <div className='flex justify-center items-center gap-4 bg-[#7c0fd1] p-10 rounded-lg shadow-2xl'>
                             <div className='w-32 h-32 rounded-ful flex items-center justify-center animate-shake animate-infinite animate-duration-1000 animate-ease-linear'>
-                                <Image src={"/assets/images/logo-seven.png"} alt="Logo" width={100} height={100} />
+                                {logo && <Image src={logo} alt="Logo" width={100} height={100} style={{ width: "100%", height: "auto" }} />}
                             </div>
                             <h2 className='text-2xl md:text-5xl font-[600] text-white mb-4 text-left leading-[31px] tracking-wide text-nowrap'>Chúc mừng bạn <br /> {user?.lastName}!</h2>
                         </div>
 
-                        <div className='max-w-[72rem] bg-[#42006a] px-22 py-12 rounded-lg shadow-2xl text-center border-10 border-[#7c0fd1]'>
+                        <div className='max-w-[72rem] bg-[#42006a] px-22 py-12 rounded-lg shadow-2xl text-center border-10 border-[#7c0fd1] item_spin_radius'>
                             <p className='w-full text-3xl text-white font-[700] mb-4 text-center leading-tight tracking-wide'>
-                                Giao dịch của bạn đã được khoá lại với mức giá ưu đãi chỉ từ
+                                Giao dịch của bạn đã được ưu đãi chỉ từ <span className="text-yellow-300 font-bold text-[5rem]"> {bankConfig.balance}đ</span>
                             </p>
-                            <p className="text-yellow-300 font-bold text-[5rem]">{amount}đ</p>
+                            <p className="text-yellow-300 font-bold text-[5rem]" style={{textDecoration:"line-through"}}>{bankConfig.old_balance}đ</p>
                         </div>
                     </div>
 
                     <div className='flex flex-col gap-7 items-center'>
                         <p className='font-[600] text-white text-[2.7rem] uppercase font-[Inter] text-center'>Chỉ còn <strong className='text-orange-600'>1</strong> bước cuối cùng</p>
-                        <p className='text-white font-medium leading-[25px] text-[16px] text-center'>Bạn sẽ trở thành một đồng nghiệp của Hùng - một giảng viên e-learning <br />
-                            sở hữu một nguồn thu nhập thụ động đúng nghĩa như những <strong>CHUYÊN GIA</strong></p>
+                        <p className='text-white font-medium leading-[25px] text-[16px] text-center'>
+                            Bạn sẽ trở thành một bậc thầy bán hàng trên internet
+                        </p>
                     </div>
 
                     <div className='w-10/12 xl:w-[71rem] h-[3.6rem] relative'>
@@ -179,21 +229,23 @@ export default function PaymentPage() {
                                             Ngân hàng
                                         </th>
                                         <td className="px-4 py-2 text-2xl font-bold text-white tracking-wide">
-                                            <span className="bg-blue-600 px-2 py-2 rounded-lg">Vietinbank</span>
+                                            <span className="bg-blue-600 px-2 py-2 rounded-lg">{bankConfig.bankName}</span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th className="px-0 py-2 text-2xl text-gray-600 font-bold tracking-wide">
                                             Số tài khoản
                                         </th>
-                                        <td className="px-4 py-2 text-2xl font-bold tracking-wide">101873915294</td>
+                                        <td className="px-4 py-2 text-2xl font-bold tracking-wide">
+                                            {bankConfig.accountNumber}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th className="px-0 py-2 text-2xl text-gray-600 font-bold tracking-wide">
                                             Tên tài khoản
                                         </th>
                                         <td className="px-4 py-2 text-2xl font-bold tracking-wide uppercase">
-                                            Hoang thi nga
+                                            {bankConfig.accountHolder}
                                         </td>
                                     </tr>
                                     <tr>
@@ -201,7 +253,7 @@ export default function PaymentPage() {
                                             Số tiền
                                         </th>
                                         <td className="px-4 py-2 text-2xl font-bold tracking-wide">
-                                            199.000 VND
+                                            {bankConfig.balance} VNĐ
                                         </td>
                                     </tr>
                                     <tr>
@@ -252,7 +304,7 @@ export default function PaymentPage() {
 
                             <div className='hidden lg:flex flex-row gap-4 items-center justify-center font-[700] text-[7rem]'>
                                 <div className='bg-[#d92121] text-white px-3 py-2 rounded-2xl text-center'>
-                                    <p className=' text-[3rem]'>0{minute}</p>
+                                    <p className=' text-[3rem]'>{minute}</p>
                                     <p className=' text-[2rem]'>Phút</p>
                                 </div>
                                 <div className='bg-[#d92121] bg-opacity-25 text-[#d92121] px-3 py-2 rounded-2xl text-center'>
@@ -265,7 +317,7 @@ export default function PaymentPage() {
                         <div className="flex justify-center flex-col gap-10 lg:gap-20 items-center" id='qr'>
                             <div className="relative group">
                                 <Image
-                                    src={qrCode}
+                                    src={`https://img.vietqr.io/image/ICB-101873915294-qr_only.png?amount=${bankConfig.balance?.replace(",", "")}&addInfo=${user?.code}`}
                                     alt="QR Payment"
                                     className="w-full max-w-md object-contain rounded-lg shadow-lg border "
                                     width={100}
