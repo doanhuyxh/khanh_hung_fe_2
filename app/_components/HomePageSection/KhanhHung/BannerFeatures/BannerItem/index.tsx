@@ -4,7 +4,7 @@ export default function BannerItem({title, EXPERIENCE_ITEMS, imageSrc}) {
 
     return (
         <div
-            className="max-w-[450px] min-w-[250px] min-h-[600px] bg-[url('/assets/images/home/coming-soon-bg-01.jpg')] bg-cover bg-center p-8 rounded-3xl border-2 border-[#2686ec] overflow-hidden scrollbar-hide">
+            className="max-w-[450px] min-w-[250px] min-h-[600px] lg:min-h-[700px] bg-[url('/assets/images/home/coming-soon-bg-01.jpg')] bg-cover bg-center p-8 rounded-3xl border-2 border-[#2686ec] overflow-hidden scrollbar-hide">
 
             <div className="flex flex-col items-center justify-start h-full text-white bg-transparent">
                 <div className="w-full h-auto max-h-[260px] mb-4 rounded-2xl overflow-hidden">

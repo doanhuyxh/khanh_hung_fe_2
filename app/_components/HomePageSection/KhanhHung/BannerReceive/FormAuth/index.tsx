@@ -5,7 +5,6 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import {toast} from "react-hot-toast";
 import Image from "next/image";
-import {getLastStudyLesion} from "@/app/_libs/services/ApiCustomerServices";
 
 export default function AuthTabs() {
 

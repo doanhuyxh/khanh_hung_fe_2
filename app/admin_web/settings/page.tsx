@@ -1,8 +1,6 @@
-export const dynamic = "force-static";
 
+import { redirect } from "next/navigation"
 
 export default function Settings(){
-    return (
-        <div>dashboard</div>
-    )
+    redirect("/admin_web/dashboard")
 }

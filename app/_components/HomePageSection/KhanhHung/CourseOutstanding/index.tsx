@@ -35,7 +35,7 @@ export default function CourseOutstanding(){
                 <div
                     className="flex flex-col lg:flex-row justify-center items-center lg:items-start gap-10 w-11/12 lg:w-8/12 m-auto max-w-[1920px]">
 
-                    <div className="flex flex-col justify-start gap-5 bg-white px-12 rounded-xl max-w-[450px] min-w-[380px] min-h-[660px] max-h-[700px]">
+                    <div className="flex flex-col justify-start gap-5 bg-white px-12 rounded-xl max-w-[440px] min-w-[380px] min-h-[690px] max-h-[750px]">
                         <div className="w-full bg-transparent h-10"></div>
                         <div className="car_item_title">
                             <p className="font-bold text-4xl text-pink-600 hover:scale-105 cursor-pointer">Conversion
@@ -62,7 +62,7 @@ export default function CourseOutstanding(){
                         </div>
                     </div>
 
-                    <div className="flex flex-col justify-start gap-5 bg-white px-12 rounded-xl max-w-[450px] relative">
+                    <div className="flex flex-col justify-start gap-5 bg-white px-12 rounded-xl max-w-[440px] min-w-[380px] min-h-[690px] max-h-[750px] relative">
                         <div className="w-full bg-transparent h-10"></div>
                         <div className="car_item_title">
                             <p className="font-bold text-4xl text-pink-600  hover:scale-105 cursor-pointer">Master

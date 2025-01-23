@@ -1,30 +1,38 @@
-import { Metadata } from 'next';
-import fetchData from '@/app/_libs/configs/fetchDataServer'
+import { Metadata, Viewport } from 'next';
 import { Toaster } from 'react-hot-toast';
-import { Seo } from './_libs/types';
 import "./_styles/global.css";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const metadata: Metadata = {}
-  const response = await fetchData(`/public/seo`, '')
-  if (response.code !== 200) {
-    return metadata;
-  }
-  const res_data = response.data
-  const data:Seo = JSON.parse(res_data)
- 
-  return {
-    viewport: 'initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width',
-    icons: {
-      icon: data.favicon || ''
+const baseURL = process.env.API_URL;
+const time = new Date().getSeconds();
+export const metadata: Metadata = {
+  icons: [
+    {
+      rel: 'icon',
+      href: `${baseURL}/api/v1/public/get-web-config-key?key=favicon&time=${time}`,
+      sizes: '32x32',
+      url: `${baseURL}/api/v1/public/get-web-config-key?key=favicon&time=${time}`,
     },
-    title: data.title || '',
-    description: data.description || '',
-    keywords: data.keywords || '',
-    robots: data.robots || '',
-  };
- 
-};
+    {
+      rel: 'icon',
+      href: `${baseURL}/api/v1/public/get-web-config-key?key=favicon&time=${time}`,
+      sizes: '64x64',
+      url: `${baseURL}/api/v1/public/get-web-config-key?key=favicon&time=${time}`,
+    },
+    {
+      rel: 'icon',
+      href: `${baseURL}/api/v1/public/get-web-config-key?key=favicon&time=${time}`,
+      sizes: '128x128',
+      url: `${baseURL}/api/v1/public/get-web-config-key?key=favicon&time=${time}`,
+    },
+  ]
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1.0,
+  minimumScale: 1.0,
+  maximumScale: 1.0,
+}
 
 export default function RootLayout({
   children,
