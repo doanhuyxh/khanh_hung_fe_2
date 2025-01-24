@@ -14,6 +14,7 @@ export default function CustomerPage() {
     const pageSize = 10;
     const [searchKeyword, setSearchKeyword] = useState('');
     const [customerData, setCustomerData] = useState<Customer[]>([]);
+    const [typeUser, setTypeUser] = useState("all");
 
     const router = useRouter();
 
@@ -30,15 +31,15 @@ export default function CustomerPage() {
 
     const fetchCustomerData = useCallback(async () => {
         const response = await axiosInstance(
-            `/customer/get-all-customer?page=${page}&pageSize=${pageSize}&search_keyword=${searchKeyword}`
+            `/customer/get-all-customer?page=${page}&pageSize=${pageSize}&search_keyword=${searchKeyword}&type_user=${typeUser}`
         );
         setCustomerData(response.data.data);
         setTotalResult(response.data.totalResult);
-    }, [page, searchKeyword, pageSize]);
+    }, [page, searchKeyword, pageSize, typeUser]);
 
     useEffect(() => {
         fetchCustomerData();
-    }, [page, searchKeyword, pageSize, fetchCustomerData]);
+    }, [page, searchKeyword, pageSize, fetchCustomerData, typeUser]);
 
     const columns = [
         {
@@ -101,10 +102,37 @@ export default function CustomerPage() {
 
     return (
         <div style={{ padding: "20px" }}>
-            <h2 style={{ textAlign: "center", fontWeight: "bold", fontSize: "18px" }}>
+            <h2 style={{ textAlign: "center", fontWeight: "bold", fontSize: "18px", marginBottom: "20px" }}>
                 Danh sách học viên
             </h2>
-            <div style={{ marginBottom: "16px", textAlign: "right" }}>
+
+            <div className="flex justify-between mb-3 bg-white p-3 rounded-lg">
+
+                <div className="flex space-x-3">
+                    <button className={`px-2 py-0 ${typeUser == "all" ? "bg-green-500" : "bg-gray-400"} rounded text-white`} onClick={() => setTypeUser("all")}>
+                        All
+                    </button>
+
+                    <button className={`px-2 py-0 ${typeUser == "free" ? "bg-green-500" : "bg-gray-400"} rounded text-white`} onClick={() => setTypeUser("free")}>
+                        Pree
+                    </button>
+                    <button className={`px-2 py-0 ${typeUser == "pro" ? "bg-green-800" : "bg-gray-400"} rounded text-white`} onClick={() => setTypeUser("pro")}>
+                        Pro
+                    </button>
+
+                    <button className={`px-2 py-0 rounded ${typeUser == "watched_5_videos" ? "bg-green-500" : "bg-gray-400"} text-white`} onClick={() => setTypeUser("watched_5_videos")}>
+                        Học trên 5 video
+                    </button>
+
+                    <button className={`px-2 py-0 rounded ${typeUser == "verified" ? "bg-green-500" : "bg-gray-400"} text-white`} onClick={() => setTypeUser("verified")}>
+                        Đã xác thực
+                    </button>
+
+                    <button className={`px-2 py-0 rounded ${typeUser == "not_verify" ? "bg-green-500" : "bg-gray-400"} text-white`} onClick={() => setTypeUser("not_verify")}>
+                        Chưa xác thực
+                    </button>
+
+                </div>
                 <Input
                     placeholder="Tìm kiếm khách hàng"
                     value={searchKeyword}

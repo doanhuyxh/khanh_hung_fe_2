@@ -161,7 +161,7 @@ export default function CustomerDetailPage() {
                             </div>
                             <div className="w-full">
                                 <div className="w-full h-fit flex justify-end">
-                                    <span className={`px-2 py-1 ${showIndexCourse == item.courseId ?"bg-violet-500" :"bg-violet-400"} text-white rounded cursor-pointer`}
+                                    <span className={`px-2 py-1 ${showIndexCourse == item.courseId ? "bg-violet-500" : "bg-violet-400"} text-white rounded cursor-pointer`}
                                         onClick={() => setShowIndexCourse(item.courseId)}>Xem chi tiết </span>
                                 </div>
                                 {showIndexCourse == item.courseId && <div className="w-full">
@@ -258,11 +258,10 @@ export default function CustomerDetailPage() {
 
     return (
         <>
-            <a href="/admin_web/students/all" className="float-left bg-blue-500 text-white px-4 py-2 rounded-md">
-                <i className="fas fa-arrow-left" />
-            </a>
-            <div className="container mx-auto p-4">
-
+            <div className="container mx-auto">
+                <a href="/admin_web/students/all" className="float-left bg-blue-500 text-white px-1 py-0 rounded transform translate-y-[50%] translate-x-[-100%]">
+                    <i className="fas fa-arrow-left" />
+                </a>
                 <Tabs items={items} />
             </div>
         </>
