@@ -8,7 +8,6 @@ import {formatNumber} from '@/app/_libs/utils';
 
 import axiosCustomerConfig from '@/app/_libs/configs/axiosCustomerConfig';
 import { Customer } from '@/app/_libs/types';
-import '../../_styles/home_khanh_hung.css'
 import Image_7_day_return from '@/app/_components/HomePageSection/KhanhHung/Image_7_day_return';
 
 

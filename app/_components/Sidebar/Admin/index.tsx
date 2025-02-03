@@ -32,7 +32,8 @@ const menuGroups = [
         label: "Khoá học",
         route: "#",
         children: [
-          { label: "Khoá học", route: "/admin_web/course" }
+          { label: "Khoá học", route: "/admin_web/course" },
+          { label: "Bình luận", route: "/admin_web/course/lesson-comments" },
         ],
       },
     ],

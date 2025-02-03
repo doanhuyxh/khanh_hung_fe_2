@@ -11,10 +11,14 @@ import dayjs from "dayjs";
 const {Option} = Select;
 
 export default function Histories() {
+    const [loading, setLoading] = useState(true);
     const [data, setData] = useState<any[]>([]);
     const [templates, setTemplates] = useState<TemplateMail[]>([]);
     const [users, setUsers] = useState<Customer[]>([]);
     const [pageSize, setPageSize] = useState(5);
+    const [page, setCurrentPage] = useState(1);
+    const [totalItems, setTotalItems] = useState(0);
+
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
 
@@ -119,16 +123,19 @@ export default function Histories() {
         }
     };
 
-    const getHistorySendEmail = async () => {
+    const getHistorySendEmail = React.useCallback(async () => {
         try {
-            const res: ResponseData = await axiosInstance.get(`/email/get-history-send-email?page=1&pageSize=${pageSize}&startTime=${startDate}&endTime=${endDate}`);
-            if (res.code === 200 && Array.isArray(res.data)) {
-                setData(res.data.map((item, index) => ({...item, key: index})));
+            setLoading(true);
+            const res: ResponseData = await axiosInstance.get(`/email/get-history-send-email?page=${page}&pageSize=${pageSize}&startTime=${startDate}&endTime=${endDate}`);
+            if (res.code === 200 && Array.isArray(res.data.data)) {
+                setData(res.data.data.map((item, index) => ({...item, key: index})));
+                setTotalItems(res.data.total);
             }
+            setLoading(false);
         } catch (error) {
             console.error("Lỗi khi lấy lịch sử gửi email:", error);
         }
-    };
+    }, [pageSize, startDate, endDate, page]);
 
     const getTemplate = async () => {
         try {
@@ -173,7 +180,7 @@ export default function Histories() {
 
     useEffect(() => {
         getHistorySendEmail();
-    }, [pageSize, startDate, endDate]);
+    }, [pageSize, startDate, endDate, page]);
 
 
     return (
@@ -215,9 +222,24 @@ export default function Histories() {
 
             </div>
             <Table
+                loading={loading}
                 dataSource={data}
                 columns={columns}
-                pagination={{pageSize}}
+                pagination={{
+                    current: page,
+                    pageSize: pageSize,
+                    total: totalItems, 
+                    onChange: (page, size) => {
+                      setCurrentPage(page);
+                      setPageSize(size); 
+                      console.log("Page:", page, "Page Size:", size);
+                    },
+                    showSizeChanger: true, // Hiển thị dropdown thay đổi số mục trên mỗi trang
+                    pageSizeOptions: ["10", "20", "50"], // Các tùy chọn số mục trên mỗi trang
+                    showQuickJumper: true, // Cho phép nhập số trang để nhảy trực tiếp
+                    showTotal: (total, range) =>
+                      `Hiển thị ${range[0]}-${range[1]} trong tổng ${total} mục`, // Tùy chỉnh hiển thị tổng số mục
+                  }}
             />
         </div>
     );

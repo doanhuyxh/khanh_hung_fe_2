@@ -1,6 +1,9 @@
 import { Metadata, Viewport } from 'next';
+import Head from 'next/head'
 import { Toaster } from 'react-hot-toast';
 import "./_styles/global.css";
+import { AntdRegistry } from '@ant-design/nextjs-registry';
+import Link from 'next/link';
 
 const baseURL = process.env.API_URL;
 const time = new Date().getSeconds();
@@ -42,8 +45,17 @@ export default function RootLayout({
 
   return (
     <html lang="vi">
+      <Head>
+        <Link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        />
+        <Link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+      </Head>
       <body className='sidebar-expanded'>
-        {children}
+        <AntdRegistry>{children}</AntdRegistry>
         <Toaster />
       </body>
     </html>

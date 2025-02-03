@@ -71,12 +71,6 @@ export default function UpgradePage() {
             </div>
 
 
-            <div className='text-center'>
-                <div className='w-[80rem] mx-auto max-w-full flex flex-col gap-[8px] text-white'>
-                    <p>Bên cạnh độ ngon không bàn cãi thì</p>
-                    <p className="font-semibold leading-[150%] text-[2.4rem]">TẠO RA KHOÁ HỌC VÀ THỰC SỰ THÀNH CÔNG VỚI E-LEARNING</p>
-                </div>
-            </div>
         </div>
 
         <div className='w-full h-auto p-4 flex flex-col items-center' style={{ backgroundImage: `url('/assets/images/up-bg-bottom.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>

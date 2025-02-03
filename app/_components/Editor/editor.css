@@ -29,3 +29,39 @@
 .ql-size-huge {
     font-size: 2.5em;
 }
+
+#editorjs {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    min-height: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .editor-toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .editor-toolbar button {
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .editor-toolbar button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .editor-toolbar button.active {
+    background-color: #d4d4d4;
+    font-weight: bold;
+  }
+  

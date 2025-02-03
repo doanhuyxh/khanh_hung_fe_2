@@ -92,7 +92,7 @@ const Tiptap = ({ value = '' }) => {
 
       {showVideoUpload && (
         <div className="mt-4">
-          <VideoUpload initialLink={value} onChange={handleVideoUpload} />
+          <VideoUpload initialLink={value} onChange={handleVideoUpload} setDuration={()=>{}}/>
         </div>
       )}
     </div>
